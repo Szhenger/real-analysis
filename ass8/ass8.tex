@@ -1,0 +1,201 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 8}
+
+\begin{exercise}
+    (Squeeze Theorem) Let \(S \subset \mathbb{R}\) and let \(c\) be a cluster point of \(S\). Suppose \(f : S \to \mathbb{R}\), \(g : S \to \mathbb{R}\), and \(h : S \to \mathbb{R}\) are functions such that
+    \[
+        \forall x \in S : f(x) \leq g(x) \leq h(x).
+    \]
+    Suppose the limits of \(f(x)\) and \(h(x)\) as \(x\) goes to \(c\) both exist, and
+    \[
+        \lim_{x \to c}f(x) = \lim_{x \to c}h(x) \in \mathbb{R}.
+    \]
+    Prove that the limit of \(g(x)\) as \(x\) goes to \(c\) exists and
+    \[
+        \lim_{x \to c}f(x) = \lim_{x \to c}g(x) = \lim_{x \to c}h(x).
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\). Suppose \(f,g,h : S \to \mathbb{R}\) are any real functions of \(S\) such that
+    \[
+        \forall x \in S : f(x) \leq g(x) \leq h(x).
+    \]
+    Assume \(c\) is a cluster point of \(S\) such that
+    \[
+        \exists \lambda \in \mathbb{R} : \lim_{x \to c}f(x) = \lambda = \lim_{x \to c}h(x).
+    \]
+    Suppose \(\{x_n\}\) is any real convergent sequence of \(S \setminus\{c\}\) such that
+    \[
+        \lim_{n \to \infty}x_n = c.
+    \]
+    By the Sequential Characterization of Limits,
+    \[
+        \lim_{x \to c}f(x) = \lambda = \lim_{x \to c}h(x) \implies \lim_{n \to \infty}f(x_n) = \lambda = \lim_{n \to \infty}h(x_n).
+    \]
+    Given \(\{x_n \in S \setminus \{c\} \mid n \in \mathbb{N}\}\) is a proper subset of \(S\),
+    \[
+        \forall n \in \mathbb{N} : f(x_n) \leq g(x_n) \leq h(x_n).
+    \]
+    By the Squeeze Theorem for Sequences,
+    \[
+        \lim_{n \to \infty}g(x_n) = \lambda.
+    \]
+    Then \(\{x_n\}\) is an arbitrary convergent sequence of \(S \setminus \{c\}\) such that
+    \[
+        \lim_{n \to \infty}x_n = c \implies \lim_{n \to \infty}g(x_n) = \lambda.
+    \]
+    By the Sequential Characterization of Limits,
+    \[
+        \lim_{n \to \infty}g(x_n) = \lambda \implies \lim_{x \to c}g(x) = \lambda.
+    \]
+    Thus,
+    \[
+        \lim_{x \to c}f(x) = \lim_{x \to c}g(x) = \lim_{x \to c}h(x) = \lambda,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    Let
+    \[
+        f(x) = \begin{cases}
+            0 & \text{if } x \in \mathbb{Q}, \\
+            2x & \text{if } x \not \in \mathbb{Q}.
+        \end{cases}
+    \]
+    Prove that \(f\) is continuous at \(x = 0\) and discontinuous at \(x = 1\).
+\end{exercise}
+
+\begin{proof}
+    Set 
+    \[
+        f(x) = \begin{cases}
+            0 & (x \in \mathbb{Q}) \\
+            2x & (x \in \mathbb{R} \setminus \mathbb{Q})
+        \end{cases}.
+    \]
+    We want to prove that
+    \[
+        \lim_{x \to 0}f(x) = f(0).
+    \]
+    Let \(\epsilon > 0\). Choose \(\delta = 2^{-1}\epsilon > 0\). If \(x \in \mathbb{Q}\) and \(0 < \vert x - 0 \vert < \delta\), then  
+    \[
+        \vert f(x) - f(0) \vert = \vert 0 - 0 \vert = 0 < \epsilon.
+    \]
+    If \(x \in \mathbb{R} \setminus \mathbb{Q}\) and \(0 < \vert x - 0 \vert < \delta\), then
+    \[
+        \vert f(x) - f(0) \vert = \vert 2x - 0 \vert = 2\vert x \vert < 2\delta = \epsilon.
+    \]
+    We want to prove that
+    \[
+        \lim_{x \to 1}f(x) \neq f(1).
+    \]
+    Let \(\epsilon = 1\) and \(\delta > 0\). By the Density of \(\mathbb{R} \setminus \mathbb{Q}\), \(\exists x_0 \in \mathbb{R} \setminus \mathbb{Q}\) such that \(2^{-1} \leq x_0 < 1 + \delta\). Choose \(x = x_0\). Then
+    \[
+        0 < x < 1 + \delta \implies 0 < \vert x - 1 \vert < \delta
+    \]
+    and
+    \[
+        \vert f(x) - f(1) \vert = \vert 2x - 0 \vert = 2\vert x \vert \geq 1 = \epsilon.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) be continuous. Suppose \(f(c) > 0\). Show that there exists an \(\alpha > 0\) such that for all \(x \in (c - \alpha, c + \alpha)\) we have \(f(x) > 0\).
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) be any continuous function. Suppose \(c \in \mathbb{R}\) and \(f(c) > 0\). Then \(c\) is a cluster point of \(\mathbb{R}\) and \(f(c)\) is a positive value of \(\mathbb{R}\). By the Limit Characterization of Continuity, we have
+    \[
+        \lim_{x \to c}f(x) = f(c) > 0.
+    \]
+    Choose \(\epsilon \in (0, f(c)) \neq \emptyset\). Then \(\exists \delta > 0 \ \forall x \in \mathbb{R}\) such that
+    \[
+        \vert x - c \vert < \delta \implies \vert f(x) - f(c) \vert < \epsilon.
+    \]
+    Choose \(\alpha \in (0,\delta] \neq \emptyset\). Then \(\exists \alpha > 0 \ \forall x \in (c - \alpha, c + \alpha)\) such that
+    \[
+        f(x) > f(c) - \epsilon > 0.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Suppose \(f : [-1, 0] \to \mathbb{R}\) and \(g : [0, 1] \to \mathbb{R}\) are continuous and \(f(0) = g(0)\). Define \(h : [-1, 1] \to \mathbb{R}\) by \(h(x) := f(x)\) if \(x \leq 0\) and \(h(x) := g(x)\) if \(x > 0\). Show that \(h\) is continuous.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : [-1, 0] \to \mathbb{R}\) and \(g : [0, 1] \to \mathbb{R}\) be any continuous functions such that \(f(0) = g(0)\). Define \(h : [-1, 1] \to \mathbb{R}\) by
+    \[
+        h(x) = \begin{cases}
+            f(x) & (x \leq 0) \\
+            g(x) & (x > 0)
+        \end{cases}.
+    \]
+    If \(c \in [-1,0)\), then
+    \[
+        \lim_{x \to c}h(x) = \lim_{x \to c}f(x) = f(c) = h(c).
+    \]
+    If \(c \in (0, 1]\), then
+    \[
+        \lim_{x \to c}h(x) = \lim_{x \to c}g(x) = g(c) = h(c).
+    \]
+    If \(c = 0\), then
+    \[
+        \lim_{x \to c^{-}}h(x) = \lim_{x \to c^{-}}f(x) = f(c) = g(c) = \lim_{x \to c^{+}}g(x) = \lim_{x \to c^{+}}h(x) = h(c).
+    \]
+\end{proof}
+
+\begin{exercise}
+    Let \(f : \mathbb{R} \to \mathbb{R}\). Recall that if \(U \subset \mathbb{R}\), the inverse image of \(U\) is the set
+    \[
+        f^{-1}(U) := \{x \in \mathbb{R} : f(x) \in U\}.
+    \]
+    Prove that \(f\) is continuous if and only if for every open set \(U \subset \mathbb{R}\), \(f^{-1}(U)\) is open.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\). We want to prove that
+    \[
+        f \text{ is continuous} \implies \forall \text{ open } U \subset \mathbb{R} : f^{-1}(U) \text{ is open}. 
+    \]
+    Suppose \(f\) is continuous and \(U \subset \mathbb{R}\) is open. If \(x_0 \in f^{-1}(U)\), then \(f(x_0) \in U\) and
+    \[
+        \exists \epsilon_0 > 0 \ \forall y \in (f(x_0) - \epsilon_0, f(x_0) + \epsilon_0) : y \in U;
+    \]
+    hence,
+    \[
+        \exists \delta_0 > 0 \ \forall x \in (x_0 - \delta_0, x_0 + \delta_0) : \vert f(x) - f(x_0) \vert < \epsilon_0 \implies f(x) \in U
+    \]
+    and \(x_0 \in f^{-1}(U)^{\mathrm{o}}\). Thus, \(f^{-1}(U) \subset \mathbb{R}\) is open, as needed. We want to prove that
+    \[
+        \forall \text{ open } U \subset \mathbb{R} : f^{-1}(U) \text{ is open} \implies f \text{ is continuous}.
+    \]
+    Conversely, suppose \(\forall\) open \(U \subset \mathbb{R}\), \(f^{-1}(U) \subset \mathbb{R}\) is open. If \(x_0 \in \mathbb{R}\), then
+    \[
+        \forall \epsilon > 0 : (f(x_0) - \epsilon, f(x_0) + \epsilon) \text{ is open} \implies f^{-1}[(f(x_0) - \epsilon, f(x_0) + \epsilon)] \text{ is open}
+    \]
+    and 
+    \[
+        \exists \delta_0 > 0 : (x_0 - \delta_0, x_0 + \delta_0) \subset f^{-1}[(f(x_0) - \epsilon, f(x_0) + \epsilon)];
+    \]
+    hence,
+    \[
+        \forall \epsilon > 0 \ \exists \delta_0 > 0 \ \forall x \in \mathbb{R} \text{ such that } \vert x - x_0 \vert < \delta_0 \implies \vert f(x) - f(x_0) \vert < \epsilon.
+    \]
+    Thus, \(f\) is continuous, as needed.
+\end{proof}
+
+\end{document}
