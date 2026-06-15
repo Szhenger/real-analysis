@@ -1,0 +1,210 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{extra}{Extra}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 1}
+
+\begin{exercise}
+    Prove:
+    \begin{enumerate}[label=\alph*)]
+        \item $S \cap (H \cup U) = (S \cap H) \cup (S \cap U)$.
+        \item $S \cup (H \cap U) = (S \cup H) \cap (S \cup U)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let $S,H,U$ be any sets.
+    \begin{enumerate}[label=\alph*)]
+        \item We want to prove that $x \in S \cap (H \cup U)$ if and only if $x \in (S \cap H) \cup (S \cap U)$. Then $x \in S \cap (H \cup U) \iff x \in S$ and $x \in H \cup U \iff x \in S$ and $x \in H$ or $x \in U \iff x \in S$ and $x \in H$ or $x \in S$ and $x \in U \iff x \in (S \cap H) \cup (S \cap U)$. Thus, $x \in S \cap (H \cup U)$ if and only if $x \in (S \cap H) \cup (S \cap U)$, as required.
+        \item We want to prove that $x \in S \cup (H \cap U)$ if and only if $x \in (S \cup H) \cap (S \cup U)$. Then $x \in S \cup (H \cap U) \iff x \in S$ or $x \in H \cap U \iff x \in S$ or $x \in H$ and $x \in U \iff x \in S$ or $x \in H$ and $x \in S$ or $x \in U \iff x \in (S \cup H) \cap (S \cup U)$. Thus, $x \in S \cup (H \cap U)$ if and only if $x \in (S \cup H) \cap (S \cup U)$, as required.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Prove by induction that $n < 2^n$ for all $n \in \mathbb{N}$.
+\end{exercise}
+
+\begin{proof}
+    Prove that $n < 2^n$ for all $n \in \mathbb{N}$ by induction.
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case) $1 < 2$.
+        \item (Inductive Step) Assume $m < 2^m$. Since $m \in \mathbb{N}$, $1 \leq m < 2^m$. Thus,
+        \[
+            m + 1 < 2^m + 1 < 2^m + 2^m = 2^{m + 1},
+        \]
+        as required.
+    \end{enumerate}
+    By induction, $n < 2^n$ for all $n \in \mathbb{N}$, as needed.
+\end{proof}
+
+\begin{exercise}
+    Show that for a finite set $A$ of cardinality $n$, the cardinality of the power set $P(A)$ is $2^n$.
+\end{exercise}
+
+\begin{proof}
+    Let $A$ be any finite set of size $n$. We want to prove that the size of the power set $P(A)$ is $2^n$ by induction.
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case) $\vert A \vert = 0 \implies A = \emptyset \implies P(A) = \{\emptyset\} \implies \vert P(A) \vert = 1$.
+        \item (Inductive Step) Suppose $\vert A \vert = m \implies \vert P(A) \vert = 2^m$. If $\vert A \vert = m + 1$, then 
+        \[
+            \forall x \in A : \vert A \setminus \{x\} \vert = m \implies \forall x \in A : \vert P(A\setminus\{x\}) \vert = 2^m;
+        \]
+        hence,
+        \[
+            \forall x \in A : \vert P(A) \vert = \vert P(A \setminus \{x\} \cup \{x\}) \vert = \vert P(A\setminus\{x\}) \times P(\{x\}) \vert = 2^{m} \cdot 2 = 2^{m + 1}
+        \]
+        and $\vert P(A) \vert = 2^{m + 1}$. 
+    \end{enumerate}
+    By induction, the size of the power set $P(A)$ is $2^n$, as wanted.
+\end{proof}
+
+\begin{exercise}
+    Prove that $n^3 + 5n$ is divisible by $6$ for all $n \in \mathbb{N}$.
+\end{exercise}
+
+\begin{proof}
+    Prove that $2 \mid n^2 + n$ and $6 \mid n^3 + 5n$ for all $n \in \mathbb{N}$ by induction. We need to show that $2 \mid n^2 + n$ for all $n \in \mathbb{N}$.
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case) $2 \mid 1 + 1$.
+        \item (Inductive Step) Assume $2 \mid m^2 + m$. Thus, 
+        \[
+            2 \mid (m^2 + m) + (2m + 2) = m^2 + 3m + 2 = (m + 1)(m + 2) = (m + 1)^2 + (m + 1),
+        \]
+        as needed.
+    \end{enumerate}
+    By induction, $2 \mid n^2 + n$ for all $n \in \mathbb{N}$. We want to show that $6 \mid n^3 + 5n$ for all $n \in \mathbb{N}$.
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case) $6 \mid 1 + 5$.
+        \item (Inductive Step) Assume $6 \mid m^3 + 5m$. Since $2 \mid m^2 + m$, $6 \mid 3m^2 + 3m$. Thus, 
+        \[
+            6 \mid (m^3 + 5m) + (3m^2 + 3m) + 6 = (m^3 + 3m^2 + 3m + 1) + (5m + 5) = (m + 1)^3 + 5(m + 1),
+        \]
+        as desired.
+    \end{enumerate}
+    By induction, $6 \mid n^3 + 5n$ for all $n \in \mathbb{N}$, as wanted.
+\end{proof}
+
+\begin{exercise}
+    Give an example of a countably infinite collection of finite sets $A_1,A_2,...$, whose union is an infinite set.
+\end{exercise}
+
+\begin{proof}
+    If $\forall n \in \mathbb{N} : A_n = \{n\} \implies \vert A_n \vert = 1$, then 
+    \[
+        \bigcup_{n = 1}^{\infty}A_n = \mathbb{N} \implies \bigg\vert \bigcup_{n = 1}^{\infty}A_n \bigg\vert = \vert \mathbb{N} \vert,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    In this exercise, you will prove that
+    \[
+        \vert \{q \in \mathbb{Q} : q > 0\} \vert = \vert \mathbb{N} \vert.
+    \]
+    Define $f : \{q \in \mathbb{Q} : q > 0\} \to \mathbb{N}$ as follows: $f(1) = 1$, if $q \in \mathbb{N}\setminus\{1\}$ is given by some prime factorization, then 
+    \[
+        q = p_1^{r_1} \cdot \cdot \cdot p_N^{r_N} \implies f(q) = p_1^{2r_1} \cdot \cdot \cdot p_N^{2r_N},
+    \]
+    and if $q \in \mathbb{Q}\setminus\mathbb{N}$ is given by some prime factorization, then
+    \[
+        q = \frac{m_1^{s_1} \cdot \cdot \cdot m_N^{s_N}}{n_1^{t_1} \cdot \cdot \cdot n_M^{t_M}} \implies f(q) = m_1^{2s_1} \cdot \cdot \cdot m_N^{2s_N}n_1^{2t_1-1} \cdot \cdot \cdot n_M^{2t_M-1}.
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Compute $f(4/15)$. Find $q$ such that $f(q) = 108$.
+        \item Prove that $f$ is a bijection.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    By the Fundamental Theorem of Arithmetic,
+    \begin{enumerate}[label=\arabic*)]
+        \item $\forall q \in \mathbb{N}\setminus\{1\}$ : $\exists!$ primes $p_1 < \cdot \cdot \cdot < p_N \in \mathbb{N}$ AND exponents $r_1,...,r_N \in \mathbb{N}$ such that
+        \begin{equation}
+            q = p_1^{r_1} \cdot \cdot \cdot p_N^{r_N}.
+            \tag{$\dagger$}
+        \end{equation}
+        \item $\forall q \in \mathbb{Q}\setminus\mathbb{N}$ : $\exists!$ primes $m_1 < \cdot \cdot \cdot < m_N \in \mathbb{Z}$ and $n_1 < \cdot \cdot \cdot < n_M \in \mathbb{N}$ AND exponents $s_1,...,s_N \in \mathbb{N}$ and $t_1,...,t_M \in \mathbb{N}$ such that
+        \begin{equation}
+            q = \frac{m_1^{s_1} \cdot \cdot \cdot m_N^{s_N}}{n_1^{t_1} \cdot \cdot \cdot n_M^{t_M}}.
+            \tag{$\ddagger$}
+        \end{equation}
+    \end{enumerate}
+    Define $f : \{q \in \mathbb{Q} : q > 0\} \to \mathbb{N}$ as follows: $f(1) = 1$, $f(q) = p_1^{2r_1} \cdot \cdot \cdot p_N^{2r_N}$ if $q \in \mathbb{N}\setminus\{1\}$ is given with $(\dagger)$, and $f(q) = m_1^{2s_1} \cdot \cdot \cdot m_N^{2s_N}n_1^{2t_1-1} \cdot \cdot \cdot n_M^{2t_M-1}$ if $q \in \mathbb{Q}\setminus\mathbb{N}$ is given with $(\ddagger)$. 
+    \begin{enumerate}[label=\alph*)]
+        \item We want to compute $f(4/15)$. If $q = 4/15$, then $f(q) = 16 \cdot 3 \cdot 5 = 240$. We want to find $q \in \mathbb{Q}$ such that $f(q) = 108$. If $q = 2/9$, then $f(q) = 4 \cdot 27 = 108$.
+        \item We want to prove that $f$ is an injection. Suppose $f(q_1) = f(q_2)$. If $f(q_1) = 1 = f(q_2)$, then
+        \[
+            q_1 = 1 = q_2.
+        \]
+        Assume $f(q_1) \neq 1 \neq f(q_2)$. Using the Fundamental Theorem of Arithmetic, $f(q_1)$ and $f(q_2)$ have identical prime factorizations and hence $q_1$ and $q_2$ have similar prime factorizations of either $(\dagger)$ or $(\ddagger)$ in form; otherwise, $f(q_1)$ and $f(q_2)$ have distinct prime factorizations. Without loss of generality, let $m_1 < \cdot \cdot \cdot < m_N \in \mathbb{N}$ and $n_1 < \cdot \cdot \cdot < n_M \in \mathbb{N}$ be the unique primes AND $s_1,...,s_N \in \mathbb{N}$ and $t_1,...,t_M \in \mathbb{N}$ be the unique exponents such that
+        \[
+            q_1 = m_1^{s_1} \cdot \cdot \cdot m_N^{s_N}
+        \]
+        and
+        \[
+            q_2 = n_1^{t_1} \cdot \cdot \cdot n_{M}^{t_M}.  
+        \]
+        Then
+        \[
+            q_1^2 = m_1^{2s_1} \cdot \cdot \cdot m_N^{2s_N} = n_1^{2t_1} \cdot \cdot \cdot n_{M}^{2t_M} = q_2^2 \implies q_1 = q_2.
+        \]
+        Without loss of generality, let $a_1 < \cdot \cdot \cdot < a_N \in \mathbb{N}$ and $b_1 < \cdot \cdot \cdot < b_M \in \mathbb{N}$ and $c_1 < \cdot \cdot \cdot < c_{N'} \in \mathbb{N}$ and $d_1 < \cdot \cdot \cdot < d_{M'} \in \mathbb{N}$ be the unique primes AND $r_1,...,r_N \in \mathbb{N}$ and $s_1,...,s_M \in \mathbb{N}$ and $r'_1,...,r'_{N'} \in \mathbb{N}$ and $s'_1,...,s'_{M'}$ such that
+        \[
+            q_1 = \frac{a_1^{r_1} \cdot \cdot \cdot a_N^{r_N}}{b_1^{s_1} \cdot \cdot \cdot b_M^{s_M}}
+        \]
+        and
+        \[
+            q_2 = \frac{c_1^{r'_1} \cdot \cdot \cdot c_{N'}^{r'_{N'}}}{d_1^{s'_1} \cdot \cdot \cdot d_{M'}^{s'_{M'}}}.
+        \]
+        Then
+        \[
+            b_1^{4s_1-1} \cdot \cdot \cdot b_M^{4s_M-1}q_1^2 = d_1^{4s'_1-1} \cdot \cdot \cdot d_{M'}^{4s'_{M'} - 1}q_2^2 \implies q_1 = q_2. 
+        \]
+        Thus, $q_1 = q_2$ and $f$ is an injection, as desired. We want to prove that $f$ is a surjection. Suppose $p \in \mathbb{N}$. If $p = 1$, then
+        \[
+            p = f(1) \in f(\{q \in \mathbb{Q} : q > 0\}).
+        \]
+        Assume $p \neq 1$. Using the Fundamental Theorem of Arithmetic, $p$ can be factored into even or odd powers of unique primes. Without loss of generality, let $p_1 < \cdot \cdot \cdot < p_N \in \mathbb{N}$ be the unique primes and $r_1,...,r_N \in \mathbb{N}$ be the unique exponents such that 
+        \[
+            p = p_1^{2r_1} \cdot \cdot \cdot p_N^{2r_N}.
+        \]
+        Then 
+        \[
+            p = f(p_1^{r_1} \cdot \cdot \cdot p_N^{r_N}) \in f(\{q \in \mathbb{Q} : q > 0\}.
+        \]
+        Without loss of generality, let $m_1 < \cdot \cdot \cdot < m_N \in \mathbb{N}$ and $n_1 < \cdot \cdot \cdot < n_M \in \mathbb{N}$ be the unique primes AND $s_1,...,s_N \in \mathbb{N}$ and $t_1,...,t_M \in \mathbb{N}$ be the unique exponents such that
+        \[
+            p = m_1^{2s_1} \cdot \cdot \cdot m_N^{2s_N}n_1^{2t_1-1} \cdot \cdot \cdot n_M^{2t_M-1}.
+        \]
+        Then
+        \[
+            p = f\left(\frac{m_1^{s_1} \cdot \cdot \cdot m_N^{s_N}}{n_1^{t_1} \cdot \cdot \cdot n_M^{t_M}}\right) \in f(\{q \in \mathbb{Q} : q > 0\}.
+        \]
+        Without loss of generality, let $p_1 < \cdot \cdot \cdot < p_N \in \mathbb{N}$ be the unique primes and $r_1,...,r_N \in \mathbb{N}$ be the unique exponents such that 
+        \[
+             p = p_1^{2r_1-1} \cdot \cdot \cdot p_N^{2r_N-1}.
+        \]
+        Then
+        \[
+            p = f\left(\frac{1}{p_1^{r_1} \cdot \cdot \cdot p_N^{r_N}}\right) \in f(\{q \in \mathbb{Q} : q > 0\}).
+        \]
+        Thus, $p \in f(\{q \in \mathbb{Q} : q > 0\}$ and $f$ is an injection, as desired. 
+    \end{enumerate}
+    Thus, $f : \{q \in \mathbb{Q} : q > 0\} \to \mathbb{N}$ is a bijection and
+    \[
+        \vert \{q \in \mathbb{Q} : q > 0\} \vert = \vert \mathbb{N} \vert,
+    \]
+    as wanted.
+\end{proof}
+
+\end{document}
