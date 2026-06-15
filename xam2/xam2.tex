@@ -1,0 +1,426 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Examination 2}
+
+\begin{problem}
+    Complete the following negations:
+    \begin{enumerate}[label=(\roman*)]
+        \item Let \(S \subset \mathbb{R}\). A function \(f : S \to \mathbb{R}\) is not continuous at \(c \in S\) if ...
+        \item Let \(S \subset \mathbb{R}\). A function \(f : S \to \mathbb{R}\) is not uniformly continuous on \(S\) if ...
+        \item Let \(S \subset \mathbb{R}\). A sequence of functions \(f_n : S \to \mathbb{R}\) does not converge uniformly to \(f : S \to \mathbb{R}\) if ...
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\).
+    \begin{enumerate}[label=(\roman*)]
+        \item A function \(f : S \to \mathbb{R}\) is not continuous at \(c \in S\) if \(\exists \epsilon > 0 \ \forall \delta > 0 \ \exists x \in S\) such that
+        \[
+            \vert x - c \vert < \delta \land \vert f(x) - f(c) \vert \geq \epsilon.
+        \]
+        \item A function \(f : S \to \mathbb{R}\) is not uniformly continuous on \(S\) if \(\exists \epsilon > 0 \ \forall \delta > 0 \ \exists x,y \in S\) such that
+        \[
+            \vert x - y \vert < \delta \land \vert f(x) - f(y) \vert \geq \epsilon.
+        \]
+        \item A sequence of functions \(f_n : S \to \mathbb{R}\) does not converge uniformly to \(f : S \to \mathbb{R}\) if \(\exists \epsilon > 0 \ \forall M \in \mathbb{N} \ \exists n \geq M \ \exists x \in S\) such that
+        \[
+            \vert f_n(x) - f(x) \vert \geq \epsilon. 
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Give explicit examples satisfying the stated conditions. Explanation, but not a formal proof, for each case is required.
+        \begin{enumerate}[label=(\roman*)]
+            \item A continuous function on \((0, 1)\) with neither a global maximum nor minimum.
+            \item A function on \([0, 1]\) with an absolute minimum at \(0\), absolute maximum at \(1\) and such that there exists \(y \in (f(0),f(1))\) not in the range of \(f\).
+        \end{enumerate}
+        \item Let \(f : S \to \mathbb{R}\) and \(g : S \to \mathbb{R}\) be functions continuous at \(c \in S\). Prove that the product \(fg : S \to \mathbb{R}\) is continuous at \(c\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Let \(f : S \to \mathbb{R}\) and \(g : S \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item We want to define \(f\) and \(g\) for each case. 
+        \begin{enumerate}[label=(\roman*)]
+            \item Define, for the purpose of example, \(S = (0, 1)\) and \(f(x) = x\). By the Pointwise Characterization of Continuity, 
+            \[
+                \forall x_0 \in S : \lim_{x \to x_0}f(x) = f(x_0) \implies f \in C(S, \mathbb{R}).
+            \]
+            By the Perfect Completeness of \(\mathbb{R}\),
+            \[
+                \forall x \in S \ \exists \epsilon > 0 : x \pm \epsilon \in S \implies f(x - \epsilon) < f(x) < f(x + \epsilon).
+            \] 
+            \item Define, for the purpose of example, \(S = [0, 1]\) and
+            \[
+                g(x) = \begin{cases}
+                    x^2 & (x <0.5)\\
+                    \gamma & (x = 0.5) \\ 
+                    x^3 & (x > 0.5)
+                \end{cases}.
+            \]
+            By the Monotone Increasing of Polynomial Functions,
+            \[
+                \forall x \in S : g(0) \leq g(x) \leq g(1).
+            \]
+            By the Pointwise Characterization of Discontinuity,
+            \[
+                0.125, 0.250 \in (g(0), g(1)) \land 0.125, 0.250 \not\in g(S). 
+            \]
+        \end{enumerate}
+        \item Assume \(f\) and \(g\) are continuous at \(c \in S\). Suppose, for the purpose of casework, \(c\) is an isolated point of \(S\). By the Definition of Isolated Points, \(\forall \epsilon > 0 \ \exists \delta > 0 \) such that 
+        \[
+            \forall x \in S \cap (c - \delta, c + \delta) :\vert x - c \vert = 0 < \delta \implies \vert f(x)g(x) - f(c)g(c) \vert = 0 < \epsilon.
+        \]
+        Suppose, for the purpose of casework, \(c\) is a cluster point of \(S\). By the Pointwise Characterization of Continuity,
+        \[
+            \lim_{x \to c}f(x) = f(c) \land \lim_{x \to c}g(x) = g(c) \implies \lim_{x \to c}f(x)g(x) = f(c)g(c).
+        \]
+        Thus, \(fg : S \to \mathbb{R}\) is continuous at \(c \in S\), as needed. 
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    We say a subset \(K \subset \mathbb{R}\) is compact if for every sequence \(\{x_n\}\) of elements of \(K\), there exists a subsequence \(\{x_{n_k}\}\) and \(x \in K\) such that \(\lim_{k \to \infty}x_{n_k} = x\) (every sequence has a subsequence converging in \(K\)).
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(a < b\). Prove that \([a, b]\) is compact. \textit{Hint}: A theorem named after two men, one with an Italian surname and the other with a German surname, might be useful.
+        \item Let \(a < b\), and let \(f : [a, b] \to \mathbb{R}\) be a continuous function. Prove that
+        \[
+            f([a, b]) = \{f(x) \in \mathbb{R} : x \in [a, b]\}
+        \]
+        is compact.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Starto!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(a < b\) and \(\{x_n\} \subset [a, b]\). We want to prove that \(\{x_n\}\) is a bounded sequence of \([a, b]\). By the Absolute Value Properties of \(\mathbb{R}\),
+        \[
+            \forall n \in \mathbb{N} : a \leq x_n \leq b \implies - \vert a \vert \leq x_n \leq \vert b \vert \implies \vert x_n \vert \leq \vert a \vert + \vert b \vert.
+        \]
+        Then \(\{x_n\}\) is a bounded sequence of \([a, b]\). We want to prove that there exists a subsequence \(\{x_{n_k}\} \subset [a, b]\) and \(x \in \mathbb{R}\) such that \(x_{n_k} \to x\) as \(k \to \infty\). By the Bolzano-Weierstrass Theorem of \(\mathbb{R}\), \(\exists \{x_{n_k}\} \subset [a, b]\) and \(\exists x \in \mathbb{R}\) such that
+        \[
+            \lim_{k \to \infty}x_{n_k} = x.
+        \]
+        Then \(\{x_n\}\) has a convergent subsequence in \(\mathbb{R}\). We want to prove that the subsequential limit \(x \in [a, b]\). By the Closure Property of \([a, b]\), \(x \in \overline{[a, b]} = [a, b]\). Then \(\{x_n\}\) is a closed sequence of \([a, b]\). We want to prove that \([a, b] \subset \mathbb{R}\) is compact. By the Sequential Characterization of Compactness, \([a, b] \subset \mathbb{R}\) is compact.
+        \item Let \(f \in C([a, b])\) and \(\{f(x_n)\} \subset f([a, b])\). We want to prove that \(\{f(x_n)\}\) has a closed subsequential limit. By the Sequential Compactness of \([a, b]\), \(\exists \{x_{n_k}\} \subset [a, b]\) and \(\exists x \in [a, b]\) such that
+        \[
+            \lim_{k \to \infty}x_{n_k} = x.
+        \]
+        Then \(\{x_n\}\) has a subsequential limit in \([a, b]\). By the Sequential Continuity of \(f\), 
+        \[
+            \lim_{k \to \infty}x_{n_k} = x \implies \lim_{k \to \infty}f(x_{n_k}) = f(x).
+        \]
+        Then \(\{f(x_n)\}\) has a subsequential limit in \(f([a, b])\). We want to prove that \(f([a, b]) \subset \mathbb{R}\) is compact. By the Sequential Characterization of Compactness, \(f([a, b]) \subset \mathbb{R}\) is compact.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill 
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{enumerate}[label=(\roman*)]
+            \item Let \(a < b\). Prove that if \(f : (a, b) \to \mathbb{R}\) is diﬀerentiable at \(c \in (a, b)\) then \(f\) is continuous at \(c\).
+            \item Give an explicit example of a function showing the converse of (i) is false.
+        \end{enumerate}
+        \item Let
+        \[
+            f(x) = \begin{cases}
+                x^2\sin(\frac{1}{x}) & (x \neq 0) \\
+                0 & (x = 0)
+            \end{cases}.
+        \]
+        Use the Definition of the Derivative to prove that \(f\) is differentiable at \(0\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Starto! 
+    \begin{enumerate}[label=(\alph*)]
+        \item \begin{enumerate}[label=(\roman*)]
+            \item Let \(a < b\) and \(f : (a, b) \to \mathbb{R}\). Assume, for the purpose of proof, \(f\) is differentiable at \(c \in (a, b)\). Note that \(c\) is a cluster point of \((a, b)\) and 
+            \[
+                \lim_{x \to c} \frac{f(x) - f(c)}{x - c} \in \mathbb{R} \implies \lim_{x \to c} \bigg\vert \frac{f(x) - f(c)}{x - c} \bigg\vert \in \mathbb{R}.
+            \]
+            By the Product Relation of Limit Operations, 
+            \[
+                \lim_{x \to c} \vert f(x) - f(c) \vert = \lim_{x \to c} \bigg\vert \frac{f(x) - f(c)}{x - c} \bigg\vert \cdot \lim_{x \to c} \vert x - c \vert = \vert f'(c) \vert \cdot 0 = 0.
+            \]
+            Note that \(c\) is not an isolated point of \((a, b)\) and
+            \[
+                \lim_{x \to c} \vert f(x) - f(c) \vert = 0 \implies \lim_{x \to c} f(x) = f(c).
+            \]
+            By the Limit Characterization of Continuity, \(f\) is continuous at \(c \in (a, b)\).
+            \item Let \(f : (-1, 1) \to \mathbb{R}\) and \(f(x) = \vert x \vert\). Note that \(0\) is a cluster point of \((-1, 0)\). Compute, for the purpose of proof,
+            \[
+                \lim_{x \to 0^{-}} f(x) = \lim_{x \to 0^{-}} \vert x \vert = \lim_{x \to 0^{-}} -x = 0 = f(0)
+            \]
+            and 
+            \[
+                \lim_{x \to 0^{-}} \frac{f(x) - f(0)}{x - 0} = \lim_{x \to 0^{-}} \frac{\vert x \vert - 0}{x} = \lim_{x \to 0^{-}} -\frac{x}{x} = \lim_{x \to 0^{-}} -1 = -1.
+            \]
+            Note that \(0\) is a cluster point of \((0, 1)\). Compute, for the purpose of proof,
+            \[
+                \lim_{x \to 0^{+}} f(x) = \lim_{x \to 0^{+}} \vert x \vert = \lim_{x \to 0^{+}} x = 0 = f(0)
+            \]
+            and
+            \[
+                \lim_{x \to 0^{+}} \frac{f(x) - f(0)}{x - 0} = \lim_{x \to 0^{+}}\frac{\vert x \vert - 0}{x} = \lim_{x \to 0^{+}} \frac{x}{x} = \lim_{x \to 0^{+}} 1 = 1.
+            \]
+            By Left-Handed and Right-Handed Characterizations of Limits,
+            \[
+                \lim_{x \to 0^{-}} f(x) = f(0) = \lim_{x \to 0^{+}} f(x) \implies \lim_{x \to 0} f(x) = f(0) 
+            \]
+            and 
+            \[
+                \lim_{x \to 0^{-}}\frac{f(x) - f(0)}{x - 0} = - 1 \neq 1 = \lim_{x \to 0^{+}} \frac{f(x) - f(0)}{x - 0} \implies f'(0) \notin \mathbb{R}. 
+            \]
+        \end{enumerate}
+        \item Let \(f : \mathbb{R} \to \mathbb{R}\) and
+        \[
+            f(x) = \begin{cases}
+                x^2\sin(\frac{1}{x}) & (x \neq 0) \\
+                0 & (x = 0)
+            \end{cases}.
+        \]
+        Compute, for the purpose of proof, that
+        \[
+            \forall x \in \mathbb{R} \setminus \{0\} : \frac{f(x) - f(0)}{x - 0} = \frac{1}{x}\left[x^2\sin\left(\frac{1}{x}\right) - 0\right] = x\sin\left(\frac{1}{x}\right).
+        \]
+        Recall, for the purpose of proof, that
+        \[
+            \forall x \in \mathbb{R} \setminus \{0\} : -1 \leq \sin\left(\frac{1}{x}\right) \leq 1 \implies -x \leq \frac{f(x) - f(0)}{x - 0} \leq x.
+        \]
+        Note that \(0\) is a cluster point of \(\mathbb{R} \setminus \{0\}\) and
+        \[
+            \lim_{x \to 0} -x = 0 = \lim_{x \to 0} x.
+        \]
+        By the Squeeze Theorem of \(\mathbb{R}\), 
+        \[
+            f'(x) := \lim_{x \to 0}\frac{f(x) - f(0)}{x - 0} = 0,
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(R > 0\). Prove that for all \(x \in [-R, R]\),
+        \[
+            e^x - \sum_{j = 0}^{n}\frac{x^j}{j!} \leq \frac{e^{R}R^{n + 1}}{(n + 1)!}.
+        \]
+        \item Suppose \(f : \mathbb{R} \to \mathbb{R}\) is twice continuously diﬀerentiable. Prove that for all \(c, x \in \mathbb{R}\) with \(c < x\),
+        \[
+            f(x) = f(c) + f'(c)(x - c) + \int_{c}^{x}f''(t)(x - t)dt.
+        \]
+        \textit{Hint}: Compute the integral using a theorem which ends in parts.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(R > 0\). We want to prove that 
+        \[
+            \forall x \in [-R, R] : \exp(x) - \sum_{j = 0}^{n}\frac{x^j}{j!} \leq \frac{e^{R}R^{n + 1}}{(n + 1)!}.
+        \]
+        By Pascal's Theorem, \(\forall x \in [-R, R]\) such that
+        \[
+            \exp(x) = e^x \implies \exp'(x) = e^x \land \exp^{(n)}(x) = e^x \implies \exp^{(n + 1)}(x) = e^x. 
+        \]
+        We want to note that
+        \[
+            \forall y \in (-R, R) : e^{y}y^{n + 1} \leq e^{R}R^{n + 1} \implies \frac{e^{y}y^{n + 1}}{(n + 1)!} \leq \frac{e^{R}R^{n + 1}}{(n + 1)!}.
+        \]
+        By Taylor's Theorem, \(\forall x \in [-R, R] \ \exists c \in (-R, R)\) such that
+        \[
+            \exp(x) = \sum_{j = 0}^{n}\frac{x^j}{j!} + \frac{e^{c}c^{n + 1}}{(n + 1)!} \implies \exp(x) - \sum_{j = 0}^{n}\frac{x^j}{j!} \leq \frac{e^{R}R^{n + 1}}{(n + 1)!}.
+        \]
+        \item Let \(f : \mathbb{R} \to \mathbb{R}\) have two continuous derivatives. We want to prove that
+        \[
+            \forall c < x < \infty: f(x) = f(c) + f'(c)(x - c) + \int_{c}^{x}f''(t)(x - t)dt.
+        \]
+        Assume, for the remainder of proof, \(x \in (c, \infty)\). By the Integration by Parts Theorem,
+        \[
+            \int_{c}^{x} f''(t)(x - t)dt = f'(t)(x - t) \bigg\vert_{t = c}^{t = x} - \int_{c}^{x}f'(t)(x - t)'dt.
+        \]
+        We want to note that
+        \[
+            f'(t)(x - t) \bigg\vert_{t = c}^{t = x} = f'(x)(x - x) - f'(c)(x - c) = -f'(c)(x - c).
+        \]
+        By the Fundamental Theorem of Calculus,
+        \[
+            \int_{c}^{x}f''(t)(x - t)dt = -f'(c)(x - c) + \int_{c}^{x}f'(t)dt = f(x) - f(c) - f'(c)(x - c). 
+        \]
+        Indeed,
+        \[
+            f(x) = f(c) + f'(c)(x - c) + \int_{c}^{x}f''(x - t)dt,
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Compute 
+        \[
+            \int_{0}^{1}x\log{x}dx := \lim_{a \to 0^{+}} \int_{a}^{1} x\log{x}dx.
+        \]
+        You may use without proof this version of \textbf{L’Hôpital’s Rule}: if \(f, g : (0, 1) \to \mathbb{R}\), \(g(x) \neq 0\) for all \(x\), \(f(x) \to -\infty\), \(g(x) \to \infty\) as \(x \to 0^{+}\), and \(L = \lim_{x \to 0^{+}}f'(x)/g'(x)\) exists, then \(\lim_{x \to 0^{+}} f(x)/g(x) = L\).
+        \item Prove 
+        \[
+            \lim_{n \to \infty}\int_{0}^{1}x^n\sin(x)dx = 0.
+        \]
+        \item Let \(f : [-\pi, \pi] \to \mathbb{R}\) be a continuously differentiable function. Prove that
+        \[
+            \lim_{n \to \infty}\int_{-\pi}^{\pi}\sin(nx)f(x)dx = 0
+        \]
+        \textit{Hint}: \(\sin(nx) = [-\frac{1}{n}\cos(nx)]'\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item We want to compute that
+        \[
+            \int_{0}^{1}x\log{x}dx := \lim_{a \to 0^{+}} \int_{a}^{1} x\log{x}dx.
+        \]
+        By the Integration by Parts Formula,
+        \begin{align*}
+            \int_{a}^{1}x\log{x}dx &= \frac{1}{2}x^2\log{x} \bigg\vert_{x = a}^{x = 1} - \frac{1}{2\ln{10}}\int_{a}^{1}xdx \\
+            &= \frac{1}{2}x^2\log{x} - \frac{1}{4\ln{10}}x^2 \bigg\vert_{x = a}^{x = 1} = \frac{1}{4\ln{10}}(a^2 - 1) - \frac{1}{2}a^2\log{a}
+        \end{align*}
+        We want to note that
+        \[
+            \lim_{a \to 0^{+}}\bigg[\frac{1}{4\ln{10}}(1 - a^2)\bigg] = \frac{1}{4\ln{10}}.
+        \]
+        By the L'Hôpitial's Indeterminate Rule,
+        \[
+            \lim_{a \to 0^{+}}\left[\frac{1}{2}a^2\log{a}\right] = \frac{1}{2}\lim_{a \to 0^{+}}\frac{\log{a}}{a^{-2}} \left(\frac{-\infty}{+\infty}\right) = -\frac{1}{4\ln{10}}\lim_{a \to 0^{+}}a^2 = 0.
+        \]
+        Thus,
+        \[
+            \int_{0}^{1}x\log{x}dx = \lim_{a \to 0^{+}}\left[\frac{1}{4\ln{10}}(a^2 - 1)\right] - \lim_{a \to 0^{+}}\left[\frac{1}{2}a^2\log{a}\right] = -\frac{1}{4\ln{10}}, 
+        \]
+        as needed.
+        \item We want to prove that
+        \[
+            \lim_{n \to \infty}\int_{0}^{1}x^n\sin(x)dx = 0.
+        \]
+        By the Triangle Inequality of Integration,
+        \[
+            \bigg\vert \int_{0}^{1} x^n\sin(x) dx \bigg\vert \leq \int_{0}^{1} \vert x^n\sin(x) \vert dx = \int_{0}^{1}x^n \vert \sin(x) \vert dx \leq \int_{0}^{1} x^n dx.
+        \]
+        We want to note that
+        \[
+            \int_{0}^{1} x^n dx = \frac{x^{n + 1}}{n + 1} \bigg\vert_{x = 0}^{x = 1} = \frac{1}{n + 1}.
+        \]
+        By the Squeeze Theorem of Limitation,
+        \[
+            -\frac{1}{n + 1} \leq \int_{0}^{1} x^n\sin(x) dx \leq \frac{1}{n + 1}  \implies \lim_{n \to \infty} \int_{0}^{1} x^n\sin(x) dx = \lim_{n \to \infty} \frac{1}{n + 1} = 0,
+        \]
+        as needed.
+        \item Let \(f : [-\pi, \pi] \to \mathbb{R}\) be any continuously differentiable function. We want to prove that
+        \[
+            \lim_{n \to \infty} \int_{-\pi}^{\pi} \sin(nx)f(x)dx = 0.
+        \]
+        By the Integration by Parts Formula,
+        \[
+            \int_{-\pi}^{\pi} \sin(nx)f(x) dx = -\frac{1}{n}\cos(nx)f(x) \bigg\vert_{x = -\pi}^{x = \pi} + \int_{-\pi}^{\pi} \frac{1}{n} \cos(nx)f'(x) dx
+        \]
+        We want to note that
+        \[
+            \lim_{n \to \infty} \frac{1}{n}\cos(nx)f(x) \bigg\vert_{x = -\pi}^{x = \pi} = (f(\pi) - f(-\pi)) \lim_{n \to \infty} \frac{(-1)^n}{n} = 0.
+        \]
+        By the Squeeze Theorem of Limit Operations,
+        \[
+            \bigg\vert \int_{-\pi}^{\pi} \frac{1}{n}\cos(nx)f'(x) dx \bigg\vert \leq \frac{1}{n} \int_{-\pi}^{\pi} f'(x) dx \implies \lim_{n \to \infty} \int_{-\pi}^{\pi}\frac{1}{n}\cos(nx)f'(x)dx = 0.
+        \]
+        Thus,
+        \[
+            \lim_{n \to \infty} \int_{-\pi}^{\pi} \sin(nx)f(x) dx = 0 + 0 = 0,
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Give an explicit example of a sequence of continuous functions on \((0, 1)\) that converges pointwise to a continuous function on \((0, 1)\) but the convergence is not uniform. Explanation, but not a formal proof, is required. Feel free to use pictures.
+        \item Suppose \(f : \mathbb{R} \to \mathbb{R}\) is a diﬀerentiable function and there exists \(L > 0\) such that
+        \[
+            \vert f'(c) \vert \leq L \ \forall c \in \mathbb{R}. 
+        \]
+        \begin{enumerate}[label=(\roman*)]
+            \item Prove that \(f : \mathbb{R} \to \mathbb{R}\) is Lipschitz continuous on \(\mathbb{R}\).
+            \item Define a sequence of functions \(f_n : \mathbb{R} \to \mathbb{R}\) by
+            \[
+                f_n(x) := f\left(x + \frac{1}{n}\right).
+            \]
+            Prove that \(\{f_n\}\) converges to \(f\) uniformly on \(\mathbb{R}\).
+        \end{enumerate}
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(f_n(x) = \sqrt[n]{x}\) and \(f(x) = 1\) for \(x \in (0, 1)\). Then \(f_n \in C((0, 1))\) and \(f \in C((0, 1))\). We want to prove that \(f_n\) converges pointwise to \(f\) on \((0, 1)\). Compute, for the purpose of example, the pointwise limit
+        \[
+            \lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \sqrt[n]{x} = 1 = f(x).
+        \]
+        Then \(f_n\) converges pointwise to \(f\) on \((0, 1)\). We want to prove that \(f_n\) does not converge uniformly to \(f\) on \((0, 1)\). By the Limsup Characterization of Uniform Convergenence, \(f_n(x)\) does not converge uniformly to \(f(x)\) on \((0, 1)\) if and only if
+        \[
+            \limsup_{n \to \infty} \vert f_n(x) - f(x) \vert \neq 0.
+        \]
+        We want to note that \(f_n(x) \in (0, 1)\) for \(x \in (0, 1)\). Compute, for the purpose of example, the supremum   
+        \[
+            \sup_{x \in (0, 1)} \vert f_n(x) - f(x) \vert = \sup_{x \in (0, 1)} \vert \sqrt[n]{x} - 1 \vert = \sup_{x \in (0, 1)}(1 - \sqrt[n]{x}) = 1
+        \]
+        and the uniform limit
+        \[
+            \limsup_{n \to \infty} \vert f_n(x) - f(x) \vert = \lim_{n \to \infty}\left( \sup_{x \in (0, 1)} \vert f_n(x) - f(x) \vert \right) = \lim_{n \to \infty} 1 = 1.
+        \]
+        Then \(f_n\) does not converge uniformly to \(f\) on \((0, 1)\).
+        \item Let \(f : \mathbb{R} \to \mathbb{R}\) be a differentiable function. Assume, for the remainder of proof, \(\exists L > 0 \ \forall c \in \mathbb{R}\) such that
+        \[
+            \vert f'(c) \vert \leq L.
+        \]
+        \begin{enumerate}[label=(\roman*)]
+            \item By the Mean Value Theorem, \(\forall x, y \in \mathbb{R} \ \exists c \in (x, y) \cup (y, x)\) such that
+            \[
+                \vert f(x) - f(y) \vert = \vert f'(c)(x - y) \vert = \vert f'(c) \vert \vert x - y \vert \leq L \vert x - y \vert. 
+            \]
+            Thus, \(f\) is Lipschitz continuous on \(\mathbb{R}\), as needed.
+            \item Define, for the remainder of proof, \(f_n : \mathbb{R} \to \mathbb{R}\) by 
+            \[
+                f_n(x) := f\left(x + \frac{1}{n}\right).
+            \]
+            Let \(\epsilon > 0\). Choose \(M \in \mathbb{N}\) such that \(M\epsilon > L\). If \(x \in \mathbb{R}\) and \(n \geq M\), then
+            \[
+                \vert f_n(x) - f(x) \vert = \bigg\vert f\left(x + \frac{1}{n}\right) - f(x) \bigg\vert \leq L \bigg\vert x + \frac{1}{n} - x\bigg\vert = \frac{L}{n} \leq \frac{L}{M} < \epsilon.
+            \]
+            Thus, \(f_n\) converges uniformly to \(f\) on \(\mathbb{R}\)\, as needed.
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\end{document}
