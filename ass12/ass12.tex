@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 12}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose that \(f \in C([a, b])\), \(f (x) \geq 0\) for all \(x \in [a, b]\). Prove that if
+        \[
+            \int_{a}^{b} f(x) = 0,
+        \]
+        then \(f(x) = 0\) for all \(x \in [a, b]\).
+        \item Suppose that \(u \in C([a, b])\) is twice continuously differentiable, \(V \in C([a, b])\), \(V(x) \geq 0\) for all \(x \in [a, b]\) and
+        \begin{align*}
+            -&u''(x) + V(x)u(x) = 0 \\
+            &u(a) = u(b) = 0.
+        \end{align*}
+        Prove that \(u(x) = 0\) for all \(x \in [a, b]\). \textit{Hint: What’s one of the most useful theorems in analysis mentioned in Lecture 22?}
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Starto!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(f \in C([a, b])\) and \(f(x) \geq 0\) for all \(x \in [a, b]\). Assume, for the purpose of proof, 
+        \[
+            \int_{a}^{b} f(x) = 0.
+        \]
+        By the Fundamental Theorem of Calculus, \(\exists F \in C([a, b])\) such that
+        \[
+            F(x) = \int_{a}^{x} f(t) \geq 0 \implies F'(x) = f(x) \geq 0
+        \]
+        and
+        \[
+            F(a) = \int_{a}^{a} f(t) = 0 = \int_{a}^{b} f(t) = F(b).
+        \]
+        By the Derivative Characterization of Monotone Functions, \(\forall x, y \in [a, b]\) such that
+        \[
+            - \infty < x \leq y < \infty \implies -\infty < F(x) \leq F(y) < \infty;
+        \]
+        however,
+        \[
+            F(a) = F(b) \implies \exists K \in \mathbb{R} \ \forall x \in [a, b] : F(x) = K \implies F'(x) = 0.
+        \]
+        Thus, \(f(x) = 0\) for all \(x \in [a, b]\), as needed.
+        \item Let \(u \in C^2([a, b])\), \(V \in C([a, b])\) and \(V(x) \geq 0\) for all \(x \in [a, b]\). Assume, for the purpose of proof,
+        \begin{align*}
+            -&u''(x) + V(x)u(x) = 0 \\
+            &u(a) = u(b) = 0.
+        \end{align*}
+        By the Integration by Parts Formula,
+        \[
+            \int_{a}^{b} u^2(x)V(x) = \int_{a}^{b}u(x)u''(x) = u(x)u'(x) \bigg\vert_{a}^{b} - \int_{a}^{b}(u')^2(x) = - \int_{a}^{b} (u')^2(x).
+        \]
+        By the Order-Integral Relation of Continuous Functions,
+        \[
+            \forall x \in [a, b] : u^2(x)V(x) \land (u')^2(x) \geq 0 \implies \int_{a}^{b} u^2(x)V(x) \land \int_{a}^{b} (u')^2(x) \geq 0;
+        \]
+        hence,
+        \[
+            \int_{a}^{b}(u')^2(x) = 0 \implies \forall x \in [a, b] : (u')^2(x) = 0 \implies u'(x) = 0.
+        \]
+        Thus, \(u(x) = 0\) for all \(x \in [a, b]\), as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Compute the derivatives
+    \begin{enumerate}[label=(\alph*)]
+        \item
+        \[
+            \frac{d}{dx}\left(\int_{-x}^{x}e^{s^2}ds\right).
+        \]
+        \item 
+        \[
+            \frac{d}{dx}\left(\int_{0}^{x^2}\sin(s^2)ds\right).
+        \]
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) and \(g : \mathbb{R} \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose \(f(x) = x^2\) and \(g(x) = e^x\). Then \(f\) and \(g\) are continuous on \((-\infty, \infty)\). By the Composition Property of Continuous Functions, \(g \circ f\) is continuous on \((-\infty, \infty)\). Then \(g \circ f\) is integrable on \([-x, x]\) for all \(x > 0\). By the Riemann Integral Theorem,
+        \[
+            \int_{-x}^{x} e^{s^2}ds = \int_{-x}^{x}(g \circ f)(s)ds \in \mathbb{R}.
+        \]
+        Since \((g \circ f)(-x) = e^{(-x)^2} = e^{x^2} = (g \circ f)(x)\) for all \(x \geq 0\), \(g \circ f\) is even on \((-\infty, \infty)\). By the Even Property of Integration,
+        \[
+            \int_{-x}^{x}e^{s^2}ds = \int_{-x}^{x}(g \circ f)(s)ds = 2 \int_{0}^{x}(g \circ f)(s)ds = 2\int_{0}^{x}e^{s^2}ds.
+        \]
+        Then \(\int (g \circ f)\) is differentiable on \(\mathbb{R}\). By the Fundamental Theorem of Calculus,
+        \[
+            \frac{d}{dx}\left(\int_{-x}^{x}e^{s^2}ds\right) = \frac{d}{dx} \left(2\int_{0}^{x} e^{s^2}ds\right) = 2\frac{d}{dx}\left(\int_{0}^{x}e^{s^2}ds\right) = 2e^{x^2}.
+        \]
+        \item Suppose \(f(x) = x^2\) and \(g(x) = \sin x\). Then \(f\) and \(g\) are continuous on \((-\infty, \infty)\). By the Composition Property of Continuous Functions, \(g \circ f\) is continuous on \((-\infty, \infty)\). Then \(g \circ f\) is integrable on \([0, x^2]\) for all \(x \in \mathbb{R}\). By the Riemann Integral Theorem,
+        \[
+            \int_{0}^{x^2}\sin(s^2)ds = \int_{0}^{x^2}(g \circ f)(s)ds \in \mathbb{R}.
+        \]
+        Then \(\int (g \circ f)\) is differentiable on \(\mathbb{R}\). By the Fundamental Theorem of Calculus, 
+        \[
+            \frac{d}{dx}\left(\int_{0}^{x}\sin(s^2)ds\right) = \frac{d}{dx}\left(\int_{0}^{x}(g \circ f)(s)ds\right) = (g \circ f)(x) = \sin(x^2).
+        \]
+        Since \(f'(x) = 2x\) for all \(x \in \mathbb{R}\), \(f\) is differentiable on \((-\infty, \infty)\). By the Chain Rule,
+        \[
+            \frac{d}{dx}\left(\int_{0}^{x^2}\sin(s^2)ds\right) = \frac{d}{df}\left(\int_{0}^{f(x)}\sin(s^2)ds\right) \cdot \frac{df}{dx} = \sin(f^2(x)) \cdot f'(x) = 2x\sin(x^4). 
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Suppose \(f : [a, b] \to \mathbb{R}\) is continuous and \(\int_{a}^{x} f = 0\) for all rational \(x \in [a, b]\). Show that \(f(x) = 0\) for all \(x \in [a, b]\).
+\end{exercise}
+
+\begin{proof}
+    Let \(f \in C([a, b], \mathbb{R})\). Suppose, for the remainder of the proof, \(\int_{a}^{x} f = 0\) for all \(x \in [a, b] \cap \mathbb{Q}\). By the Fundamental Theorem of Calculus, \(\exists F : [a, b] \to \mathbb{R}\) such that
+    \[
+        F(x) = \int_{a}^{x} f(t) \implies F'(x) = f(x).
+    \]
+    Then \(F\) is differentiable and continuous everywhere. We want to show that \(F(x) = 0\) for all \(x \in [a, b]\). Assume, for the purpose of contradiction, \(F(y) \neq 0\) for some \(y \in [a, b] \setminus \mathbb{Q}\). Choose \(\epsilon_0 = \vert F(y) \vert\) and \(\delta > 0\). By the Density of \(\mathbb{Q}\), \(\exists x \in [a, b] \cap \mathbb{Q}\) such that \(\vert x - y \vert < \delta\) and 
+    \[
+        \vert F(x) - F(y) \vert = \vert 0 - F(y) \vert = \vert F(y) \vert \geq \epsilon_0.
+    \]
+    Then \(F\) is discontinuous at \(y \in [a, b]\), which is a contradiction. We have shown that \(F(x) = 0\) for all \(x \in [a, b]\). By the Derivative Characterization of Monotone Functions,
+    \[
+        F(x) = 0 \implies F'(x) = 0.
+    \]
+    Thus, \(f(x) = 0\) for all \(x \in [a, b]\), as needed.
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Find the pointwise limit of \(e^{x /n} / n\) for all \(x \in \mathbb{R}\).
+        \item Is the limit uniform on \(\mathbb{R}\)?
+        \item Is the limit uniform on \([0, 1]\)?
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(f_{n} : \mathbb{R} \to \mathbb{R}\) and \(f : \mathbb{R} \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose, for the remainder of proof, \(f_n(x) = e^{x / n} / n\) and \(f(x) = 0\). By the Product Theorem of Convergent Sequences,
+        \[
+            \lim_{n \to \infty}f_n(x) = \lim_{n \to \infty}\frac{e^{x / n}}{n} = \lim_{n \to \infty}e^{x / n} \cdot \lim_{n \to \infty}\frac{1}{n} = 1 \cdot 0 = f(x).
+        \]
+        \item Choose \(\epsilon_0 = 1\) and \(M \in \mathbb{N}\). By the Surjective Property of Exponential Functions, \(\exists x_0 \in \mathbb{R}\) such that \(x_0 / M = \ln{M}\) and
+        \[
+            \vert f_M(x_0) - f(x_0) \vert = \bigg\vert \frac{e^{x_0 / M}}{M} - 0 \bigg\vert = \frac{e^{x_0/ M}}{M} = \frac{e^{\ln{M}}}{M} = 1\geq \epsilon_0.
+        \]
+        \item Choose \(\epsilon > 0\) and \(x \in [0, 1]\). By the Archimedean Property of Real Numbers, \(\exists M \in \mathbb{N}\) such that \(M\epsilon > e\) and
+        \[
+            \forall n \geq M : \vert f_n(x) - f(x) \vert = \bigg\vert \frac{e^{x / n}}{n} - 0 \bigg\vert = \frac{e^{x / n}}{n} < \frac{e}{M} < \epsilon.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Suppose \(\{f_n\}\) and \(\{g_n\}\) defined on some set \(S\) converge to \(f\) and \(g\) respectively uniformly on \(S\). Show that \(\{f_n + g_n\}\) converges uniformly to \(f + g\) on \(S\).
+\end{exercise}
+
+\begin{proof}
+    Let \(f_n : S \to \mathbb{R}\) and \(g_n : S \to \mathbb{R}\). Assume \(f : S \to \mathbb{R}\) and \(g : S \to \mathbb{R}\) such that \(f_n \to f\) and \(g_n \to g\) uniformly. We want to show that \(f_n + g_n : S \to \mathbb{R}\) converges uniformly to \(f + g : S \to \mathbb{R}\). Fix \(\epsilon > 0\). By the Uniform Convergence of \(f_n\) and \(g_n\), \(\exists M_f, M_g \in \mathbb{N} \ \forall x \in S\) such that
+    \[
+        \forall n \geq M_f : \vert f_n(x) - f(x) \vert < \frac{\epsilon}{2} \land \forall n \geq M_g : \vert g_n(x) - g(x) \vert < \frac{\epsilon}{2}.
+    \]
+    Choose \(M = M_f + M_g\). By the Triangle Inequality of \(\mathbb{R}\),
+    \begin{align*}
+        \forall n \geq M \ \forall x \in S : \vert (f_n + g_n)(x) - (f + g)(x) \vert &= \vert f_n(x) - f(x) + g_n(x) - g(x) \vert \\
+        &\leq \vert f_n(x) - f(x) \vert + \vert g_n(x) - g(x) \vert <  \epsilon.
+    \end{align*}
+    Thus, \(f_n + g_n \to f + g\) uniformly, as needed.
+\end{proof}
+
+\end{document}
