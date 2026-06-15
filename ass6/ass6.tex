@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 6}
+
+\begin{exercise}
+    Decide the convergence or divergence of the following series:
+    \[
+        \text{a}) \sum_{n = 1}^{\infty}\frac{3}{9n - 1} \ \ \ \ \ \text{b}) \sum_{n = 1}^{\infty}\frac{1}{2n - 1} \ \ \ \ \ \text{c}) \sum_{n = 1}^{\infty}\frac{(-1)^n}{n^2} \ \ \ \ \ \text{d}) \sum_{n = 1}^{\infty}\frac{1}{n(n + 1)} \ \ \ \ \ \text{e}) \sum_{n = 1}^{\infty}ne^{-n^2}
+    \]
+\end{exercise}
+
+\begin{proof}
+    Start! We want to prove the convergence or divergence of the following:
+    \begin{enumerate}[label=\alph*)]
+        \item By the Comparison Test,
+        \[
+            \sum_{n = 1}^{\infty}\frac{3}{9n - 1} = \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{3}{9n - 1} \geq \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{3}{10n} = \sum_{n = 1}^{\infty}\frac{3}{10n} = \infty;
+        \]
+        otherwise,
+        \[
+            \sum_{n = 1}^{\infty}\frac{1}{n} = \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{n} = \lim_{N \to \infty}\frac{10}{3}\sum_{n = 1}^{N}\frac{3}{10n} = \frac{10}{3}\sum_{n = 1}^{\infty}\frac{3}{10n} < \infty.
+        \]
+        \item By the Comparison Test,
+        \[
+            \sum_{n = 1}^{\infty}\frac{1}{2n - 1} = \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{2n - 1} > \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{2n} = \sum_{n = 1}^{\infty}\frac{1}{2n} = \infty;
+        \]
+        otherwise,
+        \[
+            \sum_{n = 1}^{\infty}\frac{1}{n} = \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{n} = \lim_{N \to \infty}2\sum_{n = 1}^{N}\frac{1}{2n} = 2\sum_{n = 1}^{\infty}\frac{1}{2n} < \infty.
+        \]
+        \item By the Absolute Series Test,
+        \[
+            \sum_{n = 1}^{\infty}\frac{1}{n^2} < \infty \implies \sum_{n = 1}^{\infty}\frac{(-1)^n}{n^2} < \infty.
+        \]
+        \item By the Telescoping Series Test,
+        \begin{align*}
+            \sum_{n = 1}^{\infty}\frac{1}{n(n + 1)} &= \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{n(n + 1)} \\
+            &= \lim_{N \to \infty}\sum_{n = 1}^{N}\left(\frac{1}{n} - \frac{1}{n + 1}\right) \\
+            &= \lim_{N \to \infty}\left(1 - \frac{1}{N + 1}\right) = 1 - \lim_{N \to \infty}\frac{1}{N + 1} = 1 < \infty.
+        \end{align*}
+        \item By the Comparison Test,
+        \[
+            \sum_{n = 1}^{\infty}ne^{-n^2} = \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{n}{e^{n^2}} < \lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{n^2} = \sum_{n = 1}^{\infty}n^{-2} < \infty;
+        \]
+        in view of the fact,
+        \[
+            \forall n \in \mathbb{N} : n < 2^n \implies n^3 < 2^{3n} < e^{n^2} \implies \frac{n}{e^{n^2}} < \frac{1}{n^2}.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+        \item Prove if $\sum x_n$ converges, then $\sum (x_{2n} + x_{2n + 1})$ also converges.
+        \item Find an explicit example where the converse does not hold.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=\alph*)]
+        \item We want to prove that
+        \[
+            \sum_{n = 1}^{\infty}x_n < \infty \implies \sum_{n = 1}^{\infty}(x_{2n} + x_{2n + 1}) < \infty.
+        \]
+        If
+        \[
+            \sum_{n = 1}^{\infty}x_n = \lim_{N \to \infty}\sum_{n = 1}^{N}x_n < \infty \implies \sum_{n = 1}^{\infty}x_{n + 1} = \lim_{N \to \infty}\sum_{n = 1}^{N}x_{n + 1} < \infty,
+        \]
+        then
+        \[
+            \sum_{n = 1}^{\infty}(x_{2n} + x_{2n + 1}) = \lim_{N \to \infty}\sum_{n = 1}^{N}(x_{2n} + x_{2n + 1}) = \lim_{N \to \infty}\sum_{n = 1}^{2N}x_{n + 1} < \infty.
+        \]
+        \item We want to prove that
+        \[
+            \sum_{n = 1}^{\infty}(x_{2n} + x_{2n + 1}) < \infty \implies \sum_{n = 1}^{\infty}x_n \not < \infty.  
+        \]
+        If $x_n = (-1)^n$, then
+        \[
+            \sum_{n = 1}^{\infty}(x_{2n} + x_{2n + 1}) = \lim_{N \to \infty}\sum_{n = 1}^N0 < \infty
+        \]
+        and
+        \[
+            \sum_{n = 1}^{\infty}x_n = \lim_{N \to \infty}\sum_{n = 1}^N(-1)^n \not < \infty.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Prove the triangle inequality for series, that is if \(\sum x_n\) converges absolutely, then
+    \[
+        \bigg \vert \sum_{n = 1}^{\infty}x_n \bigg \vert \leq \sum_{n = 1}^{\infty}\vert x_n \vert.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Start! We want to prove inductively that
+    \[
+        \forall n \in \mathbb{N} : \bigg\vert \sum_{j = 1}^{n}x_j \bigg\vert \leq \sum_{j = 1}^{n}\vert x_j \vert.
+    \]
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case) If $n = 1$, then
+        \[
+            \bigg\vert \sum_{j = 1}^n x_j \bigg\vert \leq \vert x_1 \vert \leq \sum_{j = 1}^n \vert x_n \vert.
+        \]
+        \item (Inductive Step) Assume, for the purpose of induction,
+        \[
+            \forall n = 1, 2, 3, ..., m : \bigg\vert \sum_{j = 1}^{n}x_j \bigg\vert \leq \sum_{j = 1}^{n}\vert x_j \vert.
+        \]
+        By the Triangle Inequality,
+        \[
+            \bigg\vert \sum_{j = 1}^{n + 1}x_j \bigg\vert = \bigg\vert \sum_{j = 1}^{m}x_j + x_{m + 1} \bigg\vert \leq \bigg\vert \sum_{j = 1}^{m}x_j \bigg\vert + \vert x_{m + 1} \vert \leq \sum_{j = 1}^{m}\vert x_j \vert + \vert x_{m + 1} \vert = \sum_{j = 1}^{n + 1}\vert x_j \vert.
+        \]
+    \end{enumerate}
+    We want to prove directly that
+    \[
+        \sum_{j = 1}^{\infty}\vert x_n \vert < \infty \implies \bigg\vert \sum_{j = 1}^{\infty}x_j \bigg\vert \leq \sum_{j = 1}^{\infty}\vert x_j \vert.
+    \]
+    \begin{enumerate}[label=\arabic*)]
+        \item (Lemma Case) Assume, for the purpose of implication,
+        \[
+            \sum_{j = 1}^{\infty}x_j < \infty \implies \lim_{n \to \infty}\sum_{j = 1}^{n}x_j < \infty.
+        \]
+        By the Reverse Triangle Inequality, \(\forall \epsilon > 0 \ \exists M \in \mathbb{N} \ \forall n \geq M\) such that
+        \[
+            \bigg\vert \bigg\vert \sum_{j = 1}^{n}x_j \bigg\vert - \bigg\vert \sum_{j = 1}^{\infty}x_j \bigg\vert \bigg\vert \leq \bigg\vert \sum_{j = 1}^{n}x_j - \sum_{j = 1}^{\infty}x_j \bigg\vert < \epsilon;
+        \]
+        hence,
+        \[
+            \lim_{n \to \infty}\bigg\vert \sum_{j = 1}^{n}x_j \bigg\vert = \bigg\vert \sum_{j = 1}^{\infty}x_j \bigg\vert = \bigg\vert \lim_{n \to \infty}\sum_{j = 1}^{n}x_j \bigg\vert. 
+        \]
+        \item (Theorem Step) If
+        \[
+            \sum_{j = 1}^{\infty}\vert x_j \vert < \infty \implies \sum_{j = 1}^{\infty}x_j < \infty,
+        \]
+        then
+        \[
+            \bigg\vert \sum_{j = 1}^{\infty}x_j \bigg\vert = \bigg\vert \lim_{n \to \infty}\sum_{j = 1}^{n}x_j \bigg\vert = \lim_{n \to \infty}\bigg\vert \sum_{j = 1}^{n}x_j \bigg\vert \leq \lim_{n \to \infty}\sum_{j = 1}^{n}\vert x_j \vert = \sum_{j = 1}^{\infty}\vert x_j \vert.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Decide the convergence or divergence of the following series.
+    \[
+        \text{a}) \sum_{n = 1}^{\infty}\frac{1}{2^{2n + 1}} \ \ \ \ \ \ \text{b}) \sum_{n = 1}^{\infty}\frac{(-1)^n(n - 1)}{n} \ \ \ \ \ \  \text{c}) \sum_{n = 1}^{\infty}\frac{(-1)^n}{n^{1/10}} \ \ \ \ \ \ \text{d}) \sum_{n = 1}^{\infty}\frac{n^n}{(n + 1)^{2n}}
+    \]
+\end{exercise}
+
+\begin{proof}
+    Start! We want to prove the convergence or divergence of the following:
+    \begin{enumerate}[label=\alph*)]
+        \item By the Geometric Series Test,
+        \[
+            \sum_{n = 1}^{\infty}\frac{1}{2^{2n + 1}} = \lim_{N \to \infty}\sum_{n = 1}^N\frac{1}{2^{2n + 1}} = \frac{1}{2}\lim_{N \to \infty}\sum_{n = 1}^{N}\frac{1}{4^n} = \frac{1}{2}\sum_{n = 1}^{\infty}\frac{1}{4^n} = \frac{1}{6} < \infty.
+        \]
+        \item By the Divergence Test,
+        \begin{align*}
+            \lim_{n \to \infty}\frac{(-1)^n(n - 1)}{n} &= \lim_{n \to \infty}(-1)^n\left(1 - \frac{1}{n}\right) \\
+            &= \lim_{n \to \infty}(-1)^n \neq 0 \implies \sum_{n = 1}^{\infty}\frac{(-1)^n(n - 1)}{n} \not < \infty.
+        \end{align*}
+        \item By the Alternating Series Test,
+        \[
+            \forall n \in \mathbb{N} : \frac{1}{n^{1/10}} > \frac{1}{(n + 1)^{1 / 10}} \ \land \ \lim_{n \to \infty}\frac{1}{n^{1/10}} = 0 \implies \sum_{n = 1}^{\infty}\frac{(-1)^n}{n^{1/10}} < \infty.
+        \]
+        \item By the Root Test,
+        \[
+            \lim_{n \to \infty}\sqrt[n]{\frac{n^n}{(n + 1)^{2n}}} = \lim_{n \to \infty}\frac{n}{n^2 + 2n + 1} = \lim_{n \to \infty}\frac{1}{n + 2} = 0 < 1 \implies \sum_{n = 1}^{\infty}\frac{n^n}{(n + 1)^{2n}} < \infty.
+        \]
+        \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+        \item Suppose \(\sum x_n\) converges and \(x_n \geq 0\) for all \(n \in \mathbb{N}\). Prove that \(\sum x_n^2\) converges.
+        \item Find a series such that \(\sum x_n\) converges but \(\sum x_n^2\) diverges.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start! 
+    \begin{enumerate}[label=\alph*)]
+        \item Let \(\sum x_n\) converge and \(x_n \geq 0\) for all \(n \in \mathbb{N}\). Then \(\sum x_n\) converges absolutely and 
+        \[
+            \lim_{n \to \infty}\vert x_n \vert = 0 \implies \exists M_0 \in \mathbb{N} \ \forall n \geq M_0 : \vert x_n \vert < 1 \implies \vert x_n \vert^2 < \vert x_n \vert.
+        \]
+        By the Comparison Test,
+        \[
+            \sum x_n^2 = \sum \vert x_n \vert^2 < \sum \vert x_n \vert = \sum x_n < \infty. 
+        \]
+        Thus, \(\sum x_n^2\) converges (absolutely), as needed.  
+        \item Let 
+        \[
+            \forall n \in \mathbb{N} : x_n = \frac{(-1)^n}{\sqrt{n}} \in \mathbb{R} \implies x_n^2 = \frac{1}{n} \in \mathbb{R}.
+        \]
+        By the Alternating Series Test,
+        \[
+            \forall n \in \mathbb{N} : \vert x_n \vert = \frac{1}{\sqrt{n}} > \frac{1}{\sqrt{n + 1}} \ \land \ \lim_{n \to \infty}\vert x_n \vert = \lim_{n \to \infty}\frac{1}{\sqrt{n}} = 0 \implies \sum x_n < \infty.
+        \]
+        By the Harmonic Series Test,
+        \[
+            \sum x_n^2 = \sum \frac{1}{n} = \infty.
+        \]
+        Thus, \(\sum x_n\) converges and \(\sum x_n^2\) diverges, as needed.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
