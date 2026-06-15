@@ -12,4 +12,4 @@ The lecture videos are [MIT 18.100A Real Analysis, Fall 2020](https://www.youtub
 
 ## Written Assignments
 
-The study materials, lecture videos, and homework assignments used in this repository originate from [MIT OpenCourseWare](https://ocw.mit.edu/).
+The homework assignments used in this repository originate from [MIT OpenCourseWare](https://ocw.mit.edu/).
