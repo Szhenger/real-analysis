@@ -1,0 +1,212 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 11}
+
+\begin{exercise}
+    Prove that the polynomial equation
+    \[
+        \frac{x^{1121}}{1121} + \frac{x^{2021}}{2021} + x + 1 = 0
+    \]
+    has exactly one real root.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\). Assume, for the purpose of proof, that
+    \[
+        \forall x \in \mathbb{R} : f(x) = \frac{x^{1121}}{1121} + \frac{x^{2021}}{2021} + x + 1.
+    \]
+    We want to prove that \(f\) has at least one root in \(\mathbb{R}\). Given \(f\) is polynomial, \(f\) is continuous. Compute, for the purpose of proof,
+    \[
+        f(-2020) = 1 - 2020 - \frac{2020^{1121}}{1121} - \frac{2020^{2021}}{2021} < 0
+    \]
+    and 
+    \[
+        f(2020) = 1 + 2020 + \frac{2020^{1121}}{1121} + \frac{2020^{2021}}{2021} > 0. 
+    \]
+    By the Intermediate Value Theorem, \(\exists c \in (-2020, 2020)\) such that
+    \[
+        f(c) = \frac{c^{1121}}{1121} + \frac{c^{2021}}{2021} + c + 1 = 0.
+    \]
+    Thus, \(f\) has at least one root in \(\mathbb{R}\), as needed for proof. We want to prove that \(f\) has at most one root in \(\mathbb{R}\). Given \(f\) is polynomial, \(f\) is differentiable. By the Differentiation Rules,
+    \[
+        f'(x) = \frac{d}{dx}\left(\frac{x^{1121}}{1121} + \frac{x^{2021}}{2021} + x + 1\right) = x^{1120} + x^{2020} + 1.
+    \]
+    Compute, for the purpose of proof,
+    \[
+        \forall x \in \mathbb{R} : f'(x) = x^{1120} + x^{2020} + 1 > 0 + 0 + 1 = 1 > 0.
+    \]
+    By the Derivative Characterization of Monotone Functions, \(f\) is strictly increasing on \(\mathbb{R}\). Thus, \(f\) has at most one root in \(\mathbb{R}\), as needed for proof.
+\end{proof}
+
+\begin{exercise}
+    Compute the fourth Taylor polynomial for:
+    \begin{enumerate}[label=(\alph*)]
+        \item \(f(x) = \sin x\) at \(x = 0\).
+        \item \(g(x) = (1 - x)^{-1}\) at \(x = -1\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(f(x) := \sin x\) and \(g(x) := (1 - x)^{-1}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item By the Derivative Computation of Trigonometric Functions, 
+        \[
+            f'(x) = \cos x \land f''(x) = -\sin x \land f'''(x) = -\cos x \land f^{(4)}(x) = \sin x.
+        \]
+        Thus,
+        \[
+            f_4(x) = 0 + 1(x - 0) + 0(x - 0)^2 - \frac{1}{6}(x - 0)^3 + 0(x - 0)^4 = x - \frac{x^3}{6},
+        \]
+        as needed.
+        \item By the Chain Rule of Differentiable Functions,
+        \[
+            g'(x) = \frac{1}{(1 - x)^{2}} \land g''(x) = \frac{2}{(1 - x)^{3}} \land g'''(x) = \frac{6}{(1 - x)^{4}} \land g^{(4)}(x) = \frac{24}{(1 - x)^{5}}.
+        \]
+        Thus,
+        \[
+            g_4(x) = \frac{1}{2} + \frac{1}{4}(x + 1) + \frac{1}{8}(x + 1)^2 + \frac{1}{16}(x + 1)^3 + \frac{1}{32}(x + 1)^4,
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Compute:
+    \begin{enumerate}[label=(\alph*)]
+        \item \[
+            \lim_{x \to 0}\frac{x - \sin x}{x^3}.
+        \]
+        \item \[
+            \lim_{x \to \frac{\pi}{2}}\frac{1 - \sin x}{(x - \frac{\pi}{2})^2}.
+        \]
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) and \(g : \mathbb{R} \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Choose \(f(x) = x - \sin x\) and \(g(x) = x^3\). Then \(f\) and \(g\) are differentiable and continuous. By the Differentiation Rules of Functions,
+        \[
+            f'(x) = \frac{d}{dx}(x - \sin x) = 1 + \cos x \land g'(x) = \frac{d}{dx}(x^3) = 3x^2.
+        \]
+        By the Limit Characterization of Continuity,
+        \[
+            \lim_{x \to 0}f(x) = f(0) = 0 - \sin 0 = 0 \land \lim_{x \to 0}g(x) = g(0) = 0^3 = 0. 
+        \]
+        By the L'Hôpital Rule for Indeterminate Forms,
+        \[
+            \lim_{x \to 0}\frac{x - \sin x}{x^3} = \lim_{x \to 0}\frac{f(x)}{g(x)} = \lim_{x \to 0}\frac{f'(x)}{g'(x)} = \lim_{x \to 0}\frac{1 + \cos x}{3x^2} = \infty.
+        \]
+        \item Choose \(f(x) = 1 - \sin x\) and \(g(x) = (x - \pi/2)^2\). Then \(f\) and \(g\) are twice differentiable and continuous. By the Differentiation Rules of Functions,
+        \[
+            f'(x) = \frac{d}{dx}(1 - \sin x) = -\cos x \land g'(x) = \frac{d}{dx}\left(x - \frac{\pi}{2}\right)^2 = 2x - \pi
+        \]
+        and 
+        \[
+            f''(x) = -\frac{d}{dx}(\cos x) = \sin x \land g''(x) = \frac{d}{dx}(2x - \pi) = 2.
+        \]
+        By the Limit Characterization of Continuity,
+        \[
+            \lim_{x \to \frac{\pi}{2}}f(x) = f\left(\frac{\pi}{2}\right) = 1 - \sin \frac{\pi}{2} = 0 \land \lim_{x \to \frac{\pi}{2}}g(x) = g\left(\frac{\pi}{2}\right) = \left(\frac{\pi}{2} - \frac{\pi}{2}\right)^2 = 0
+        \]
+        and 
+        \[
+            \lim_{x \to \frac{\pi}{2}}f'(x) = f'\left(\frac{\pi}{2}\right) = -\cos \frac{\pi}{2} = 0 \land \lim_{x \to \frac{\pi}{2}}g'(x) = g'\left(\frac{\pi}{2}\right) = \pi - \pi = 0.
+        \]
+        By the L'Hôpital Rule for Indeterminate Forms,
+        \[
+            \lim_{x \to \frac{\pi}{2}}\frac{1 - \sin x}{(x - \frac{\pi}{2})^2} = \lim_{x \to \frac{\pi}{2}}\frac{f(x)}{g(x)} = \lim_{x \to \frac{\pi}{2}}\frac{f'(x)}{g'(x)} = \lim_{x \to \frac{\pi}{2}}\frac{f''(x)}{g''(x)} = \lim_{x \to \frac{\pi}{2}}\frac{\sin x}{2} = 1.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Suppose that \(f : (a, b) \to \mathbb{R}\) is three times continuously diﬀerentiable, \(c \in (a, b)\), \(f'(c) = f''(c) = 0\), and \(f'''(c) > 0\). Prove that \(f\) has a neither a local maximum nor a local minimum at \(c\).
+\end{exercise}
+
+\begin{proof}
+    Let \(f : (a, b) \to \mathbb{R}\) have three continuous derivatives. Suppose, for the purpose of proof, \(c \in (a, b)\), \(f'(c) = f''(c) = 0\) and \(f'''(c) > 0\). By Taylor's Theorem, \(\forall x \in [a, b] \ \exists y \in (x, c) \cup (c, x)\) such that
+    \begin{align*}
+        f(x) &= f(c) + f'(c)(x - c) + \frac{f''(c)}{2}(x - c)^2 + \frac{f'''(y)}{6}(x - c)^3 \\
+        &= f(c) + 0(x - c) + 0(x - c)^2 + \frac{f'''(y)}{6}(x - c)^3 = f(c) + \frac{f'''(y)}{6}(x - c)^3.
+    \end{align*}
+    By the Pointwise Characterization of Continuity,
+    \[
+        \lim_{x \to c}f'''(x) = f'''(c) > 0 \implies \exists \delta > 0 \ \forall y \in (c - \delta, c + \delta) : f'''(y) > 0. 
+    \]
+    If \(x \in (c, c + \delta)\), then \(\exists y \in (c, x)\) such that
+    \[
+        f(x) = f(c) + \frac{f'''(y)}{6}(x - c)^3 > f(c) + 0 = f(c).
+    \]
+    If \(x \in (c - \delta, c)\), then \(\exists y \in (x, c)\) such that
+    \[
+        f(x) = f(c) + \frac{f'''(y)}{6}(x - c)^3 < f(c) + 0 = f(c)
+    \]
+    Thus, \(f\) has neither a local minimum nor a local maximum at \(c\), as needed of proof.  
+\end{proof}
+
+\begin{exercise}
+    Let \(a < b\), and define a sequence of tagged partitions by
+    \[
+        \underline{x}^{(r)} := \left\{a + (b - a)\frac{k}{r} : k = 0,...,r\right\}
+    \]
+    and 
+    \[
+        \underline{\xi}^{(r)} := \left\{a + (b - a)\frac{k}{r} : k = 1,...,r\right\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Compute \(\Vert \underline{x}^{(r)} \Vert\).
+        \item Let \(f(x) = \alpha x + \beta\). Prove that
+        \[
+            \lim_{r \to \infty}S_f\left(\underline{x}^{(r)}, \underline{\xi}^{(r)}\right) = \alpha\frac{b^2 - a^2}{2} + \beta(b - a).
+        \]
+        You may not use the Fundamental Theorem of Calculus.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(f : [a, b] \to \mathbb{R}\). Define a sequence of tagged partitions by
+    \[
+        \underline{x}^{(r)} := \left\{a + (b - a)\frac{k}{r} : k = 0,...,r\right\}
+    \]
+    and 
+    \[
+        \underline{\xi}^{(r)} := \left\{a + (b - a)\frac{k}{r} : k = 1,...,r\right\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose, for the remainder of proof, \(a < b\). Compute, for the purpose of proof, that
+        \begin{align*}
+            \Vert \underline{x}^{(r)} \Vert &= \max\left\{\left(a + (b - a)\frac{k}{r}\right) - \left(a + (b - a)\frac{k - 1}{r}\right)  : k = 1,...,r\right\} \\
+            &= \max\left\{(b - a)\frac{1}{r} : k = 1,...,r\right\} = \frac{b - a}{r}.
+        \end{align*}
+        \item Suppose, for the remainder of proof, \(f(x) = \alpha x + \beta\). Compute, for the purpose of proof, that
+        \begin{align*}
+            S_f\left(\underline{x}^{(r)}, \underline{\xi}^{(r)}\right) &= \sum_{k = 1}^{r}\left[\alpha\left(a + (b - a)\frac{k}{r}\right) + \beta\right]\frac{(b - a)}{r} \\
+            &= \sum_{k = 1}^r\left[(\alpha a + \beta)\frac{(b - a)}{r} + \alpha k \frac{(b - a)^2}{r^2} \right] \\
+            &= (\alpha a + \beta)(b - a) \sum_{k = 1}^r\frac{1}{r} + \alpha(b - a)^2 \sum_{k = 1}^{r}\frac{k}{r^2} \\
+            &= (\alpha a + \beta)(b - a) + \frac{\alpha}{2}(b - a)^2\left(1 + \frac{1}{r}\right) \\
+            &= \alpha(ab - a^2) + \frac{\alpha}{2}(b^2 - 2ab + a^2) + \beta(b - a) + \frac{\alpha}{2r}(b - a)^2 \\
+            &= \alpha\frac{b^2 - a^2}{2} + \beta(b - a) + \alpha \frac{(b - a)^2}{2r}.
+        \end{align*}
+        By the Algebraic Properties of Convergent Functions,
+        \begin{align*}
+            \lim_{r \to \infty}S_f\left(\underline{x}^{(r)}, \underline{\xi}^{(r)}\right) &= \lim_{r \to \infty}\left[\alpha\frac{b^2 - a^2}{2} + \beta(b - a) + \alpha\frac{(b - a)^2}{2r}\right] \\
+            &= \alpha\frac{b^2 - a^2}{2} + \beta(b - a) + \alpha\frac{(b - a)^2}{2}\lim_{r \to \infty}\frac{1}{r} \\
+            &= \alpha\frac{b^2 - a^2}{2} + \beta(b - a) + 0 = \alpha\frac{b^2 - a^2}{2} + \beta(b - a),
+        \end{align*}
+        as needed for proof.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
