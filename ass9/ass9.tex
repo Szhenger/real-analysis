@@ -1,0 +1,197 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 9}
+
+\begin{exercise}
+    Find an example of a continuous bounded function \(f : \mathbb{R} \to \mathbb{R}\) that does not achieve an absolute minimum or an absolute maximum on \(\mathbb{R}\).
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) and \(f(x) = (1 + e^{-x})^{-1}\). We need to prove that \(f\) is continuous and bounded. If \(x_0 \in \mathbb{R}\), then
+    \[
+        \lim_{x \to x_0}e^{x} = e^{x_0} \implies \lim_{x \to x_0}(1 + e^{-x}) = 1 + e^{-x_0} \implies \lim_{x \to x_0}f(x) = f(x_0)
+    \]
+    and
+    \[
+        0 < e^{-x_0} < \infty \implies 1 < 1 + e^{-x_0} < \infty \implies 0 < f(x_0) < 1.
+    \]
+    We want to prove that \(f\) is strictly increasing. If \(x < y\), then
+    \[
+        e^x < e^y \implies e^{-x} > e^{-y} \implies 1 + e^{-x} > 1 + e^{-y} \implies f(x) < f(y).
+    \]
+    We need to prove that \(f\) achieves neither an absolute minimum nor an absolute maximum. If \(y_0 \in \mathbb{R}\), then
+    \[
+        0 < f(y_0 - 1) < f(y_0) < f(y_0 + 1) < 1.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Show that \(f : (c, \infty) \to \mathbb{R}\) for some \(c > 0\) and defined by \(f(x) := 1 / x\) is Lipschitz continuous.
+\end{exercise}
+
+\begin{proof}
+    Let \(S > 0\) and \(f : (S, \infty) \to \mathbb{R}\). Choose \(K = S^{-2} > 0\). If \(x, y \in (S, \infty)\) and \(f(x) = x^{-1}\), then
+    \[
+        S < x,y < \infty \implies S^2 < xy < \infty \implies 0 < \frac{1}{xy} < K
+    \]
+    and
+    \[
+        \vert f(x) - f(y) \vert = \bigg\vert \frac{1}{x} - \frac{1}{y} \bigg\vert = \frac{\vert x - y \vert}{xy} < K \vert x - y \vert.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Show that \(f : (0, \infty) \to \mathbb{R}\) defined by \(f(x) := \sin(1 /x)\) is not uniformly continuous.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : (0, \infty) \to \mathbb{R}\) and \(f(x) = \sin(x^{-1})\). By the Sequential Characterization of Uniform Continuity, \(f\) is not uniformly continuous if and only if \(\exists\) sequences \(\{x_n\}\) and \(\{y_n\}\) in \((0, \infty)\) such that
+    \[
+        \lim_{n \to \infty}\vert x_n - y_n \vert = 0 \ \land \ \lim_{n \to \infty}\vert f(x_n) - f(y_n) \vert > 0.
+    \]
+    If
+    \[
+        x_n = \frac{2}{(1 + 4n)\pi} \in (0, \infty) \implies f(x_n) = \sin\left(\frac{\pi}{2} + 2n\pi\right) \in [-1, 1]
+    \]
+    and
+    \[
+        y_n = \frac{2}{(3 + 4n)\pi} \in (0, \infty) \implies f(y_n) = \sin\left(\frac{3\pi}{2} + 2n\pi\right) \in [-1, 1],
+    \]
+    then
+    \[
+        \lim_{n \to \infty}\vert x_n - y_n \vert = \lim_{n \to \infty}(x_n - y_n) = \lim_{n \to \infty}\frac{4}{(3 + 16n + 16n^2)\pi} = 0
+    \]
+    and
+    \[
+        \lim_{n \to \infty}\vert f(x_n) - f(y_n) \vert = \lim_{n \to \infty}\left( \sin\frac{\pi}{2} - \sin\frac{3\pi}{2} \right) = 2.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Let \(S \subset \mathbb{R}\). We say that \(f : S \to \mathbb{R}\) is Lipschitz continuous on \(S\) if there exists \(K \geq 0\) such that for all \(x,y \in S\),
+    \[
+        \vert f(x) - f(y) \vert \leq K \vert x - y \vert.
+    \]
+    Prove that if \(f : S \to \mathbb{R}\) is Lipschitz continuous on \(S\) then \(f\) is uniformly continuous on \(S\).
+\end{exercise}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\) and \(f : S \to \mathbb{R}\). Assume, for the purpose of proof, \(\exists K \geq 0\) such that
+    \[
+        \forall x,y \in S : \vert f(x) - f(y) \vert \leq K \vert x - y \vert.
+    \]
+    Fix \(\epsilon > 0\). Suppose, for the purpose of casework, \(K = 0\). Choose \(\delta > 0\). If \(x,y \in S\) and \(\vert x - y \vert < \delta\), then
+    \[
+        \vert f(x) - f(y) \vert \leq K \vert x - y \vert < K\delta = 0 < \epsilon.
+    \]
+    Suppose, for the purpose of casework, \(K > 0\). Choose \(\delta = K^{-1}\epsilon\). If \(x,y \in S\) and \(\vert x - y \vert < \delta\), then
+    \[
+        \vert f(x) - f(y) \vert \leq K \vert x - y \vert < K\delta = \epsilon.
+    \]
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that \(f(x) = \sin x\) is Lipschitz continuous on \(\mathbb{R}\).
+        \item Prove that \(f(x) = x^{1/3}\) is uniformly continuous on \([0, 1]\) and is not Lipschitz continuous on \([0,1]\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\) and \(f : S \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Choose \(S = \mathbb{R}\) and \(f(x) = \sin x\). By the Sine Difference-Product Identity, 
+        \begin{align*}
+            \forall x,y \in S : \vert f(x) - f(y) \vert &= \vert \sin x - \sin y \vert \\
+            &= \bigg\vert 2\sin\left(\frac{x - y}{2}\right)\cos\left(\frac{x + y}{2}\right) \bigg\vert \\
+            &= 2 \bigg\vert \sin\left(\frac{x - y}{2}\right) \bigg\vert \bigg\vert \cos\left(\frac{x + y}{2}\right) \bigg\vert \\
+            &\leq 2 \bigg\vert \sin\left(\frac{x - y}{2}\right) \bigg\vert \leq 2 \bigg\vert \frac{x - y}{2} \bigg\vert = \vert x - y \vert.
+        \end{align*}
+        \item Choose \(S = [0, 1]\) and \(f(x) = x^{1 / 3}\). By the Algebraic Difference of Cubes Identity, 
+        \begin{align*}
+            \forall x,y \in S \setminus \{0\} : \vert f(x) - f(y) \vert &= \vert x^{1 / 3} - y^{1 / 3} \vert \\
+            &= \vert x^{1 / 3} - y^{1 / 3} \vert \cdot \frac{\vert x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3} \vert}{\vert x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3} \vert} \\
+            &= \frac{\vert x - y \vert}{x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3}} \\
+            &< \frac{\vert x - y \vert}{x^{2 / 3} + y^{2 / 3}} < \frac{\vert x - y \vert}{\vert x - y \vert^{2 / 3}} = \vert x - y \vert^{1 / 3}.
+        \end{align*}
+        Fix \(\epsilon > 0\) and \(\delta = \epsilon^3\). If \(x, y \in S \setminus \{0\}\) and \(\vert x - y \vert < \delta\), then
+        \[
+            \vert f(x) - f(y) \vert < \vert x - y \vert^{1 / 3} < \delta^{1 / 3} = \epsilon.
+        \]
+        Fix \(K \geq 0\). If \(K = 0\), then \(\exists x,y \in S\) such that
+        \[
+            x,y > 0 \implies x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3} > K;
+        \]
+        hence,
+        \[
+            \vert f(x) - f(y) \vert = \frac{\vert x - y \vert}{x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3}} > K \vert x - y \vert.
+        \]
+        If \(K > 0\), then \(\exists x,y \in S\) such that
+        \[
+            x,y < \sqrt{\frac{K^3}{27}} \implies x^{1 / 3},y^{1 / 3} < \sqrt{\frac{K}{3}} \implies x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3} < K;
+        \]
+        hence,
+        \[
+            \vert f(x) - f(y) \vert = \frac{\vert x - y \vert}{x^{2 / 3} + x^{1 / 3}y^{1 / 3} + y^{2 / 3}} > K \vert x - y \vert.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Let \(R \in \mathbb{R}\), and let \(f : [R, \infty) \to \mathbb{R}\). We say that \(f(x)\) converges to \(\lambda\) as \(x \to \infty\) if for every \(\epsilon > 0\) there exists \(M \geq R\) such that for all \(x \geq M\) we have \(\vert f(x) - \lambda \vert < \epsilon\). We write \(f(x) \to L\) as \(x \to \infty\) or
+    \[
+        \lim_{x \to \infty}f(x) = \lambda.
+    \]
+    [A similar definition can be formulated for limits as \(x \to -\infty\) but we will not do so here.]
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that
+        \[
+            \lim_{x \to \infty}\frac{x^2}{x^2 + 1} = 1.
+        \]
+        \item Prove that
+        \[
+            \lim_{x \to \infty}\sin x
+        \]
+        does not exist.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(S \in \mathbb{R}\) and \(f : [S, \infty) \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Define \(f(x) = x^2(x^2 + 1)^{-1}\) and \(\lambda = 1\). Fix \(\epsilon > 0\) and \(N = \max\{S,\epsilon^{-1 / 2}\}\). If \(x \geq N\), then
+        \[
+            \vert f(x) - \lambda \vert = \bigg\vert \frac{x^2}{x^2 + 1} - 1 \bigg\vert = \bigg\vert \frac{x^2 - x^2 - 1}{x^2 + 1} \bigg\vert = \frac{1}{x^2 + 1} < \frac{1}{N^2} \leq \frac{1}{\epsilon^{-1}} = \epsilon.
+        \]
+        \item Define \(f(x) = \sin x\) and \(\lambda \in \mathbb{R}\). Fix \(\epsilon_0 = 1\) and \(M \geq S\). By the Archimedean Property, \(\exists N \in \mathbb{N}\) such that \(N > M\). Suppose, for the purpose of casework, \(\lambda \geq 0\). If
+        \[
+            x = -\frac{\pi}{2} + 2N\pi > M \implies f(x) = \sin\left(-\frac{\pi}{2} + 2N\pi\right) = -1,
+        \]
+        then
+        \[
+            \vert f(x) - \lambda \vert = \vert -1 - \lambda \vert = 1 + \lambda \geq \epsilon_0.  
+        \]
+        Suppose, for the purpose of casework, \(\lambda < 0\). If 
+        \[
+            x = \frac{\pi}{2} + 2N\pi > M \implies f(x) = \sin\left(\frac{\pi}{2} + 2N\pi\right) = 1,
+        \]
+        then
+        \[
+            \vert f(x) - \lambda \vert = \vert 1 - \lambda \vert = 1 - \lambda \geq \epsilon_0.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\end{document}
