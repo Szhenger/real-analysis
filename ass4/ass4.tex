@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 4}
+
+\begin{exercise}
+    We say a set $F \subset \mathbb{R}$ is closed if its complement $F^{c} := \mathbb{R} \setminus F$ is open (see Assignment 3 for a discussion of open sets). Since $\emptyset$ and $\mathbb{R}$ are open, it follows that $\emptyset$ and $\mathbb{R}$ are closed as well.
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $a,b \in \mathbb{R}$ with $a < b$. Prove that $[a, b]$ is closed.
+        \item Is the set of integers $\mathbb{Z} \subset \mathbb{R}$ closed? Provide a proof to substantiate your claim.
+        \item Is the set of rationals $\mathbb{Q} \subset \mathbb{R}$ closed? Provide a proof to substantiate your claim.
+        \item Let $\Lambda$ be a set (not necessarily a subset of $\mathbb{R}$), and for each $\lambda \in \Lambda$, let $F_{\lambda} \subset \mathbb{R}$. Prove that if $F_{\lambda}$ is closed for all $\lambda \in \Lambda$ then the set
+        \[
+            \bigcap_{\lambda \in \Lambda}F_{\lambda} = \{x \in \mathbb{R} : x \in F_{\lambda} \ \text{for all} \ \lambda \in \Lambda\} 
+        \]
+        is closed.
+        \item Let $n \in \mathbb{N}$, and let $F_1,...F_n \subset \mathbb{R}$. Prove that if $F_1,...,F_n$ are closed then the set
+        \[
+        \bigcup_{m = 1}^{n}F_{m} = \{x \in \mathbb{R} : x \in F_{m} \ \text{for some} \ m = 1,...,n\} 
+        \]
+        is closed.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $a,b \in \mathbb{R}$ and $a < b$. By Assignment 3 Exercise 5, $[a,b]^{c} = (-\infty, a) \cup (a, \infty)$ is open. Thus, $[a,b]$ is closed, as claimed.
+        \item Yes, the subset of integers $\mathbb{Z}$ is closed in the set of reals $\mathbb{R}$. We need to prove that $\mathbb{R} \setminus \mathbb{Z}$ is open. Let $x \in \mathbb{R} \setminus \mathbb{Z}$ and $E = \{n \in \mathbb{Z} : n < x\} \subset \mathbb{R}$. Then $E$ is nonempty and bounded above. By the Least Upper Bound Property, $\lfloor x \rfloor := \sup E \in \mathbb{R}$ and $\lceil x \rceil := \sup E + 1 \in \mathbb{R}$. We want to prove that $\lfloor x \rfloor \in \mathbb{Z}$ and $\lceil x \rceil \in \mathbb{Z}$. By Assignment 3 Exercise 4, $\forall \epsilon > 0 \ \exists m \in E : \lfloor x \rfloor - \epsilon < m \leq \lfloor x \rfloor$; however, $\mathbb{Z}$ is discrete, which implies $\lfloor x \rfloor \in E$. Then $\lfloor x \rfloor \in \mathbb{Z}$ and $\lceil x \rceil \in \mathbb{Z}$. We want to prove that $x$ is an interior point of $\mathbb{R} \setminus \mathbb{Z}$. Thus,
+        \[
+            \lfloor x \rfloor < x < \lceil x \rceil \implies \epsilon_0 = \min\bigg\{\frac{x - \lfloor x \rfloor}{2}, \frac{\lceil x \rceil - x}{2}\bigg\} > 0 \implies \lfloor x \rfloor < x \pm \epsilon_0 < \lceil x \rceil;
+        \]
+        hence, $\mathbb{R} \setminus \mathbb{Z}$ is open, as needed.
+        \item No, the subset of rationals $\mathbb{Q}$ cannot be closed in the set of reals $\mathbb{R}$. We need to prove that $\mathbb{R} \setminus \mathbb{Q}$ is not open. Let $x \in \mathbb{R} \setminus \mathbb{Q}$. By the Density of $\mathbb{Q}$, $\forall \epsilon > 0 \ \exists r \in \mathbb{Q}$ such that $x - \epsilon < r < x + \epsilon$; hence, $x$ is not an interior point of $\mathbb{R} \setminus \mathbb{Q}$. Thus, $\mathbb{R} \setminus \mathbb{Q}$ is not open, as needed.
+        \item Let $\Lambda$ be any index set and $F_{\lambda} \subset \mathbb{R}$ for each $\lambda \in \Lambda$. Assume $F_{\lambda}$ is closed for all $\lambda \in \Lambda$. Then $F_{\lambda}^c$ is open for all $\lambda \in \Lambda$. By Assignment 3 Exercise 5,
+        \[
+            \bigcup_{\lambda \in \Lambda}F_{\lambda}^c = \{x \in \mathbb{R} : \exists \lambda \in \Lambda \ \text{such that} \ x \in F_{\lambda}\}
+        \]
+        is open. Thus,
+        \[
+            \bigcap_{\lambda \in \Lambda}F_{\lambda} = \{x \in \mathbb{R} : x \in F_{\lambda} \ \text{for all} \ \lambda \in \Lambda\} = \mathbb{R} \setminus \bigcup_{\lambda \in \Lambda}F_{\lambda}^c
+        \]
+        is closed, as needed.
+        \item Let $n \in \mathbb{N}$ and $F_1,...,F_n \subset \mathbb{R}$. Assume $F_1,...,F_n$ are closed. Then $F_1^c,...,F_n^c$ are open. By Assignment 5 Exercise 5,
+        \[
+            \bigcap_{m = 1}^{n}F_{m}^c = \{x \in \mathbb{R} : x \in F_m \ \text{for all} \ m = 1,...,n\}
+        \]
+        is open. Thus,
+        \[
+            \bigcup_{m = 1}^{n}F_{m} = \{x \in \mathbb{R} : x \in F_{m} \ \text{for some} \ m = 1,...,n\} = \mathbb{R} \setminus \bigcap_{m = 1}^{n}F_m^c 
+        \]
+        is closed, as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Let $F \subset \mathbb{R}$ be a closed set, and let $\{x_n\}$ be a sequence of elements of $F$ converging to $x \in \mathbb{R}$. Prove that $x \in F$. \textit{Hint}: Assume that $x \in F^c$ and arrive at a contradiction.
+\end{exercise}
+
+\begin{proof}
+    Let $F \subset \mathbb{R}$ be a nonempty set. Suppose $F$ is closed and $\{x_n\}$ is any sequence of $F$ converging to $x \in \mathbb{R}$. Then $F^c$ is open and $\forall \epsilon > 0 \ \exists M \in \mathbb{N} \ \forall n \geq M : \vert x_n - x \vert < \epsilon$. Assume, for the purpose of contradiction, $x \in F^c$. Then $\exists \epsilon_0 > 0 : (x - \epsilon_0, x + \epsilon_0) \subset F^c$ and hence $\forall n \in \mathbb{N} : \vert x_n - x \vert \geq \epsilon_0$. Thus, $\exists \epsilon_0 > 0 \ \forall M \in \mathbb{N} \ \exists n_0 \geq M : \vert x_n - x \vert \geq \epsilon$ and $x_n \not \to x$, which is a contradiction. Indeed, $x \in F$, as wanted.
+\end{proof}
+
+\begin{exercise}
+    Prove that if $\{x_n\}$ is a convergent sequence, $k \in \mathbb{N}$, then
+    \[
+        \lim_{n \to \infty}x_n^k = \left(\lim_{n \to \infty}x_n\right)^k.
+    \]
+    \textit{Hint}: Use induction.
+\end{exercise}
+
+\begin{proof}
+    Let $\{x_n\}$ be any convergent sequence of $\mathbb{R}$. We want to inductively prove that 
+    \[
+        \forall k \in \mathbb{N} : \lim_{n \to \infty}x_n^k = \left(\lim_{n \to \infty}x_n\right)^k.
+    \]
+    \begin{enumerate}[label=\arabic*)]
+        \item (Base Case)
+        \[
+            \lim_{n \to \infty}x_n^1 = \lim_{n \to \infty}x_n = \left(\lim_{n \to \infty}x_n\right)^1.
+        \]
+        \item (Inductive Step)
+        \begin{align*}
+            \lim_{n \to \infty}x_n^m = \left(\lim_{n \to \infty}x_n\right)^m \implies \lim_{n \to \infty}x_n^{m + 1} &= \left(\lim_{n \to \infty}x_n^m\right)\left(\lim_{n \to \infty}x_n\right) \\
+            &= \left(\lim_{n \to \infty}x_n\right)^m\left(\lim_{n \to \infty}x_n\right) = \left(\lim_{n \to \infty}x_n\right)^{m + 1}.
+        \end{align*}
+    \end{enumerate}
+    By the Principle of Induction,
+    \[
+        \forall k \in \mathbb{N} : \lim_{n \to \infty}x_n^k = \left(\lim_{n \to \infty}x_n\right)^k,
+    \]
+    as wanted.
+\end{proof}
+
+\begin{exercise}
+    Let 
+    \[
+        x_n := \frac{n - \cos n}{n}.
+    \]
+    Use the Squeeze Theorem to show that $\{x_n\}$ converges and find the limit.
+\end{exercise}
+
+\begin{proof}
+    Let
+    \[
+        x_n := \frac{n - \cos n}{n} = 1 - \frac{\cos n}{n} \in \mathbb{R}.
+    \]
+    We want to show that $\{x_n\}$ is bounded. By the Unit Property of Cosine Functions,
+    \[
+        \forall n \in \mathbb{N}: -1 \leq \cos n \leq 1 \implies -\frac{1}{n} \leq \frac{\cos n}{n} \leq \frac{1}{n} \implies 1 - \frac{1}{n} \leq 1 - \frac{\cos n}{n} \leq 1 + \frac{1}{n}.
+    \]
+    Then
+    \[
+        \forall n \in \mathbb{N} : 1 - \frac{1}{n} \leq x_n \leq 1 + \frac{1}{n}.
+    \]
+    We want to show that $\{x_n\}$ is convergent. By the Squeeze Theorem of Real Functions,
+    \[
+        1 \leftarrow 1 - \frac{1}{n} \leq x_n \leq 1 + \frac{1}{n} \rightarrow 1 \implies \lim_{n \to \infty}x_n = 1.
+    \]
+    Thus, $x_n \to 1$ as $n \to \infty$, as desired.
+\end{proof}
+
+\begin{exercise}
+    Let $S \subset \mathbb{R}$ be bounded above, and let $x_0$ be an upper bound for $S$. Prove that $x_0 = \sup S$ if and only if there exists a sequence $\{x_n\}$ of elements of $S$ such that
+    \[
+        \lim_{n \to \infty}x_n = x_0.
+    \]
+    \textit{Hint}: By Assignment 3, if $x_0 = \sup S$ then for all $n \in \mathbb{N}$ there exists $x_n \in S$ such that
+    \[
+        x_0 - \frac{1}{n} < x_n \leq x_0. 
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $S \subset \mathbb{R}$ be any bounded above set. Assume $x_0$ is an upper bound for $S$. We want to prove that 
+    \[
+        x_0 = \sup S \implies \exists \ \text{sequence} \ \{x_n\} \ \text{of} \ S : \lim_{n \to \infty}x_n = x_0.
+    \]
+    If $x_0 = \sup S$, then
+    \[
+        \forall \epsilon > 0 \ \exists x \in S : x_0 - \epsilon < x \leq x_0 \implies \forall n \in \mathbb{N} \ \exists x_n \in S : x_0 - \frac{1}{n} < x_n < x_0 + \frac{1}{n}
+    \]
+    and
+    \[
+        \forall n \in \mathbb{N} : 0 \leq \vert x_n - x_0 \vert < \frac{1}{n} \implies \lim_{n \to \infty}\vert x_n - x_0 \vert = 0 \implies \lim_{n \to \infty}x_n = x_0.
+    \]
+    We want to conversely prove that
+    \[
+        \exists \ \text{sequence} \ \{x_n\} \ \text{of} \ S : \lim_{n \to \infty}x_n = x_0 \implies x_0 = \sup S.
+    \]
+    If $\exists$ sequence $\{x_n\}$ of $S$ such that $x_n \to x_0$, then
+    \[
+        \forall \epsilon > 0 \ \exists n \in \mathbb{N} : \vert x_n - x_0 \vert < \epsilon \implies \forall \epsilon > 0 \ \exists x_n \in S : x_0 - \epsilon < x_n < x_0 + \epsilon
+    \]
+    and
+    \[
+        \forall \epsilon > 0 \ \exists x \in S : x_0 - \epsilon < x \leq x_0 \ (\text{because $x_0$ is an upper bound for $S$}) \implies x_0 = \sup S.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Let $E \subset \mathbb{R}$ be a nonempty set of real numbers. We say $x \in \mathbb{R}$ is a cluster point of $E$ if for every $\epsilon > 0$
+    \[
+        (x - \epsilon, x + \epsilon) \cap E \setminus \{x\} \neq \emptyset.
+    \]
+    Said less formally, $x$ is a cluster point of $E$ if every interval containing $x$ contains at least one element of $E$ other than $x$.
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that $x$ is a cluster point of $E$ if and only if there exists a sequence $\{x_n\}$ of elements of $E \setminus \{x\}$ such that
+        \[
+            \lim_{n \to \infty}x_n = x.
+        \]
+        \textit{Hint}: If $x$ is a cluster point of $E$, then for all $n \in \mathbb{N}$ there exists $x_n \in E$ with $x_n \neq x$ such that
+        \[
+            x - \frac{1}{n} < x_n < x + \frac{1}{n}.
+        \]
+        \item Prove that the set of all cluster points of $E$ is closed.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let $E \subset \mathbb{R}$ be any nonempty set. 
+    \begin{enumerate}[label=(\alph*)]
+        \item We want to prove that $x$ is a cluster point of $E$ if and only if $\exists$ sequence $\{x_n\}$ of $E \setminus \{x\}$ such that $x_n \to x$. Assume, for proof, $x \in \mathbb{R}$. If $x$ is a cluster point of $E$, then
+        \[
+            \forall \epsilon > 0 : (x - \epsilon, x + \epsilon) \cap E \setminus \{x\} \neq \emptyset \implies \forall n \in \mathbb{N} \ \exists x_n \in E : 0 < \vert x_n - x \vert < \frac{1}{n}
+        \]
+        and hence
+        \[
+            \lim_{n \to \infty}\vert x_n - x \vert = 0 \implies \lim_{n \to \infty}x_n = x.
+        \]
+        If conversely $\exists$ sequence $\{x_n\}$ of $E \setminus \{x\}$ such that $x_n \to x$, then
+        \[
+            \forall \epsilon > 0 \ \exists n \in \mathbb{N} : 0 < \vert x_n - x \vert < \epsilon \implies \forall \epsilon > 0 \ \exists x_n \in E : x_n \in (x - \epsilon, x) \cup (x, x + \epsilon)
+        \]
+        and hence
+        \[
+            \forall \epsilon > 0 : (x - \epsilon, x +\epsilon) \cap E \setminus \{x\} \neq \emptyset \implies x \ \text{is a cluster point of} \ E.
+        \]
+        \item We want to prove that the set of all cluster points of $E$ is closed. Assume, for proof, $x$ is not a cluster point of $E$. Then
+        \[
+            \exists \epsilon_0 > 0 : (x - \epsilon_0, x + \epsilon_0) \cap E \setminus \{x\} = \emptyset \implies (x - \epsilon_0, x) \cup (x, x + \epsilon_0) \subset E^c
+        \]
+        and
+        \[
+            (x - \epsilon_0, x) \cup (x, x + \epsilon_0) \ \text{is open} \implies (x - \epsilon_0, x + \epsilon_0) \ \text{is not a cluster interval of $E$}.
+        \]
+
+        \end{enumerate}
+\end{proof}
+
+\end{document}
