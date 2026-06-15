@@ -1,0 +1,327 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 5}
+
+\begin{exercise}
+    Suppose $\{x_n\}$ is a sequence and suppose for some $x \in \mathbb{R}$, the limit
+    \[
+        \lim_{n \to \infty}\frac{\vert x_{n + 1} - x \vert}{\vert x_n - x \vert} < 1.
+    \]
+    Show that $\{x_n\}$ converges to $x$.
+\end{exercise}
+
+\begin{proof}
+    Let $\{x_n\}$ be any sequence of $\mathbb{R}$. Suppose $x \in \mathbb{R}$ and 
+    \[
+        0 < \lim_{n \to \infty}\frac{\vert x_{n + 1} - x \vert}{\vert x_n - x \vert} < 1.
+    \]
+    Choose $\alpha \in (0, 1)$ such that
+    \[
+        \lim_{n \to \infty}\frac{\vert x_{n + 1} - x \vert}{\vert x_n - x \vert} < \alpha.
+    \]
+    Then $\exists M \in \mathbb{N}$ for which
+    \[
+        \forall n \geq M : \frac{\vert x_{n + 1} - x \vert}{\vert x_n - x \vert} \leq \alpha \iff \vert x_{n + 1} - x \vert \leq \alpha \vert x_n - x \vert
+    \]
+    and
+    \[
+        \forall n \geq M : \vert x_{n + m} - x \vert \leq \alpha^m \vert x_n - x \vert \implies \vert x_{n + m + 1} - x \vert \leq \alpha \vert x_{n + m} - x \vert \leq \alpha^{m + 1} \vert x_n - x \vert;
+    \]
+    hence,
+    \[
+        \forall n \geq M : 0 \leq \vert x_n - x \vert \leq \alpha^{n - M} \vert x_M - x \vert.
+    \]
+    By the Squeeze Theorem of $\mathbb{R}$,
+    \[
+        \forall n \geq M : 0 \leftarrow 0 \leq \vert x_n - x \vert \leq \alpha^{n - M} \vert x_M - x \vert \to 0 \implies \lim_{n \to \infty}\vert x_n - x \vert = 0.
+    \]
+    Thus, $\{x_n\}$ converges to $x$, as needed.
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+        \item Let $x_n := (-1)^n / n$. Find $\limsup x_n$ and $\liminf x_n$.
+        \item Let $x_n := (n-1)(-1)^n/n$. Find $\limsup x_n$ and $\liminf x_n$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=\alph*)]
+        \item Let
+        \[
+            \forall n \in \mathbb{N}, \ x_n := \frac{(-1)^n}{n} \in \mathbb{R}.
+        \]
+        Then
+        \[
+            \limsup_{n \to \infty}x_n = \lim_{n \to \infty}\sup\bigg\{\frac{(-1)^k}{k} : k \geq n\bigg\} = \lim_{n \to \infty}\frac{1}{2n} = 0
+        \]
+        and 
+        \[
+            \liminf_{n \to \infty}x_n = \lim_{n \to \infty}\inf\bigg\{\frac{(-1)^k}{k} : k \geq n\bigg\} = \lim_{n \to \infty}\frac{1}{1 - 2n} =  0.
+        \]
+        \item Let
+        \[
+            \forall n \in \mathbb{N}, \ x_n := \frac{(n - 1)(-1)^n}{n} = (-1)^n\left(1 - \frac{1}{n}\right) \in \mathbb{R}.
+        \]
+        Then
+        \[
+            \limsup_{n \to \infty}x_n = \lim_{n \to \infty}\sup\bigg\{(-1)^k\left(1 - \frac{1}{k}\right) : k \geq n\bigg\} = \lim_{n \to \infty} 1 = 1
+        \]
+        and
+        \[
+            \liminf_{n \to \infty}x_n = \lim_{n \to \infty}\inf\bigg\{(-1)^k\left(1 - \frac{1}{k}\right) : k \geq n\bigg\} = \lim_{n \to \infty}-1 = -1.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Let $\{x_n\}$ and $\{y_n\}$ be bounded sequences such that $x_n \leq y_n$ for all $n$. Then show that
+    \[
+        \limsup_{n \to \infty}x_n \leq \limsup_{n \to \infty}y_n
+    \]
+    and
+    \[
+        \liminf_{n \to \infty}x_n \leq \liminf_{n \to \infty}y_n.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $\{x_n\}$ and $\{y_n\}$ be any bounded sequences of $\mathbb{R}$. Suppose $x_n \leq y_n$ for all $n \in \mathbb{N}$. If $\sup\{x_k \in \mathbb{R} : k \geq n\} > \sup\{y_k \in \mathbb{R} : k \geq n\}$ for any $n \in \mathbb{N}$, then $\exists N \in \mathbb{N}$ such that $\sup\{x_k : k \geq n\} \geq x_N > \sup\{y_n : k \geq n\} \geq y_N$; hence, $x_N > y_N$ for some $N \in \mathbb{N}$ and $\sup\{x_k \in \mathbb{R} : k \geq n\} \leq \sup\{y_k \in \mathbb{R} : k \geq n\}$ for all $n \in \mathbb{N}$. Thus,
+    \[
+        \limsup_{n \to \infty}x_n = \lim_{n \to \infty}\sup\{x_k \in \mathbb{R} : k \geq n\} \leq \lim_{n \to \infty}\sup\{y_k \in \mathbb{R}: k \geq n\} = \limsup_{n \to \infty}y_n,
+    \]
+    as needed. If $\inf\{x_k \in \mathbb{R} : k \geq n\} > \inf\{y_k \in \mathbb{R} : k \geq n\}$ for any $n \in \mathbb{N}$, then $\exists N \in \mathbb{N}$ such that $x_N \geq \inf\{x_k : k \geq n\} > y_N \geq \inf\{y_k : k \geq n\}$; hence, $x_N > y_N$ for some $N \in \mathbb{N}$ and $\inf\{x_k \in \mathbb{R} : k \geq n\} \leq \inf\{y_k \in \mathbb{R} : k \geq n\}$ for all $n \in \mathbb{N}$. Thus,
+    \[
+        \liminf_{n \to \infty}x_n = \lim_{n \to \infty}\inf\{x_k \in \mathbb{R} : k \geq n\} \leq \lim_{n \to \infty}\inf\{y_k \in \mathbb{R} : k \geq n\} = \liminf_{n \to \infty}y_n,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    Let $\{x_n\}$ and $\{y_n\}$ be bounded sequences.
+    \begin{enumerate}[label=\alph*)]
+        \item Show that $\{x_n + y_n\}$ is bounded.
+        \item Show that
+        \[
+            \liminf_{n \to \infty}x_n + \liminf_{n \to \infty}y_n \leq \liminf_{n \to \infty}(x_n + y_n).
+        \]
+        \textit{Hint}: Find a subsequence $\{x_{n_i} + y_{n_i}\}$ of $\{x_n + y_n\}$ that converges. Then find a subsequence $\{x_{n_{m_i}}\}$ of $\{x_{n_i}\}$ that converges. Then apply what you know about limits.
+        \item Show that
+        \[
+            \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n \geq \limsup_{n \to \infty}(x_n + y_n).
+        \]
+        \textit{Hint}: See previous hint.
+        \item Find an explicit $\{x_n\}$ and $\{y_n\}$ such that
+        \[
+            \liminf_{n \to \infty}x_n + \liminf_{n \to \infty}y_n < \liminf_{n \to \infty}(x_n + y_n).
+        \]
+        \textit{Hint}: Look for examples that do not have a limit.
+        \item Find an explicit $\{x_n\}$ and $\{y_n\}$ such that
+        \[
+            \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n > \limsup_{n \to \infty}(x_n + y_n).
+        \]
+        \textit{Hint}: See previous hint.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let $\{x_n\}$ and $\{y_n\}$ be any bounded sequences of $\mathbb{R}$.
+    \begin{enumerate}[label=\alph*)]
+        \item By the Least Upper Bound Property of $\mathbb{R}$,
+        \[
+            \forall n \in \mathbb{N} : \inf_{k \in \mathbb{N}}x_k \leq x_n \leq \sup_{k \in \mathbb{N}}x_k
+        \]
+        and
+        \[
+            \forall n \in \mathbb{N} : \inf_{k \in \mathbb{N}}y_k \leq y_n \leq \sup_{k \in \mathbb{N}}y_k.
+        \]
+        Thus,
+        \[
+            \forall n \in \mathbb{N} : \inf_{k \in \mathbb{N}}x_k + \inf_{k \in \mathbb{N}}y_k \leq x_n + y_n \leq \sup_{k \in \mathbb{N}}x_k + \sup_{k \in \mathbb{N}}y_k,
+        \]
+        as needed.
+        \item By the Bolzano-Weierstrass Theorem of $\mathbb{R}$, $\exists$ convergent subsequence $\{x_{n_i} + y_{n_i}\}$ of the sequence $\{x_n + y_n\}$ such that 
+        \[
+            \lim_{i \to \infty}(x_{n_i} + y_{n_i}) = \liminf_{n \to \infty}(x_n + y_n)
+        \]
+        and $\exists$ convergent subsequence $\{x_{n_{m_i}}\}$ of the sequence $\{x_{n_i}\}$ such that
+        \[
+            \lim_{i \to \infty}x_{n_{m_i}} = \limsup_{n \to \infty}x_n.
+        \]
+        Then $\{x_{n_{m_i}} + y_{n_{m_i}}\}$ is a convergent subsequence of the convergent sequence $\{x_{n_i} + y_{n_i}\}$ for which
+        \[
+            \lim_{i \to \infty}(x_{n_{m_i}} + y_{n_{m_i}}) = \lim_{i \to \infty}(x_{n_i} + y_{n_i}).
+        \]
+        By the Limit Laws of $\mathbb{R}$, $\{y_{n_{m_i}}\}$ is a convergent subsequence of the sequence $\{y_{n_i}\}$ such that
+        \[
+            \lim_{i \to \infty}y_{n_{m_i}} = \lim_{i \to \infty}(x_{n_{m_i}} + y_{n_{m_i}} - x_{n_{m_i}}) = \lim_{i \to \infty}(x_{n_{m_i}} + y_{n_{m_i}}) - \lim_{i \to \infty}x_{n_{m_i}}.
+        \]
+        Thus, $\{x_n + y_n\}$ is a sequence of $\mathbb{R}$ for which
+        \begin{align*}
+            \liminf_{n \to \infty}(x_n + y_n) &= \lim_{i \to \infty}(x_{n_i} + y_{n_i}) \\
+            &= \lim_{i \to \infty}(x_{n_{m_i}} + y_{n_{m_i}}) \\ 
+            &= \lim_{i \to \infty}x_{n_{m_i}} + \lim_{i \to \infty}y_{n_{m_i}} \\
+            &= \limsup_{n \to \infty}x_n + \lim_{i \to \infty}y_{n_{m_i}} \geq \liminf_{n \to \infty}x_n + \liminf_{n \to \infty}y_n,
+        \end{align*}
+        as needed.
+        \item By the Bolzano-Weierstrass Theorem of $\mathbb{R}$, $\exists$ convergent subsequence $\{x_{n_j} + y_{n_j}\}$ of the sequence $\{x_n + y_n\}$ such that
+        \[
+            \lim_{j \to \infty}(x_{n_j} + y_{n_j}) = \limsup_{n \to \infty}(x_n + y_n)
+        \]
+        and $\exists$ convergent subsequence $\{y_{n_{m_j}}\}$ of the sequence $\{y_{n_j}\}$ such that
+        \[
+            \lim_{j \to \infty}y_{n_{m_j}} = \liminf_{n \to \infty}y_n.
+        \]
+        Then $\{x_{n_{m_j}} + y_{n_{m_j}}\}$ is a convergent subsequence of the convergent sequence $\{x_{n_j} + y_{n_j}\}$ for which
+        \[
+            \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) = \lim_{j \to \infty}(x_{n_j} + y_{n_j}).
+        \]
+        By the Limit Laws of $\mathbb{R}$, $\{x_{n_{m_j}}\}$ is a convergent subsequence of the sequence $\{x_{n_j}\}$ such that
+        \[
+            \lim_{j \to \infty}x_{n_{m_j}} = \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}} - y_{n_{m_j}}) = \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) - \lim_{j \to \infty}y_{n_{m_j}}.
+        \]
+        Thus, $\{x_n + y_n\}$ is a sequence of $\mathbb{R}$ for which
+        \begin{align*}
+            \limsup_{n \to \infty}(x_n + y_n) &= \lim_{j \to \infty}(x_{n_j} + y_{n_j}) \\
+            &= \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) \\ 
+            &= \lim_{j \to \infty}x_{n_{m_j}} + \lim_{j \to \infty}y_{n_{m_j}} \\
+            &= \lim_{j \to \infty}x_{n_{m_j}} + \liminf_{n \to \infty}y_n \leq \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n,
+        \end{align*}
+        as needed.
+        \item If $x_n = (-1)^n$ and $y_n = (-1)^{n + 1}$,  then
+        \[
+            \liminf_{n \to \infty}x_n = \lim_{n \to \infty}\inf\{(-1)^k : k \geq n\} = \lim_{n \to \infty}-1 = -1 
+        \]
+        and
+        \[
+            \liminf_{n \to \infty}y_n = \lim_{n \to \infty}\inf\{(-1)^{k + 1} : k \geq n\} = \lim_{n \to \infty}-1 = -1 
+        \]
+        and 
+        \[
+            \liminf_{n \to \infty}(x_n + y_n) = \lim_{n \to \infty}\inf\{(-1)^k + (-1)^{k +1} : k \geq n\} = \lim_{n \to \infty}0 = 0;
+        \]
+        hence,
+        \[
+            \liminf_{n \to \infty}x_n + \liminf_{n \to \infty}y_n = -2 < 0 = \liminf_{n \to \infty}(x_n + y_n),
+        \]
+        as needed.
+        \item If $x_n = (-1)^n$ and $y_n = (-1)^{n + 1}$, then
+        \[
+            \limsup_{n \to \infty}x_n = \lim_{n \to \infty}\sup\{(-1)^k : k \geq n\} = \lim_{n \to \infty}1 = 1 
+        \]
+        and
+        \[
+            \limsup_{n \to \infty}y_n = \lim_{n \to \infty}\sup\{(-1)^{k + 1} : k \geq n\} = \lim_{n \to \infty}1 = 1 
+        \]
+        and
+        \[
+            \limsup_{n \to \infty}(x_n + y_n) = \lim_{n \to \infty}\sup\{(-1)^k + (-1)^{k + 1} : k \geq n\} = \lim_{n \to \infty}0 = 0;
+        \]
+        hence,
+        \[
+            \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n = 2 > 0 = \limsup_{n \to \infty}(x_n + y_n),
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Let $\{x_n\}$ be a bounded sequence of real numbers. Prove
+    \[
+        \lim_{n \to \infty}x_n = 0 \iff \limsup_{n \to \infty}\vert x_n \vert = 0.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $\{x_n\}$ be any bounded sequence of $\mathbb{R}$. Then
+    \[
+        \forall n \in \mathbb{N} : \vert x_n \vert \leq \sup\{\vert x_k \vert \in \mathbb{R} \mid k \geq n\}.
+    \]
+    We want to prove directly that
+    \[
+        \lim_{n \to \infty}x_n = 0 \implies \limsup_{n \to \infty}\vert x_n \vert.
+    \]
+    By the Limit Characterization Theorem,
+    \[
+        \lim_{n \to \infty}x_n = 0 \implies \lim_{n \to \infty}\vert x_n \vert = 0 \implies \limsup_{n \to \infty}\vert x_n \vert = 0.
+    \]
+    We want to prove conversely that 
+    \[
+        \limsup_{n \to \infty}\vert x_n \vert = 0 \implies \lim_{n \to \infty}x_n = 0.
+    \]
+    By the Squeeze Theorem,
+    \[
+        \limsup_{n \to \infty}\vert x_n \vert = 0 \implies \vert x_n \vert \leq \sup\{x_k \in \mathbb{R} \mid k \geq n\} \rightarrow 0 \implies \lim_{n \to \infty}x_n = 0.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Does there exist a sequence $\{x_n\}$ such that
+    \[
+        \liminf_{n \to \infty}x_n = -1, \ \lim_{n \to \infty}x_n = 0, \ \limsup_{n \to \infty}x_n = 1?
+    \]
+    Either give an example, or explain why no such example exists.
+\end{exercise}
+
+\begin{proof}
+    No real example exists! If $\{x_n\}$ is any sequence of $\mathbb{R}$, then
+    \[
+        \lim_{n \to \infty}x_n = 0 \iff \liminf_{n \to \infty} = \limsup_{n \to \infty} = 0;
+    \]
+    hence,
+    \[
+        \liminf_{n \to \infty}x_n = -1 \implies \lim_{n \to \infty}x_n \neq 0
+    \]
+    and 
+    \[
+        \lim_{n \to \infty}x_n = 0 \implies \limsup_{n \to \infty}x_n \neq 1,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    True or false, prove or find a counterexample: If $\{x_n\}$ is a Cauchy sequence, then there exists an $M$ such that for all $n \geq M$ we have $\vert x_{n + 1} - x_n \vert \leq \vert x_n - x_{n - 1} \vert$.
+\end{exercise}
+
+\begin{proof}
+    Let
+    \[
+        \forall k \in \mathbb{N} : x_{2k - 1} = 18.100 + \sum_{j = 1}^{k - 1}\frac{(-1)^j}{j^2} + \sum_{j = 1}^{k - 1}\frac{(-1)^j}{2^j} \in \mathbb{R}
+    \]
+    and
+    \[
+        \forall k \in \mathbb{N} : x_{2k} = 18.100 + \sum_{j = 1}^{k - 1}\frac{(-1)^j}{j^2} + \sum_{j = 1}^{k}\frac{(-1)^j}{2^j} \in \mathbb{R}.
+    \]
+    Then
+    \[
+        \forall k \in \mathbb{N} : \vert x_{2k} - x_{2k - 1} \vert = \frac{1}{2^k} \to 0
+    \]
+    and
+    \[
+        \forall k \in \mathbb{N} : \vert x_{2k + 1} - x_{2k} \vert = \frac{1}{k^2} \to 0.
+    \]
+    Thus,
+    \[
+        \forall \epsilon > 0 \ \exists M \in \mathbb{N} \ \forall m,n \geq M : \vert x_m - x_n \vert < \epsilon
+    \]
+    and
+    \[
+        \forall M \in \mathbb{N} \ \exists n \geq M : \vert x_{n + 1} - x_n \vert > \vert x_n - x_{n - 1} \vert,
+    \]
+    as needed.
+\end{proof}
+
+\end{document}
