@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{extra}{Extra}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 2}
+
+\begin{exercise}
+    Let $S$ be an ordered set. Let $A \subset S$ be a nonempty finite subset. Then $A$ is bounded. \textit{Hint: Use induction.}
+\end{exercise}
+
+\begin{proof}
+    Let $S$ be any ordered set. Assume $A \subset S$ and $A \neq \emptyset$ and $\vert A \vert = n$. We want to prove that $A$ is bounded. Since $\vert A \vert = n$, $\exists$ bijection $f: A \to \{1,...,n\}$. Then $f(A) \subset \mathbb{N}$ and $f(A) \neq \emptyset$. By the Well-Ordering Property of $\mathbb{N}$, $\exists$ least element $x_1$ of $A$. Suppose $x_1 < \cdot \cdot \cdot < x_i$ is a partial ordering of $A$. Then $f(A \setminus \bigcup_{k = 1}^{i}\{x_k\}) \subset \mathbb{N}$ and $f(A \setminus \bigcup_{k = 1}^{i}\{x_k\}) \neq \emptyset$. By the Well-Ordering Property of $\mathbb{N}$, $\exists$ least element $x_{i+1}$ of $A \setminus \bigcup_{k = 1}^{i}\{x_k\}$. Since $\vert A \vert = n$, $f(A \setminus \bigcup_{k = 1}^{n}\{x_k\}) = \emptyset$. By the Principle of Induction, $x_1 < \cdot \cdot \cdot < x_n$ is a complete ordering of $A$. Thus, $\forall x \in A \ (x_1 \leq x \leq x_n)$, as needed.
+\end{proof}
+
+\begin{exercise}
+    Let $F$ be an ordered field and $x,y,z \in F$. Prove if $x < 0$ and $y < z$, then $xy > xz$.
+\end{exercise}
+
+\begin{proof}
+    If $x < 0$ and $y < z$, then
+    \[
+        xy = x(y - z) + xz = (-x)(z - y) + xz > 0 + xz = xz,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    Let $S$ be an ordered set. Let $A \subset S$ and suppose $b$ is an upper bound for $A$. Suppose $b \in A$. Show that $b = \sup A$.
+\end{exercise}
+
+\begin{proof}
+    Let $S$ be any ordered set. Suppose $A \subset S$ and $b$ is an upper bound for $A$ and $b \in A$. If $b' \in S$ and $b' < b$, then $b' < b \in A$ and so $b'$ is not an upper bound for $A$. Thus, $b = \sup A$, as needed.
+\end{proof}
+
+\begin{exercise}
+    Let $S$ be an ordered set. Let $A \subset S$ be a nonempty subset that is bounded above. Suppose $\sup A$ exists and $\sup A \notin A$. Show that $A$ contains a countably infinite subset.
+\end{exercise}
+
+\begin{proof}
+    Let $S$ be any ordered set. Assume $A \subset S$ is nonempty and bounded above. Suppose $\sup A \in S \setminus A$. Then $\forall x \in A$ $\exists y \in A$ : $x < y < \sup A$; otherwise, $\sup A = x \in A$ xor $\sup A = y \in A$, a contradiction. We want to construct a sequence $\{x_n\}_{n = 1}^{\infty}$ of distinct entries in $A$. Choose $x_1 \in A$. Suppose $x_1 < \cdot \cdot \cdot < x_n \in A$. Then $\exists x_{n+1} \in A : x_{n} < x_{n+1} < \sup A$; else, $\sup A = x_n \in A$ xor $\sup A = x_{n+1} \in A$, a contradiction. By induction, $\{x_n\}_{n = 1}^{\infty}$ is a monotone increasing sequence of distinct entries in $A$. We want to show that $A$ contains a countably infinite subset $E$. Define the subset $E := \{x_n \in A : \forall n \in \mathbb{N}\}$ of $S$. Then $E = \{x_n \in A : \forall n \in \mathbb{N}\} \subset A$ and $\vert E \vert = \vert \{x_n \in A : \forall n \in \mathbb{N}\} \vert = \vert \mathbb{N} \vert$. Thus, $A$ contains a countably infinite subset $E$, as needed.
+\end{proof}
+
+\begin{exercise}
+    Prove the arithmetic-geometric mean inequality. That is, for two positive real numbers $x$, $y$, we have
+    \[
+        \sqrt{xy} \leq \frac{x + y}{2}.
+    \]
+    Furthermore, equality occurs if and only if $x = y$.
+\end{exercise}
+
+\begin{proof}
+    Let $x,y \in \mathbb{R}$ and $x,y > 0$. We want to prove that
+    \[
+        \sqrt{xy} \leq \frac{x + y}{2}.
+    \]
+    Thus, we have
+    \[
+        (x - y)^2 \geq 0 \implies 4xy \leq x^2 + 2xy + y^2 \implies (2\sqrt{xy})^2 \leq (x + y)^2 \implies \sqrt{xy} \leq \frac{x + y}{2},
+    \]
+    as needed. We want to prove that
+    \[
+        \sqrt{xy} = \frac{x + y}{2} \iff x = y.
+    \]
+    Thus, we have
+    \[
+        \sqrt{xy} = \frac{x + y}{2} \iff 4xy = x^2 + 2xy + y^2 \iff (x - y)^2 = 0 \iff x = y,
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    Let $A$ and $B$ be two nonempty bounded sets of real numbers. Let $C := \{a + b : a \in A, b \in B\}$. Show that C is a bounded set and that
+    \[
+        \sup C = \sup A + \sup B \ \land \ \inf C = \inf A + \inf B.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $A$ and $B$ be any nonempty bounded subsets of $\mathbb{R}$. Define 
+    \[
+        C := \{a + b : a \in A \ \text{and} \ b \in B\} \subset \mathbb{R}. 
+    \]
+    We want to show that $C$ is a bounded subset. By the Least Upper Bound Property of $\mathbb{R}$, $\forall a \in A : \inf A \leq a \leq \sup A$ and $\forall b \in B : \inf B \leq b \leq \sup B$. Then
+    \[
+        \forall a \in A \ \forall b \in B : \inf A + \inf B \leq a + b \leq \sup A + \sup B.
+    \]
+    In other words,
+    \[
+        \forall c \in C : \inf A + \inf B \leq c \leq \sup A + \sup B,
+    \]
+    which is desired. Thus, $C$ is a bounded subset of $\mathbb{R}$, as needed. We want to show that $\inf C = \inf A + \inf B$ and $\sup C = \sup A + \sup B$. By the Least Upper Bound Property of $\mathbb{R}$, $\forall c \in C : \inf C \leq c \leq \sup C$. Since $\inf A + \inf B$ is a lower bound for $C$, $\inf C \geq \inf A + \inf B$. Assume, for the purpose of contradiction, $\inf C > \inf A + \inf B$. Then
+    \[
+        \exists a \in A : \inf C - \inf B > \inf A \implies \inf C - \inf B > a
+    \]
+    and
+    \[
+        \exists b \in B : \inf C - a > \inf B \implies \inf C - a > b.
+    \]
+    In other words,
+    \[
+        \exists a \in A \ \exists b \in B : \inf C > a + b \implies \exists c \in C : \inf C > c,
+    \]
+    which is a contradiction. Thus, $\inf C = \inf A + \inf B$, as needed. Since $\sup A + \sup B$ is an upper bound for $C$, $\sup C \leq \sup A + \sup B$. Assume, for the purpose of contradiction, $\sup C < \sup A + \sup B$. Then 
+    \[
+        \exists a \in A : \sup C - \sup B < \sup A \implies \sup C - \sup B < a
+    \]
+    and
+    \[
+        \exists b \in B : \sup C - a < \sup B \implies \sup C - a < b.
+    \]
+    In other words,
+    \[
+        \exists a \in A \ \exists b \in B : \sup C < a + b \implies \exists c \in C : \sup C < c,
+    \]
+    which is a contradiction. Thus, $\sup C = \sup A + \sup B$, as needed.
+\end{proof}
+
+\begin{exercise}
+    Let
+    \[
+        E = \{x \in \mathbb{R} : x > 0 \ \text{and} \ x^3 < 2\}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that $E$ is bounded above.
+        \item Let $r = \sup E$ (which exists by (a)). Prove that $r > 0$ and $r^3 = 2$. \textit{Hint:} Adapt the proof used in Example 1.2.3.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let $E := \{x \in \mathbb{R} : x > 0 \ \text{and} \ x^3 < 2\}$. If $x = 1$, then $x > 0$ and $x^3 = 1 < 2$; hence, $x \in E$ ($E \neq \emptyset$). \begin{enumerate}[label=(\alph*)]
+        \item We want to prove that $E$ is bounded above. Assume $x \in E$. Then
+        \[
+            x^3 < 2 \implies x^3 < 8 \implies 8 - x^3 > 0 \implies (2 - x)(4 + 2x + x^2) > 0.
+        \]
+        That is, $4 + 2x + x^2 > 0$ and $2 - x > 0$ xor $4 + 2x + x^2 < 0$ and $2 - x < 0$. Given $x > 0$, $4 + 2x + x^2 > 0$ and hence $2 - x > 0$. Then 
+        \[
+            x < 2 \implies x \leq 2.
+        \]
+        Thus, $E$ is bounded above, as needed.
+        \item Suppose $r = \sup E \in \mathbb{R}$. We want to prove that $r > 0$ and $r^3 = 2$. Given $\forall x \in E : x > 0$, $r = \sup E > 0$.
+        Assume, for the purpose of contradiction, $r^3 < 2$. We want to find $h > 0$ such that $r + h > 0$ and $(r + h)^3 < 2$. Define $h \in \mathbb{R}$ such that
+        \[
+            0 < h = \min\bigg\{\frac{1}{2}, \frac{2 - r^3}{3r^2 + 3r + 1}\bigg\} < 1.
+        \]
+        We compute $h > h^2 > h^3 > 0$. Then $r + h > \max(r,h) > 0$ and
+        \begin{align*}
+            (r + h)^3 &= r^3 + 3r^2h + 3rh^2 + h^3 \\
+            &< r^3 + 3r^2h + 3rh + h \\
+            &= r^3 + (3r^2 + 3r + 1)h \\
+            &\leq r^3 + (3r^2 + 3r + 1)\left(\frac{2 - r^3}{3r^2 + 3r + 1}\right) \\
+            &= r^3 + 2 - r^3 = 2.
+        \end{align*}
+        Given $r + h > 0$ and $(r + h)^3 < 2$, $r + h \in E$. Then $r \leq \max(r,h) < r + h \in E$; hence, $r$ is not an upper bound for $E$ ($r \neq \sup E$), which is a contradiction. Assume, for the purpose of contradiction, $r^3 > 2$. We want to find $k > 0$ such that $r - k$ is an upper bound for $E$. Define $k \in \mathbb{R}$ such that
+        \[
+            k = \frac{r^3 - 2}{3r^2} > 0.
+        \]
+        We compute
+        \[
+            r - k = \frac{3r^3 - r^3 + 2}{3r^2} = \frac{2r^3 + 2}{3r^3} > 0 \implies r > k.
+        \]
+        Then
+        \begin{align*}
+            (r  - k)^3 &= r^3 - 3r^2k + 3rk^2 - k^3 \\
+            &> r^3 - 3r^2k + 2k^3 \\
+            &> r^3 - 3r^2k = r^3 - 3r^2\left(\frac{r^3 - 2}{3r^2}\right) \\
+            &= r^3 + 2 - r^3 = 2;
+        \end{align*}
+        hence,
+        \[
+            x > r - k \implies x^3 > (r - k)^3 > 2 \implies x \notin E.
+        \]
+        Given the Principle of Contraposition,
+        \[
+            x \in E \implies x^3 \leq (r - k)^3 \leq 2 \implies x \leq r - k < r.
+        \]
+        Then $r - k$ is an upper bound for $E$; hence, $r$ is not the least upper bound for $E$ ($r \neq \sup E$), which is a contradiction. Thus, $r > 0$ and $r^3 = 2$, as needed. 
+    \end{enumerate}
+\end{proof}
+
+\end{document}
