@@ -2,7 +2,7 @@
 
 This is Real Analysis (Proof-Based Calculus) covering the Fundamentals of Mathematical Analysis: Real Numbers, Convergence of Sequences and Series, Continuity, Differentiability, Riemann Integral, Sequences and Series of functions, Uniformity, and Interchange of Limit Operations.
 
-## Lecture Readings
+## Textbook Readings
 
 The reference textbook is [Basic Analysis I: Introduction to Real Analysis Volume I](https://www.jirka.org/ra/realanal.pdf) by Prof. Jiří Lebl @ Oklahoma State University.
 
