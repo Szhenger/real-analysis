@@ -1,0 +1,241 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 7}
+
+\begin{exercise}
+    Suppose both \(\sum x_n\) and \(\sum y_n\) converge absolutely. Show that the Cauchy product, \(\sum z_n\) where \(z_n = x_0y_n + x_1y_{n - 1} + \cdot \cdot \cdot + x_ny_0\), also converges absolutely.  
+\end{exercise}
+
+\begin{proof}
+    Since \(\sum \vert x_n \vert\) and \(\sum \vert y_n \vert\) are convergent in \(\mathbb{R}\), \(\sum \vert x_n \vert\) and \(\sum \vert y_n \vert\) are bounded in \(\mathbb{R}\). Then \(\exists X,Y \in \mathbb{R}\) such that
+    \[
+        \forall m \in \mathbb{N} : \sum_{n = 0}^{m}\vert x_n \vert \leq X
+    \]
+    and
+    \[
+        \forall m \in \mathbb{N} : \sum_{n = 0}^{m}\vert y_n \vert \leq Y.
+    \]
+    By the Triangle Inequality for \(\mathbb{R}\),
+    \begin{align*}
+        \forall m \in \mathbb{N} : \sum_{n = 0}^{m}\vert z_n \vert &= \sum_{n = 0}^{m}\bigg\vert \sum_{k = 0}^{n}x_ky_{n - k} \bigg\vert \\
+        &\leq \sum_{n = 0}^{m}\sum_{k = 0}^{n}\vert x_ky_{n - k} \vert \\
+        &= \vert x_0y_0 \vert + (\vert x_0y_1 \vert + \vert x_1y_0 \vert) + \cdot \cdot \cdot + (\vert x_0y_m \vert + \vert x_1y_{m - 1} \vert + \cdot \cdot \cdot + \vert x_my_0 \vert) \\
+        &= \sum_{n = 0}^{m}\vert x_n \vert \cdot \sum_{k = 0}^{m - n}\vert y_k \vert \leq XY.
+    \end{align*}
+    Thus, \(\sum \vert z_n \vert\) is bounded and increasing (because \(\vert z_n \vert \geq 0 \ \forall n \in \mathbb{N}\)) in \(\mathbb{R}\); hence, \(\sum \vert z_n \vert\) converges in \(\mathbb{R}\).
+\end{proof}
+
+\begin{exercise}
+    Find all real numbers \(x\) so that the power series converges.
+    \begin{enumerate}[label=(\alph*)]
+        \item \[
+            \sum_{n = 0}^{\infty} 2^nx^n
+        \]
+        \item \[
+            \sum_{n = 0}^{\infty} nx^n
+        \]
+        \item \[
+            \sum_{n = 0}^{\infty}\frac{1}{(2n)!}(x - 10)^n
+        \]
+        \item \[
+            \sum_{n = 0}^{\infty} n!x^n
+        \]
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start! 
+    \begin{enumerate}[label=(\alph*)]
+        \item By the Root Test,
+        \[
+            x \in \left(-\frac{1}{2},\frac{1}{2}\right) \iff \lim_{n \to \infty}\sqrt[n]{\vert 2^nx^n \vert} \left( = \lim_{n \to \infty}\sqrt[n]{\vert 2x \vert^n} = 2\lim_{n \to \infty}\vert x \vert = 2\vert x \vert \right) < 1
+        \]
+        and
+        \[
+            \sum_{n = 0}^{\infty}\vert 2^nx^n \vert < \infty \implies \sum_{n = 1}^{\infty}2^nx^n < \infty. 
+        \]
+        By the Geometric Series Test,
+        \[
+            x = -\frac{1}{2} \implies \sum_{n = 0}^{\infty}2^nx^n = \sum_{n = 1}^{\infty}(-1)^n \not < \infty
+        \]
+        and
+        \[
+            x = \frac{1}{2} \implies \sum_{n = 0}^{\infty}2^nx^n = \sum_{n = 0}^{\infty}2^n = \infty.
+        \]
+        \item By the Root Test,
+        \[
+            x \in (-1,1) \iff \lim_{n \to \infty}\sqrt[n]{\vert nx^n \vert} \left( = \lim_{n \to \infty}\sqrt[n]{n\vert x \vert^n} = \vert x \vert\lim_{n \to \infty}\sqrt[n]{n} = \vert x \vert \right) < 1
+        \]
+        and
+        \[
+            \sum_{n = 0}^{\infty}\vert nx^n \vert < \infty \implies \sum_{n = 0}^{\infty}nx^n < \infty.
+        \]
+        If \(x = -1\), then
+        \[
+            \lim_{n \to \infty}nx^n = \lim_{n \to \infty}(-1)^nn \neq 0 \implies \sum_{n = 0}^{\infty}nx^n = \sum_{n = 0}^{\infty}(-1)^nn \not < \infty.
+        \]
+        If \(x = 1\), then
+        \[
+            \lim_{n \to \infty}nx^n = \lim_{n \to \infty}n \neq 0 \implies \sum_{n = 0}^{\infty}nx^n = \sum_{n = 0}^{\infty}n = \infty.
+        \]
+        \item By the Ratio Test,
+        \[
+            x \in (-\infty, \infty) \iff \lim_{n \to \infty}\bigg\vert \frac{(2n)!(x - 10)^{n + 1}}{(2n + 2)!(x - 10)^n} \bigg\vert \left( = \lim_{n \to \infty}\frac{\vert x - 10 \vert}{4n^2 + 5n + 2} = 0\right) < 1
+        \]
+        and
+        \[
+            \sum_{n = 0}^{\infty}\bigg\vert \frac{1}{(2n)!}(x - 10)^n \bigg\vert < \infty \implies \sum_{n = 0}^{\infty}\frac{1}{(2n)!}(x - 10)^n < \infty.
+        \]
+        \item By the Ratio Test,
+        \[
+            x = 0 \iff \lim_{n \to \infty}\bigg\vert \frac{(n + 1)!x^{n + 1}}{n!x^n} \bigg\vert \left( = \lim_{n \to \infty}\vert (n + 1)x \vert = \vert x \vert \lim_{n \to \infty}(n + 1) = 0 \right) < 1
+        \]
+        and
+        \[
+            \sum_{n = 0}^{\infty}\vert n!x^n \vert < \infty \implies \sum_{n = 0}^{\infty}n!x^n < \infty.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    (Cauchy-Schwartz Inequality) Prove if \(\sum \vert x_n \vert\) and \(\sum \vert y_n \vert\) converge, then \(\sum x_ny_n\) converges absolutely and
+    \[
+        \bigg\vert \sum_{n = 1}^{\infty}x_ny_n \bigg\vert \leq \sqrt{\sum_{n = 1}^{\infty}\vert x_n \vert^2\sum_{n = 1}^{\infty}\vert y_n \vert^2}.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Since \(\sum \vert x_n \vert\) and \(\sum \vert y_n \vert\) are convergent, \(\sum \vert x_n \vert^2\) and \(\sum \vert y_n \vert^2\) are convergent. We want to prove that 
+    \[
+        \sum_{n = 1}^{\infty}\vert x_ny_n \vert < \infty \implies \sum_{n = 1}^{\infty}x_ny_n < \infty.
+    \]
+    By the Direct Comparison Test,
+    \[
+        \sum_{n = 1}^{\infty}\vert x_ny_n \vert = \lim_{m \to \infty}\sum_{n = 1}^{m}\vert x_ny_n \vert \leq \lim_{m \to \infty}\sum_{n = 1}^{m}\vert x_n \vert \sum_{n = 1}^{m}\vert y_n \vert = \sum_{n = 1}^{\infty}\vert x_n \vert\sum_{n = 1}^{\infty}\vert y_n \vert < \infty.
+    \]
+    We want to prove that
+    \[
+        \bigg\vert \sum_{n = 1}^{\infty}x_ny_n \bigg\vert \leq \sqrt{\sum_{n = 1}^{\infty}\vert x_n \vert^2\sum_{n = 1}^{\infty}\vert y_n \vert^2}.
+    \]
+    Let 
+    \[
+        X_m = \sum_{n = 1}^{m} \vert x_n \vert^2  \land Y_m = \sum_{n = 1}^{m}\vert y_n \vert^2 \land Z_m = \sum_{n = 1}^{m}x_ny_n.
+    \]
+    Then 
+    \[
+        \sum_{n = 1}^{m}\vert x_nY_m - y_nZ_m \vert^2 \geq 0 \implies \sum_{n = 1}^{m}(x_nY_m - y_nZ_m)^2 \geq 0.
+    \]
+    Without loss of generality, assume \(\sum \vert x_n \vert = 0\). Then
+    \[
+        X_m = 0 \land Z_m = 0 \implies X_mY_m \geq \vert Z_m \vert^2 \implies \sqrt{X_mY_m} \geq \vert Z_m \vert
+    \]
+    and
+    \[
+        \bigg\vert \sum_{n = 1}^{m}x_ny_n \bigg\vert \leq \sqrt{\sum_{n = 1}^{m}\vert x_n \vert^2\sum_{n = 1}^{m}\vert y_n \vert^2}. 
+    \]
+    Without loss of generality, assume \(\sum \vert y_n \vert > 0\). Then 
+    \begin{align*}
+        \sum_{n = 1}^m(x_nY_m - y_nZ_m)^2 &= \sum_{n = 1}^m(x_n^2Y_m^2 - 2x_ny_nY_mZ_m + y_n^2Z_m^2) \\
+        &= Y_m^2\sum_{n = 1}^{m}\vert x_n \vert^2 - 2Y_mZ_m\sum_{n = 1}^{m}x_ny_n + Z_m^2\sum_{n = 1}^{m}\vert y_n \vert^2 \\
+        &= X_mY_m^2 - Y_m\vert Z_m \vert^2 = (X_mY_m - \vert Z_m \vert^2)Y_m
+    \end{align*}
+    and
+    \[
+        \sum_{n = 1}^m(x_nY_m - y_nZ_m)^2 \geq 0 \implies (X_mY_m - \vert Z_m \vert^2)Y_m \geq 0;
+    \]
+    however, 
+    \[
+        Y_m > 0 \implies X_mY_m - \vert Z_m \vert^2 \geq 0 \implies \sqrt{X_mY_m} \geq \vert Z_m \vert^2
+    \]
+    and
+    \[
+        \bigg\vert \sum_{n = 1}^{m}x_ny_n \bigg\vert \leq \sqrt{\sum_{n = 1}^{m}\vert x_n \vert^2\sum_{n = 1}^{m}\vert y_n \vert^2}.  
+    \]
+    By the Limit Properties of \(\mathbb{R}\),
+    \begin{align*}
+        \bigg\vert \sum_{n = 1}^{\infty}x_ny_n \bigg\vert = \lim_{m \to \infty}\bigg\vert \sum_{n = 1}^{m}x_ny_n \bigg\vert &\leq \lim_{m \to \infty}\sqrt{\sum_{n = 1}^{m}\vert x_n \vert^2\sum_{n = 1}^{m}\vert y_n \vert^2} \\
+        &= \sqrt{\lim_{m \to \infty}\sum_{n = 1}^{m}\vert x_n \vert^2\sum_{n = 1}^{m}\vert y_n \vert^2} = \sqrt{\sum_{n = 1}^{\infty}\vert x_n \vert^2\sum_{n = 1}^{\infty}\vert y_n \vert^2}.
+    \end{align*}
+    Thus, \(\sum x_ny_n\) converges (absolutely) and \(\vert \sum x_ny_n \vert \leq \sqrt{\sum \vert x_n \vert^2 \sum \vert y_n \vert^2}\), as needed.
+\end{proof}
+
+\begin{exercise}
+    Prove that every real number is a cluster point of the set of irrational numbers.
+\end{exercise}
+
+\begin{proof}
+    Let \(x \in \mathbb{R}\). We want to prove that \(x\) is a cluster point of \(\mathbb{R} \setminus \mathbb{Q}\). By the Density of \(\mathbb{R} \setminus \mathbb{Q}\), \(\forall \epsilon > 0 \ \exists i \in (\mathbb{R} \setminus \mathbb{Q}) \setminus \{x\}\) such that 
+    \[
+        x - \epsilon < i < x + \epsilon.
+    \]
+    If \(\epsilon > 0\), then
+    \[
+        (x - \epsilon, x + \epsilon) \cap (\mathbb{R} \setminus \mathbb{Q}) \setminus \{x\} \neq \emptyset.
+    \]
+    Thus, \(x\) is a cluster point of \(\mathbb{R} \setminus \mathbb{Q}\), as needed.
+\end{proof}
+
+\begin{exercise}
+    Suppose \(S \subset \mathbb{R}\) and \(c\) is a cluster point of \(S\). Suppose \(f : S \to \mathbb{R}\) is bounded. Show that there exists a sequence \(\{x_n\}\) with \(x_n \in S \setminus \{c\}\) and \(\lim x_n = c\) such that \(\{f(x_n)\}\) converges.
+\end{exercise}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\) and \(f : S \to \mathbb{R}\). Suppose \(c\) is a cluster point of \(S\) and \(f\) is a bounded function of \(\mathbb{R}\). We want to prove that \(\exists\) sequence \(x : \mathbb{N} \to S \setminus \{c\}\) with \(\lim x_n = c\). Choose
+    \[
+        \forall n \in \mathbb{N} : x_n \in \left[\left(c - \frac{1}{n}, c + \frac{1}{n}\right) \cap S\right] \setminus \{c\} \neq \emptyset.
+    \]
+    By the Archimedean Property of \(\mathbb{R}\), \(\forall \epsilon > 0 \ \exists M \in \mathbb{N} \ \forall n \geq M\) such that \(M\epsilon > 1\) and
+    \[
+        \vert x_n - c \vert < \frac{1}{n} \leq \frac{1}{M} < \epsilon.
+    \]
+    Thus, \(x_n \in S \setminus \{c\}\) and \(\lim x_n = c\), as needed. We want to prove that \(\exists \) subsequence \(y : \mathbb{N} \to S \setminus \{c\}\) such that \(\{f(y_n)\}\) is convergent. Given that \(f\) is bounded, \(\exists N > 0 \ \forall x \in S\) such that \(\vert f(x) \vert \leq N\). Then
+    \[
+        \forall n \in \mathbb{N} : x_n \in S \setminus \{c\} \implies \vert f(x_n) \vert \leq N.
+    \]
+    By the Bolzano-Weierstrass Theorem, \(\{f(x_n)\}\) has a convergent subsequence; hence, \(\exists\) subsequence \(\{x_{n_i}\}\) such that \(\{f(x_{n_i})\}\) is a convergent sequence, as needed. Given that \(\{x_n\}\) is a convergent sequence, \(\{x_{n_i}\}\) is a convergent subsequence. Indeed, \(\{x_{n_i}\}\) and \(\{f(x_{n_i})\}\) are convergent sequences such that \(x_{n_i} \in S \setminus \{c\}\) and \(\lim x_{n_i} = c\), as needed.
+\end{proof}
+
+\begin{exercise}
+    Let \(S \subset \mathbb{R}\), let \(c\) be a cluster point of \(S\), and let \(f : S \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Assume \(\lim_{x \to c}f(x)\) exists. Prove that there exist \(\delta > 0\) and \(B \geq 0\) such that if \(x \in S\) and \(0 < \vert x - c \vert < \delta\) then \(\vert f(x) \vert \leq B\).
+        \item Assume that \(\lim_{x \to c}f(x) = \lambda  > 0\). Prove that there exists \(\delta > 0\) such that if \(x \in S\) and \(0 < \vert x - c \vert < \delta\) then \(f(x) > 0\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(S \subset \mathbb{R}\) and \(f : S \to \mathbb{R}\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Assume \(c\) is a cluster point of \(S\) such that \(\lim_{x \to c}f(x) = \lambda \in \mathbb{R}\). Choose \(\epsilon > 0\). Then
+        \[
+            \exists \delta > 0 \ \forall x \in S : 0 < \vert x - c \vert < \delta \implies \vert f(x) - \lambda \vert < \epsilon \implies \lambda - \epsilon < f(x) < \lambda + \epsilon.
+        \]
+        Fix \(B = \max\{\vert \lambda - \epsilon \vert, \vert \lambda + \epsilon \vert\} \geq 0\). Then
+        \[
+            \exists B \geq 0 \ \forall x \in S \setminus \{c\} : - B \leq \lambda - \epsilon < f(x) < \lambda + \epsilon \leq B \implies \vert f(x) \vert \leq B.
+        \]
+        Indeed,
+        \[
+            \exists \delta > 0 \land B \geq 0 \ \forall x \in S : 0 < \vert x - c \vert < \delta \implies \vert f(x) \vert \leq B, 
+        \]
+        as needed.
+        \item Assume \(c\) is a cluster point of \(S\) such that \(\lim_{x \to c}f(x) = \lambda > 0\). Choose \(\epsilon \in (0,\lambda)\). Thus,
+        \[
+            \exists \delta > 0 \ \forall x \in S : 0 < \vert x - c \vert < \delta \implies \vert f(x) - \lambda \vert <\epsilon \implies f(x) > \lambda - \epsilon > 0,
+        \]
+        as required.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
