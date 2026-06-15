@@ -1,0 +1,274 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{problem}{Problem}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Examination 1}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(f : A \to B\), and let \(C, D\) be subsets of \(B\). Prove 
+        \[
+            f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D).
+        \]
+        \item When \(E\) is a countable subset of \(\mathbb{R}\), is the complement \(\mathbb{R} \setminus E\) always uncountable? Explain why or why not.
+        \item When \(E\) is an uncountable subset of \(\mathbb{R}\), is the complement \(\mathbb{R} \setminus E\) always countable? Explain why or why not.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(f : A \to B\) and \(C, D \subset B\). Then
+        \begin{align*}
+            x \in f^{-1}(C \cap D) &\iff f(x) \in C \cap D \\
+            &\iff f(x) \in C \land f(x) \in D \iff x \in f^{-1}(C) \cap f^{-1}(D).
+        \end{align*}
+        Thus, \(f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)\), as required.
+        \item True! Let \(E\) be any countable subset of \(\mathbb{R}\). If \(\mathbb{R} \setminus E\) is countable, then \(\mathbb{R}\) is countable (a contradiction). By the Uncountability of \(\mathbb{R}\), \(\mathbb{R} \setminus E\) is an uncountable subset of \(\mathbb{R}\), as required.
+        \item Not True! If \(E = [0,1]\), then \(E \supset [0,1]\) and \(\mathbb{R} \setminus E \supset [2,4]\) are uncountable subsets of \(\mathbb{R}\), as required.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item State what it means to say that \(U\) is \textit{not open}.
+        \item Prove that if \(U\) is not open, then there exists \(x \in U\) and a sequence \(\{x_n\}\) of elements of \(U^c\) such that
+        \[
+            \lim_{n \to \infty}x_n = x.
+        \]
+        \item Suppose \(V \subset \mathbb{R}\) has the following property: for every convergent sequence \(\{x_n\}\) of elements of \(V\) we have 
+        \[
+            \lim_{n \to \infty}x_n \in V.
+        \]
+        Prove that \(V\) is closed. \textit{Hint}: Argue by contradiction using (b).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item If \(U \subset \mathbb{R}\) and \(\exists x \in U \ \forall r > 0 : (x - r, x + r) \cap U^c \neq \emptyset\), we say \(U\) is \textit{not open}.
+        \item If \(U \subset \mathbb{R}\) is not open, then \(\exists x \in U \ \forall n \in \mathbb{N}\) such that
+        \[
+            x_n \in \left(x - \frac{1}{n}, x + \frac{1}{n}\right) \cap U^c \neq \emptyset \implies \vert x_n - x \vert < \frac{1}{n};
+        \]
+        hence, \(\exists\) convergent sequence \(\{x_n\}\) of \(U^c\) such that
+        \[
+            \lim_{n \to \infty}x_n = x.
+        \]
+        \item Suppose \(V \subset \mathbb{R}\) has the following property: \(\forall\) convergent sequence \(\{x_n\}\) of \(V\),
+        \[
+            \lim_{n \to \infty}x_n \in V \implies \lim_{n \to \infty}x_n \notin V^c.
+        \]
+        Assume, for the purpose of contradiction, \(V\) is not closed. Then \(V^c\) is not open and \(\exists\) convergent sequence \(\{x_n\}\) of \(V\) such that 
+        \[
+            \lim_{n \to \infty}x_n \in V^c \implies \lim_{n \to \infty}x_n \notin V.
+        \]
+        By contradiction, \(V\) is closed.
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Use the definition of convergence to prove that
+        \[
+            \lim_{n \to \infty}\frac{10n^2}{n^2 + 16n + 1} = 10.
+        \]
+        \item For each of the following scenarios, give an example satisfying the stated property. Formal proofs are not required, but some explanation may be useful.
+        \begin{enumerate}[label=(\roman*)]
+            \item A sequence \(\{x_n\}\) converging to \(0\) which is not monotonic.
+            \item An unbounded sequence that has a convergent subsequence.
+        \end{enumerate}
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(\epsilon > 0\). By the Archimedean Property of \(\mathbb{R}\), \(\exists M \in \mathbb{N}\) such that
+        \[
+            M\epsilon > 320 \implies M^2\epsilon > 20.
+        \]
+        If \(n \geq M\), then
+        \[
+            \bigg\vert \frac{10n^2}{n^2 + 16n + 1} - 10 \bigg\vert = \frac{160n + 10}{n^2 + 16n + 1} < \frac{160}{n} + \frac{10}{n^2} < \frac{160}{M} + \frac{10}{M^2} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+        \]
+        \item Let \(x_n \in \mathbb{R}\). By the Archimedean Property of \(\mathbb{R}\), \(\forall x,y \in \mathbb{R} \ \exists n \in \mathbb{Z}\) such that \(nx \geq y\).
+        \begin{enumerate}[label=(\roman*)]
+            \item If \(x_n = (-1)^n / n \in \mathbb{R}\), then 
+            \[
+                \lim_{n \to \infty}x_n = \lim_{n \to \infty}(-1)^n/n = 0
+            \]
+            and 
+            \[
+                x_1 = -1 < 1/2 = x_2 \ \land \ x_{8} = 1/8 > -1/9 = x_{9}. 
+            \]
+            \item If
+            \[
+                x_n = \begin{cases}
+                    n & (\text{\(n\) is odd}) \\
+                    0 & (\text{\(n\) is even})
+                \end{cases} \in \mathbb{R} \implies \forall x \in \mathbb{R} \ \exists n \in \mathbb{N} : x_n \geq x, 
+            \]
+            then \(\{x_n\}\) is an unbounded sequence and \(\{x_{2n}\}\) is a convergent subsequence. 
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\newpage
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(\{x_n\}\) and \(\{y_n\}\) be bounded sequences of real numbers.
+        \begin{enumerate}[label=(\roman*)]
+            \item Prove that the sequence \(\{x_n + y_n\}\) is bounded.
+            \item Prove that
+            \[
+                \limsup_{n \to \infty}(x_n + y_n) \leq \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n.
+            \]
+        \end{enumerate}
+        \item Let \(E\) denote the set of all real numbers in \((0,1)\) with decimal expansion involving only 1’s and 2’s:
+        \[
+            E = \{x \in (0,1) : \forall j \in \mathbb{N}, \exists d_{-j} \in \{1, 2\} \ \text{such that} \ x = 0.d_{-1}d_{-2} ...\}.
+        \]
+        Note that \(0.2 \not \in E\) but \(0.222222... \in E\). Prove that \(0.1111111...\) is a cluster point of \(E\).
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(\{x_n\}\) and \(\{y_n\}\) be any bounded sequences of real numbers.
+        \begin{enumerate}[label=(\roman*)]
+            \item By the Least Upper Bound Property of \(\mathbb{R}\),
+            \[
+                \forall n \in \mathbb{N} : \vert x_n \vert \leq \sup_{k \in \mathbb{N}}\vert x_k \vert \in \mathbb{R}
+            \]
+            and
+            \[
+                \forall n \in \mathbb{N} : \vert y_n \vert \leq \sup_{k \in \mathbb{N}}\vert y_k \vert \in \mathbb{R}.
+            \]
+            By the Triangle Inequality of \(\mathbb{R}\), 
+            \[
+                \forall n \in \mathbb{N} : \vert x_n + y_n \vert \leq \vert x_n \vert + \vert y_n \vert \leq \sup_{k \in \mathbb{N}}\vert x_k \vert + \sup_{k \in \mathbb{N}}\vert y_k \vert \in \mathbb{R}.
+            \]
+            \item By the Bolzano-Weierstrass Theorem of $\mathbb{R}$, $\exists$ convergent subsequence $\{x_{n_j} + y_{n_j}\}$ of the sequence $\{x_n + y_n\}$ such that
+        \[
+            \lim_{j \to \infty}(x_{n_j} + y_{n_j}) = \limsup_{n \to \infty}(x_n + y_n)
+        \]
+        and $\exists$ convergent subsequence $\{y_{n_{m_j}}\}$ of the sequence $\{y_{n_j}\}$ such that
+        \[
+            \lim_{j \to \infty}y_{n_{m_j}} = \liminf_{n \to \infty}y_n.
+        \]
+        Then $\{x_{n_{m_j}} + y_{n_{m_j}}\}$ is a convergent subsequence of the convergent sequence $\{x_{n_j} + y_{n_j}\}$ for which
+        \[
+            \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) = \lim_{j \to \infty}(x_{n_j} + y_{n_j}).
+        \]
+        By the Limit Laws of $\mathbb{R}$, $\{x_{n_{m_j}}\}$ is a convergent subsequence of the sequence $\{x_{n_j}\}$ such that
+        \[
+            \lim_{j \to \infty}x_{n_{m_j}} = \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}} - y_{n_{m_j}}) = \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) - \lim_{j \to \infty}y_{n_{m_j}}.
+        \]
+        Thus, $\{x_n + y_n\}$ is a sequence of $\mathbb{R}$ for which
+        \begin{align*}
+            \limsup_{n \to \infty}(x_n + y_n) &= \lim_{j \to \infty}(x_{n_j} + y_{n_j}) \\
+            &= \lim_{j \to \infty}(x_{n_{m_j}} + y_{n_{m_j}}) \\ 
+            &= \lim_{j \to \infty}x_{n_{m_j}} + \lim_{j \to \infty}y_{n_{m_j}} \\
+            &= \lim_{j \to \infty}x_{n_{m_j}} + \liminf_{n \to \infty}y_n \leq \limsup_{n \to \infty}x_n + \limsup_{n \to \infty}y_n.
+        \end{align*}
+        \end{enumerate}
+        \item Let \(x_0 = 0.1111111... \in E\) and \(x_1 = 0.2222222... \in E\). If \(x \in E\), then \(\forall j \in \mathbb{N} \ \exists d_{-j} \in \{1,2\}\) such that \(x = 0.d_{-1}d_{-2}...\); hence, \(x_0 \leq x \leq x_1\). Thus, \(x_0 = \min E\) and \(x_1 = \max E\); hence, \(x_0 = \inf E\) and \(x_1 = \sup E\). If \(x_0 < \inf E \setminus \{x_0\}\) and \(x_1 > \sup E \setminus \{x_1\}\), then \(\exists y,z \in E \setminus \{x_0,x_1\}\) such that \(x_0 < y < \inf E \setminus \{x_0\}\) and \(x_1 > z > \sup E \setminus \{x_1\}\) (by construction of \(E\)); hence, \(x_0 = \inf E \setminus \{x_0\}\) and \(x_1 = \sup E \setminus \{x_1\}\). By the Supremum and Infimum Characterization of \(\mathbb{R}\), \(x_0\) and \(x_1\) are cluster points of \(E\).
+    \end{enumerate}
+\end{proof}
+
+\begin{problem}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose that for all \(n \in \mathbb{N}\), \(x_n > 0\), \(y_n > 0\) and
+        \[
+            \lim_{n \to \infty}\frac{x_n}{y_n} = L > 0.
+        \]
+        Prove that \(\sum x_n\) converges if and only if \(\sum y_n\) converges.
+        \item Find all real numbers x such that the power series converges.
+        \begin{enumerate}[label=(\roman*)]
+            \item \[
+                \sum_{n = 1}^{\infty}\frac{(-1)^n}{2020n}(x - 10)^n
+            \]
+            \item \[
+                \sum_{n = 1}^{\infty}n!x^{n!}
+            \]
+        \end{enumerate}
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(x_n > 0\) and \(y_n > 0\) for all \(n \in \mathbb{N}\). Assume, for the purpose of direct proof, that
+        \[
+            \lim_{n \to \infty}\frac{x_n}{y_n} = L > 0.
+        \]
+        Then \(\forall \epsilon > 0 \ \exists M \in \mathbb{N} \ \forall n \geq M\),
+        \[
+            \bigg\vert \frac{x_n}{y_n} - L \bigg\vert < \epsilon \iff L - \epsilon < \frac{x_n}{y_n} < L + \epsilon \implies (L - \epsilon)y_n < x_n < (L + \epsilon)y_n
+        \]
+        (given \(y_n > 0\) for all \(n \in \mathbb{N}\)). Consider, for the purpose of direct proof, that
+        \[
+            \epsilon_0 = \frac{L}{7} > 0
+        \]
+        (given \(L > 0\)). Then \(\exists M_0 \in \mathbb{N} \ \forall n \geq M_0\),
+        \[
+            (L - \epsilon_0)y_n < x_n < (L + \epsilon_0)y_n \implies 0 < \frac{6L}{7}y_n < x_n < \frac{8L}{7}y_n < \infty
+        \]
+        (given \(x_n > 0\) for all \(n \in \mathbb{N}\)). By the Direct Comparison Test, \(\sum x_n\) converges if and only if \(\sum y_n\) converges, as needed.
+        \item We want to find all real numbers \(x\) such that the power series converges.
+        \begin{enumerate}[label=(\roman*)]
+            \item By the Root Test,
+            \[
+                x \in (9,11) \iff \lim_{n \to \infty}\sqrt[n]{\bigg\vert \frac{(-1)^n}{2020n}(x - 10)^n \bigg\vert} \left( = \lim_{n \to \infty}\frac{\vert x - 10 \vert}{\sqrt[n]{2020n}} = \vert x - 10 \vert \right) < 1
+            \]
+            and
+            \[
+                \sum_{n = 1}^{\infty}\bigg\vert \frac{(-1)^n}{2020n}(x - 10)^n \bigg\vert < \infty \implies \sum_{n = 1}^{\infty}\frac{(-1)^n}{2020n}(x - 10)^n < \infty.
+            \]
+            If \(x = 9\), then
+            \[
+                \sum_{n = 1}^{\infty}\frac{(-1)^n}{2020n}(x - 10)^n = \sum_{n = 1}^{\infty}\frac{1}{2020n} = \infty.
+            \]
+            If \(x = 11\), then
+            \[
+                \sum_{n = 1}^{\infty}\frac{(-1)^n}{2020n}(x - 10)^n = \sum_{n = 1}^{\infty}\frac{(-1)^n}{2020n} < \infty.
+            \]
+            \item By the Ratio Test,
+            \[
+                x \in (-1,1) \iff \lim_{n \to \infty}\bigg\vert \frac{(n +1)!x^{(n + 1)!}}{n!x^{n!}} \bigg\vert \left( = \lim_{n \to \infty}(n + 1)\vert x \vert^{n!n} = 0 \right) < 1
+            \]
+            and
+            \[
+                \sum_{n = 1}^{\infty}\vert n!x^{n!} \vert < \infty \implies \sum_{n = 1}^{\infty}n!x^{n!} <\infty. 
+            \]
+            If \(x = -1\), then
+            \[
+                \sum_{n = 1}^{\infty}n!x^{n!} = -1 + \sum_{n = 2}^{\infty}n! = \infty.
+            \]
+            If \(x = 1\), then
+            \[
+                \sum_{n = 1}^{\infty}n!x^{n!} = 1 + \sum_{n = 2}^{\infty}n! = \infty.
+            \]
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
+
+\end{document}
