@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{extra}{Extra}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 3}
+
+\begin{exercise}
+    Suppose $x,y \in \mathbb{R}$ and $x < y$. Prove that there exists $i \in \mathbb{R}\setminus\mathbb{Q}$ such that $x < i < y$.
+\end{exercise}
+
+\begin{proof}
+    Let $x,y \in \mathbb{R}$ with $x < y$. By the Density of $\mathbb{Q}$, $\exists r \in \mathbb{Q}$ such that 
+    \[
+        \frac{x}{\sqrt{2}} < r < \frac{y}{\sqrt{2}} \iff x < \sqrt{2}r < y.
+    \]
+    Suppose, for example, $i = \sqrt{2}r$. Assume, for the purpose of contradiction, $i \in \mathbb{Q}$. Then
+    \[
+        \sqrt{2}r \in \mathbb{Q} \ (\text{and $r \in \mathbb{Q}$}) \implies \sqrt{2} \in \mathbb{Q} \ (\text{because $r^{-1} \in \mathbb{Q}$)},
+    \]
+    which is a contradiction. Thus, $i \in \mathbb{R}\setminus\mathbb{Q}$ and $x < i < y$, as needed. 
+\end{proof}
+
+\begin{exercise}
+    Let $E \subset (0, 1)$ be the set of all real numbers with decimal representation using only the digits $1$ and $2$:
+    \[
+        E := \{x \in (0,1) : \forall j \in \mathbb{N}, \ \exists d_{-j} \in \{1, 2\} \text{ such that } x = 0.d_{-1}d_{-2}...\}.
+    \]
+    Prove that $\vert E \vert = \vert P(\mathbb{N}) \vert$. \textit{Hint}: Consider the function $f : E \to P(\mathbb{N})$ such that if $x \in E$ and $x = 0.d_{-1}d_{-2}...$, 
+    \[
+        f(x) = \{j \in \mathbb{N} : d_{-j} = 2\}.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $E := \{x \in (0,1) : \forall j \in \mathbb{N} \ \exists d_{-j} \in \{1,2\} \ x = 0.d_{-1}d_{-2}...\} \subset \mathbb{R}$. We want to prove that $\vert E \vert = \vert P(\mathbb{N}) \vert$. Consider $f : E \to P(\mathbb{N})$ such that $f(x) = \{j \in \mathbb{N} : d_{-j} = 2\} \subset \mathbb{N}$ if $x \in E$ and $x = 0.d_{-1}d_{-2}..$. We need to prove that $f: E \to P(\mathbb{N})$ is injective. Assume $f(x) = f(y)$. Without loss of generality, let $x = 0.d_{-1}d_{-2}...$ and $y = 0.d'_{-1}d'_{-2}..$. Then
+    \[
+        \forall j \in \mathbb{N} : d_{-j} = d'_{-j} \implies \forall j \in \mathbb{N} : 0.d_{-1}d_{-2}...d_{-j} = 0.d'_{-1}d'_{-2}...d'_{-j};
+    \]
+    hence,
+    \[
+        x = \sup\{0.d_{-1}d_{-2}...d_{-j} : j \in \mathbb{N}\} = \sup\{0.d'_{-1}d'_{-2}...d'_{-j} : j \in \mathbb{N}\} = y,
+    \]
+    as needed. We need to prove that $f : E \to P(\mathbb{N})$ is surjective. Assume $N \in P(\mathbb{N})$. By construction, $\exists x \in E$ such that $x = 0.d_{-1}d_{-2}...$ with $\forall m \in \mathbb{N} \setminus N : d_{-m} = 1$ and $\forall n \in N : d_{-n} = 2$. Then
+    \[
+        N = \{j \in \mathbb{N} : d_{-j} = 2\} = f(x) \in f(E),
+    \]
+    as needed. Thus, $f : E \to P(\mathbb{N})$ is bijective, as wanted.
+\end{proof}
+
+\begin{exercise}
+    Prove: 
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $A$ and $B$ be two disjoint, countably infinite sets. Then $A \cup B$ is countably infinite.
+        \item The set of irrational numbers, $\mathbb{R}\setminus\mathbb{Q}$, is uncountable. You may use the facts discussed in the lectures that $\mathbb{R}\setminus\mathbb{Q}$ is infinite and $\mathbb{R}$ is uncountable without proof.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start:
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $A$ and $B$ be two disjoint, countably infinite sets. Then $\exists$ bijective functions $f : A \to \mathbb{N}$ and $g : B \to \mathbb{N}$. Define the function $h : A \cup B \to \mathbb{N}$ such that
+        \[
+            h(x) = \begin{cases}
+                2f(x) - 1 & (x \in A) \\
+                2g(x) & (x \in B)
+            \end{cases}.
+        \]
+        We need to prove that $h$ is injective. Assume $h(x) = h(y)$. Then
+        \begin{align*}
+            h(x) \in \{2n - 1 : n \in \mathbb{N}\} &\implies 2f(x) - 1 = 2f(y) - 1 \\
+            &\implies f(x) = f(y) \\
+            &\implies x = y \ (\text{because $f$ is injective)}
+        \end{align*}
+        xor
+        \begin{align*}
+            h(y) \in \{2n : n \in \mathbb{N}\} &\implies 2g(x) = 2g(y) \\
+            &\implies g(x) = g(y) \\
+            &\implies x = y \ (\text{because $g$ is injective)};
+        \end{align*}
+        hence, $x = y \in A \cup B$, as needed. We need to prove that $h$ is surjective. Assume $n \in \mathbb{N}$. Then
+        \begin{align*}
+            n \in \{2m - 1 : m \in \mathbb{N}\} &\implies \exists x \in A : f(x) = \frac{n + 1}{2} \in \mathbb{N} \ (\text{because $f$ is surjective}) \\
+            &\implies h(x) = 2f(x) - 1 = n \implies n \in h(A \cup B)
+        \end{align*}
+        xor
+        \begin{align*}
+            n \in \{2m : m \in \mathbb{N}\} &\implies \exists y \in B : g(y) = \frac{n}{2} \in \mathbb{N} \ (\text{because $g$ is surjective}) \\
+            &\implies h(y) = 2g(y) = n \implies n \in h(A \cup B);
+        \end{align*}
+        hence, $n \in h(A \cup B)$, as needed. Thus, $h : A \cup B \to \mathbb{N}$ is bijective; hence, $A \cup B$ is countably infinite, as needed.
+        \item Assume, for the purpose of contradiction, $\mathbb{R} \setminus \mathbb{Q}$ is countable. Given $\mathbb{R} \setminus \mathbb{Q}$ is infinite, $\mathbb{R} \setminus \mathbb{Q}$ is countably infinite. Note that $\mathbb{Q}$ is countably infinite. By Part (a),
+        \[
+            \vert \mathbb{R} \setminus \mathbb{Q} \vert = \vert \mathbb{N} \vert = \vert \mathbb{Q} \vert \implies \vert \mathbb{R} \vert = \vert \mathbb{R} \setminus \mathbb{Q} \cup \mathbb{Q} \vert = \vert \mathbb{N} \vert;  
+        \]
+        hence, $\mathbb{R}$ is countably infinite, which is a contradiction. Thus, $\mathbb{R} \setminus \mathbb{Q}$ is uncountable, as needed. 
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Let $S$ be a subset of $\mathbb{R}$ which is bounded above, and let $x_0$ be an upper bound for $S$. Prove that $x_0 = \sup S$ if and only if for every $\epsilon > 0$, there exists $x \in S$ such that $x_0 - \epsilon < x $.
+\end{exercise}
+
+\begin{proof}
+    Let $S$ be any bounded above subset of $\mathbb{R}$. Thus, $\exists x_0 \in \mathbb{R}$ such that $x_0$ is an upper bound for $S$, as wanted. If $x_0$ is the least upper bound for $S$, then
+    \[
+        \forall \epsilon > 0: x_0 - \epsilon < x_0 \implies \exists x \in S : x_0 - \epsilon < x \leq x_0,
+    \]
+    as needed. If $\forall \epsilon > 0 \ \exists x \in S : x_0 - \epsilon < x \leq x_0$, then
+    \[
+        \forall x \in \mathbb{R} : x < x_0 \ \implies \epsilon_0 = x_0 - x > 0 \implies \exists y \in S : x = x_0 - \epsilon_0 < y \leq x_0,
+    \]
+    as needed. Thus, $x_0 = \sup S$ if and only if $\forall \epsilon > 0 \ \exists x \in S : x_0 - \epsilon < x \leq x_0$, as wanted.
+\end{proof}
+
+\begin{exercise}
+    We say a set $U \subset \mathbb{R}$ is \textit{open} if for every $x \in U$ there exists $\epsilon > 0$ such that
+    \[
+        (x - \epsilon, x + \epsilon) \subset U.
+    \]
+    Since the definition is vacuous for $U = \emptyset$, it follows that the empty set is open. It is also clear from the definition that $U = \mathbb{R}$ is open.
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $a,b \in \mathbb{R}$ with $a < b$. Prove that the sets $(-\infty,a)$, $(a, b)$, and $(b, \infty)$ are open.
+        \item Let $\Lambda$ be a set (not necessarily a subset of $\mathbb{R}$), and for each $\lambda \in \Lambda$, let $U_{\lambda} \subset \mathbb{R}$. Prove that if $U_{\lambda}$ is open for all $\lambda \in \Lambda$ then the set
+        \[
+            \bigcup_{\lambda \in \Lambda}U_{\lambda} = \{x \in \mathbb{R} : \exists \lambda \in \Lambda \ \text{such that} \ x \in U_{\lambda}\}
+        \]
+        is open.
+        \item Let $n \in \mathbb{N}$, and let $U_1,...,U_n \subset \mathbb{R}$. Prove that if $U_1,...,U_n$ are open then the set
+        \[
+            \bigcap_{m = 1}^{n}U_m = \{x \in \mathbb{R} : x \in U_m \ \text{for all} \ m = 1,...,n\}
+        \]
+        is open.
+        \item Is the set of rationals $\mathbb{Q} \subset \mathbb{R}$ open? Provide a proof to substantiate your claim.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let $a,b \in \mathbb{R}$ with $a < b$. We need to prove that the subset $(-\infty, a)$ is open. If $x \in (-\infty, a)$, then
+        \[
+            -\infty < x < a \implies \epsilon_0 = \frac{a - x}{2} > 0 \implies -\infty < x - \epsilon_0 < x + \epsilon_0 < a;
+        \]
+        hence, $\exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subset (-\infty, a)$, as needed. We need to prove that the subset $(a, b)$ is open. If $x \in (a, b)$, then
+        \[
+            a < x < b \implies \epsilon_0 = \min\bigg\{\frac{x - a}{2}, \frac{b - x}{2}\bigg\} > 0 \implies a < x - \epsilon_0 < x + \epsilon_0 < b;
+        \]
+        hence, $\exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subset (a, b)$, as needed. We need to prove that the subset $(b, \infty)$ is open. If $x \in (b, \infty)$, then
+        \[
+            b < x < \infty \implies \epsilon_0 = \frac{x - b}{2} > 0 \implies b < x - \epsilon_0 < x + \epsilon_0 < \infty;
+        \]
+        hence, $\exists \epsilon > 0$ such that $(x - \epsilon, x + \epsilon) \subset (b, \infty)$, as needed.
+        \item Let $\Lambda$ be any index set and $U_{\lambda} \subset \mathbb{R}$ for each $\lambda \in \Lambda$. Assume $U_{\lambda}$ is open for all $\lambda \in \Lambda$. We want to prove that the subset 
+        \[
+            \bigcup_{\lambda \in \Lambda}U_{\lambda} = \{x \in \mathbb{R} : \exists \lambda \in \Lambda \ \text{such that} \ x \in U_{\lambda}\}
+        \]
+        is open. Thus,
+        \begin{align*}
+            x \in \bigcup_{\lambda \in \Lambda}U_{\lambda} &\implies \exists \lambda \in \Lambda : x \in U_{\lambda} \\
+            &\implies \exists \epsilon > 0 : (x - \epsilon, x + \epsilon) \subset U_{\lambda} \implies (x - \epsilon, x + \epsilon) \subset \bigcup_{\lambda \in \Lambda}U_{\lambda},
+        \end{align*}
+        as wanted.
+        \item Let $n \in \mathbb{N}$ and $U_1,...,U_n \subset \mathbb{R}$. Assume $U_1,...,U_n$ are open. We want to prove that 
+        \[
+            \bigcap_{m = 1}^{n}U_m = \{x \in \mathbb{R} : x \in U_m \ \text{for all} \ m = 1,...,n\}
+        \]
+        is open. Thus,
+        \begin{align*}
+            x \in \bigcap_{m = 1}^{n}U_m &\implies \forall m \in \{1,...,n\} : x \in U_m \\
+            &\implies \exists \epsilon_m > 0 : (x - \epsilon_m, x + \epsilon_m) \subset U_{m} \\
+            &\implies \epsilon = \min\{\epsilon_1,...,\epsilon_n\} > 0 \implies (x - \epsilon, x + \epsilon) \subset \bigcap_{m = 1}^{n}U_m,
+        \end{align*}
+        as wanted.
+        \item No, I claim the set of rationals $\mathbb{Q}$ cannot be open in the set of reals $\mathbb{R}$. If $x \in \mathbb{Q}$, then
+        \[
+            \forall \epsilon > 0 \ \exists i \in \mathbb{R} \setminus \mathbb{Q} : i \in (x - \epsilon, x + \epsilon) \implies (x - \epsilon, x + \epsilon) \not \subset \mathbb{Q}; 
+        \]
+        hence, $x$ is not an interior point of $\mathbb{Q}$, as needed. Thus, $\mathbb{Q}$ is not an open subset of $\mathbb{R}$, as claimed.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Prove that
+    \[
+        \lim_{n \to \infty}\frac{1}{20n^2 + 20n + 2020} = 0.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let $\epsilon > 0$. By the Archimedean Property of $\mathbb{R}$, $\exists M \in \mathbb{N}$ such that $M\epsilon > 1$. Then $\forall n \geq M \geq 1$,
+    \[
+        \bigg\vert \frac{1}{20n^2 + 20n + 2020} - 0 \bigg\vert = \frac{1}{20n^2 + 20n + 2020} < \frac{1}{20n^2 + 20n} < \frac{1}{20n} < \frac{1}{n} \leq \frac{1}{M} < \epsilon,
+    \]
+    as needed.
+\end{proof}
+
+\end{document}
