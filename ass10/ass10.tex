@@ -1,0 +1,189 @@
+\documentclass[12pt]{article}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
+\usepackage[hmargin=1in, vmargin=1cm]{geometry}
+\usepackage[normalem]{ulem}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+
+\begin{document}
+
+\uline{18.100A/18.1001 Real Analysis \hfill Assignment 10}
+
+\begin{exercise}
+    Let \(I\) be an interval. A function \(f : I \to \mathbb{R}\) is said to satisfy a Hölder condition with exponent \(\alpha > 0\) if there exists a constant \(C > 0\) such that if \(x,y \in I\) then
+    \[
+        \vert f(x) - f(y) \vert \leq C \vert x - y \vert^{\alpha}.
+    \]
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that if \(f : I \to \mathbb{R}\) satisfies a Hölder condition with exponent \(\alpha > 0\), then f is uniformly continuous on \(I\).
+        \item Prove that if \(f : I \to \mathbb{R}\) satisfies a Hölder condition with exponent \(\alpha > 1\), then \(f\) is constant.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let \(I\) be any segment. 
+    \begin{enumerate}[label=(\alph*)]
+        \item Assume, for the purpose of proof, \(f : I \to \mathbb{R}\) satisfies a Hölder condition with \(\alpha > 0\) exponent. By \(f\)'s Hölder condition, \(\exists C > 0 \ \forall x,y \in I\) such that
+        \[
+            \vert f(x) - f(y) \vert \leq C \vert x - y \vert^{\alpha}.
+        \]
+        Fix \(\epsilon > 0\) and \(\delta = C^{-1 / \alpha}\epsilon^{1 / \alpha}\). If \(x,y \in I\) and \(\vert x - y \vert < \delta\), then
+        \[
+            \vert f(x) - f(y) \vert \leq C \vert x - y \vert^{\alpha} < C\delta^{\alpha} = \epsilon.
+        \]
+        Thus, \(f\) is uniformly continuous on \(I\), as required of proof.
+        \item Assume, for the purpose of proof, \(f : I \to \mathbb{R}\) satisfies a Hölder condition with \(\alpha > 1\) exponent. By \(f\)'s Hölder condition,  \(\exists C > 0 \ \forall x,y \in I\) such that
+        \[
+            0 \leq \vert f(x) - f(y) \vert \leq C \vert x - y \vert^{\alpha} \implies 0 \leq \frac{\vert f(x) - f(y) \vert}{\vert x - y \vert} \leq C \vert x - y \vert^{\alpha - 1}.
+        \]
+        Fix, without loss of generality, \(x_0 \in I\). By the Squeeze Theorem of Real Functions,
+        \[
+            0 \leq \bigg\vert \frac{f(x) - f(x_0)}{x - x_0} \bigg\vert \leq C \vert x - x_0 \vert^{\alpha - 1} \implies \vert f('(x_0) \vert = 0 \implies f'(x_0) = 0.
+        \]
+        Then \(f\) is differentiable on \(I\). By the Derivative Characterization Theorem of Monotone Functions, 
+        \[
+            \forall x \in I : f(x) = 0 \implies \exists K \in \mathbb{R} : f(x) = K,
+        \]
+        as needed of proof.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Suppose \(f : I \to \mathbb{R}\) is bounded, \(g: I \to \mathbb{R}\) is differentiable at \(c \in I\), and \(g(c) = g'(c) = 0\). Show that \(h(x) := f(x)g(x)\) is differentiable at \(c\). \textit{Hint}: You cannot apply the Product Rule.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : I \to \mathbb{R}\) be any bounded function. Suppose \(g : I \to \mathbb{R}\) is any differentiable function at \(c \in I\). Assume \(g(c) = g'(c) = 0\). Define \(h : I \to \mathbb{R}\) by \(h(x) = f(x)g(x)\). We need to show that
+    \[
+        h'(c) := \lim_{x \to c}\frac{h(x) - h(c)}{x - c} \in \mathbb{R}.
+    \]
+    Given \(f\) is bounded on \(I\), \(\exists R \geq 0 \ \forall x \in I\) such that \(\vert f(x) \vert \leq R\). By the Squeeze Theorem,
+    \begin{align*}
+        \vert h'(c) \vert := \lim_{x \to c} \bigg\vert \frac{h(x) - h(c)}{x - c} \bigg\vert &= \lim_{x \to c} \bigg\vert \frac{f(x)g(x) - f(c)g(c)}{x - c} \bigg\vert \\
+        &= \lim_{x \to c} \bigg\vert \frac{f(x)g(x)}{x - c} \bigg\vert = \lim_{x \to c} \vert f(x) \vert \bigg\vert \frac{g(x) - g(c)}{x - c} \bigg\vert \leq Rg'(c) = 0. 
+    \end{align*}
+    Thus, \(h'(c) = 0\), as needed.
+\end{proof}
+
+\begin{exercise}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) be a diﬀerentiable function. Prove that \(f\) is Lipschitz continuous if and only if \(f'\) is a bounded function.
+\end{exercise}
+
+\begin{proof}
+    Let \(f : \mathbb{R} \to \mathbb{R}\) have a derivative everywhere. Assume, for the purpose of direct proof, \(\exists K \geq 0 \ \forall x,y \in \mathbb{R}\) such that
+    \[
+        \vert f(x) - f(y) \vert \leq K \vert x - y \vert. 
+    \]
+    Suppose, without any loss of generality, \(x_0 \in \mathbb{R}\). If \(x \in \mathbb{R}\), then
+    \[
+        \vert f(x) - f(x_0) \vert \leq K \vert x - x_0 \vert \implies \bigg\vert \frac{f(x) - f(x_0)}{x - x_0} \bigg\vert \leq K.
+    \]
+    By the Order Relation of Convergent Functions,
+    \[
+        \vert f'(x_0) \vert := \lim_{x \to x_0} \bigg\vert \frac{f(x) - f(x_0)}{x - x_0} \bigg\vert \leq K.
+    \]
+    Thus, \(\exists C \geq 0 \ \forall x \in \mathbb{R}\) for which
+    \[
+        \vert f'(x) \vert \leq C,
+    \]
+    as needed of direct proof. Assume, for the purpose of converse proof, \(\exists K \geq 0 \ \forall x \in \mathbb{R}\) such that
+    \[
+        \vert f'(x) \vert \leq K.
+    \]
+    Suppose, without any loss of generality, \(x < y\). Given \(f\) is differentiable on \(\mathbb{R}\), \(f\) is continuous on \([x, y]\). By the Mean Value Theorem, \(\exists c \in (x, y)\) such that
+    \[
+        \vert f(x) - f(y) \vert = \vert f'(c) (x - y) \vert = \vert f'(c) \vert \vert x - y \vert \leq K \vert x - y \vert.
+    \]
+    Thus, \(\exists C \geq 0 \ \forall x,y \in \mathbb{R}\) for which
+    \[
+        \vert f(x) - f(y) \vert \leq C \vert x - y \vert,
+    \]
+    as needed of converse proof.
+\end{proof}
+
+\begin{exercise}
+    (L'Hôpitial's Rule) Suppose \(f : (a, b) \to \mathbb{R}\) and \(g : (a, b) \to \mathbb{R}\) are differentiable functions and \(c \in (a, b)\). Suppose that \(f(c) = 0\), \(g(c) = 0\), \(g'(x) \neq 0\) when \(x \neq c\), and that the limit of \(f'(x) / g'(x)\) as \(x\) goes to \(c\) exists. Show that 
+    \[
+        \lim_{x \to c}\frac{f(x)}{g(x)} = \lim_{x \to c}\frac{f'(x)}{g'(x)}.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Let \(f : (a, b) \to \mathbb{R}\) and \(g : (a, b) \to \mathbb{R}\) have derivatives everywhere. Suppose \(c \in (a, b)\), \(f(c) = g(c) = 0\) and \(g'(x) \neq 0 \ \forall x \neq c\). Assume, for the purpose of proof, 
+    \[
+        \lim_{x \to c}\frac{f'(x)}{g'(x)} \in \mathbb{R}.
+    \]
+    By the Mean Value Theorem, \(\forall x_n \in (a, b) \setminus \{c\} \to c \ \exists y_n, z_n \in (x_n, c) \cup (c, x_n) \to c\) such that
+    \[
+        f(x_n) - f(c) = f'(y_n)(x_n - c) \ \land \ g(x_n) - g(c) = g'(z_n)(x_n - c)
+    \]
+    and
+    \[
+        \lim_{n \to \infty}\frac{f(x_n)}{g(x_n)} = \lim_{n \to \infty}\frac{f(x_n) - f(c)}{g(x_n) - g(c)} = \lim_{n \to \infty}\frac{f'(y_n)(x_n - c)}{g'(z_n)(x_n - c)} = \lim_{n \to \infty}\frac{f'(y_n)}{g'(z_n)} = \lim_{n \to \infty}\frac{f'(x_n)}{g'(x_n)}.
+    \]
+    Thus,
+    \[
+        \lim_{x \to c}\frac{f(x)}{g(x)} = \lim_{x \to c}\frac{f'(x)}{g'(x)} \in \mathbb{R},
+    \]
+    as needed.
+\end{proof}
+
+\begin{exercise}
+    \hfill
+    \begin{enumerate}[label=(\alph*)]
+        \item Suppose \(f : [a, b) \to \mathbb{R}\) is continuous, differentiable in \((a, b)\), and \(f'(x) \to \lambda\) as \(x \to a^{+}\). Prove that \(f\) is differentiable at \(a\) and \(f'(a) = \lambda\).
+        \item Suppose \(f : (a, b] \to \mathbb{R}\) is continuous, differentiable in \((a, b)\), and \(f'(x) \to \lambda\) as \(x \to b^{-}\). Prove that \(f\) is differentiable at \(b\) and \(f'(b) = \lambda\).
+        \item Suppose \(f : (a, b) \to \mathbb{R}\) is continuous, and suppose \(f\) is differentiable everywhere except at \(c \in (a, b)\) and \(f'(x) \to \lambda\) as \(x \to c\). Prove that \(f\) is differentiable at \(c\) and \(f'(c) = \lambda\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Start!
+    \begin{enumerate}[label=(\alph*)]
+        \item Let \(f : [a, b) \to \mathbb{R}\) be a differentiable function on \((a, b)\). Suppose \(f'(x) \to \lambda\) as \(x \to a^{+}\). By the Mean Value Theorem, \(\forall x_n \in (a, b) \to a^{+}\ \exists y_n \in (a, x_n) \to a^{+}\) such that
+        \[
+            f(x_n) - f(a) = f'(y_n)(x_n - a)
+        \]
+        and
+        \[
+            \lim_{n \to \infty}\frac{f(x_n) - f(a)}{x_n - a} = \lim_{n \to \infty}\frac{f'(y_n)(x_n - a)}{(x_n - a)} = \lim_{n \to \infty}f'(y_n) = \lim_{n \to \infty}f'(x_n).
+        \]
+        Thus,
+        \[
+            f'(a) := \lim_{x \to a^{+}}\frac{f(x) - f(a)}{x - a} = \lim_{x \to a^{+}}f'(x) = \lambda,
+        \]
+        as needed.
+        \item Let \(f : (a, b] \to \mathbb{R}\) be a differentiable function on \((a, b)\). Suppose \(f'(x) \to \lambda\) as \(x \to b^{-}\). By the Mean Value Theorem, \(\forall x_n \in (a, b) \to b^{-} \ \exists z_n \in (x_n, b) \to b^{-}\) such that 
+        \[
+            f(x_n) - f(b) = f'(z_n)(x_n - b)
+        \]
+        and
+        \[
+            \lim_{n \to \infty}\frac{f(x_n) - f(b)}{x_n - b} = \lim_{n \to \infty}\frac{f'(z_n)(x_n - b)}{(x_n - b)} = \lim_{n \to \infty}f'(z_n) = \lim_{n \to \infty}f'(x_n).
+        \]
+        Thus,
+        \[
+            f'(b) := \lim_{x \to b^{-}}\frac{f(x) - f(b)}{x - b} = \lim_{x \to b^{-}}f'(x) = \lambda,
+        \]
+        as needed.
+        \item Let \(f : (a, b) \to \mathbb{R}\) be a differentiable function on \((a, b) \setminus \{c\}\). Suppose \(f'(x) \to \lambda\) as \(x \to c\). By the Mean Value Theorem, \(\forall x_n \in (a, b) \setminus \{c\} \to c \ \exists t_n \in (x_n, c) \cup (c, x_n) \to c\) such that
+        \[
+            f(x) - f(c) = f'(t_n)(x_n - c)
+        \]
+        and
+        \[
+            \lim_{n \to \infty}\frac{f(x_n) - f(c)}{x_n - c} = \lim_{n \to \infty}\frac{f'(t_n)(x_n - c)}{(x_n - c)} = \lim_{n \to \infty}f'(t_n) = \lim_{n \to \infty}f'(x_n).
+        \]
+        Thus,
+        \[
+            f'(c) = \lim_{x \to c}\frac{f(x) - f(c)}{x - c} = \lim_{x \to c}f'(x) = \lambda,
+        \]
+        as needed.
+    \end{enumerate}
+\end{proof}
+
+\end{document}
