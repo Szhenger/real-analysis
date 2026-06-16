@@ -8,7 +8,7 @@ The reference textbook is [Basic Analysis I: Introduction to Real Analysis Volum
 
 ## Lecture Videos
 
-The lecture videos are [MIT 18.100A Real Analysis, Fall 2020](https://www.youtube.com/playlist?list=PLUl4u3cNGP61O7HkcF7UImpM0cR_L2gSw) by Prof. Casey Rodriguez @ University of North Carolina.  
+The lecture videos are [MIT 18.100A Real Analysis, Fall 2020](https://www.youtube.com/playlist?list=PLUl4u3cNGP61O7HkcF7UImpM0cR_L2gSw) by Prof. Casey Rodriguez @ University of North Carolina - Chapel Hill.  
 
 ## Written Assignments
 
