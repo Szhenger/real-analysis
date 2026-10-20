@@ -1,17 +1,22 @@
 \documentclass[12pt]{article}
-\setlength{\parindent}{0pt}
-\pagestyle{empty}
 
-\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
-\usepackage[hmargin=1in, vmargin=1cm]{geometry}
-\usepackage[normalem]{ulem}
+\usepackage[letterpaper, margin=1in, headheight=14.5pt, headsep=22.5pt]{geometry}
+\usepackage{amsmath, amssymb, amsthm, enumitem, fancyhdr}
+
+\pagestyle{fancy}
+\fancyhead[L]{18.100A/18.1001 Real Analysis}
+\fancyfoot[C]{\thepage}
+\fancypagestyle{firstpage}{%
+  \fancyhead[L]{18.100/18.1001 Real Analysis}%
+  \fancyhead[R]{Assignment 10}%
+  \fancyfoot[C]{\thepage}%
+}
 
 \theoremstyle{definition}
 \newtheorem{exercise}{Exercise}
 
 \begin{document}
-
-\uline{18.100A/18.1001 Real Analysis \hfill Assignment 10}
+\thispagestyle{firstpage}
 
 \begin{exercise}
     Let \(I\) be an interval. A function \(f : I \to \mathbb{R}\) is said to satisfy a Hölder condition with exponent \(\alpha > 0\) if there exists a constant \(C > 0\) such that if \(x,y \in I\) then
