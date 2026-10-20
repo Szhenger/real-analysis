@@ -1,17 +1,22 @@
 \documentclass[12pt]{article}
-\setlength{\parindent}{0pt}
-\pagestyle{empty}
 
-\usepackage{amsmath, amssymb, amsthm, enumitem, mathtools}
-\usepackage[hmargin=1in, vmargin=1cm]{geometry}
-\usepackage[normalem]{ulem}
+\usepackage[letterpaper, margin=1in, headheight=14.5pt, headsep=22.5pt]{geometry}
+\usepackage{amsmath, amssymb, amsthm, enumitem, fancyhdr}
+
+\pagestyle{fancy}
+\fancyhead[L]{18.100A/18.1001 Real Analysis}
+\fancyfoot[C]{\thepage}
+\fancypagestyle{firstpage}{%
+  \fancyhead[L]{18.100/18.1001 Real Analysis}%
+  \fancyhead[R]{Assignment 7}%
+  \fancyfoot[C]{\thepage}%
+}
 
 \theoremstyle{definition}
 \newtheorem{exercise}{Exercise}
 
 \begin{document}
-
-\uline{18.100A/18.1001 Real Analysis \hfill Assignment 7}
+\thispagestyle{firstpage}
 
 \begin{exercise}
     Suppose both \(\sum x_n\) and \(\sum y_n\) converge absolutely. Show that the Cauchy product, \(\sum z_n\) where \(z_n = x_0y_n + x_1y_{n - 1} + \cdot \cdot \cdot + x_ny_0\), also converges absolutely.  
