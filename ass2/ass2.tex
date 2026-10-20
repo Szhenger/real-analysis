@@ -1,18 +1,22 @@
 \documentclass[12pt]{article}
-\setlength{\parindent}{0pt}
-\pagestyle{empty}
 
-\usepackage{amsmath, amssymb, amsthm, enumitem}
-\usepackage[hmargin=1in, vmargin=1cm]{geometry}
-\usepackage[normalem]{ulem}
+\usepackage[letterpaper, margin=1in, headheight=14.5pt, headsep=22.5pt]{geometry}
+\usepackage{amsmath, amssymb, amsthm, enumitem, fancyhdr}
+
+\pagestyle{fancy}
+\fancyhead[L]{18.100A/18.1001 Real Analysis}
+\fancyfoot[C]{\thepage}
+\fancypagestyle{firstpage}{%
+  \fancyhead[L]{18.100/18.1001 Real Analysis}%
+  \fancyhead[R]{Assignment 2}%
+  \fancyfoot[C]{\thepage}%
+}
 
 \theoremstyle{definition}
 \newtheorem{exercise}{Exercise}
-\newtheorem{extra}{Extra}
 
 \begin{document}
-
-\uline{18.100A/18.1001 Real Analysis \hfill Assignment 2}
+\thispagestyle{firstpage}
 
 \begin{exercise}
     Let $S$ be an ordered set. Let $A \subset S$ be a nonempty finite subset. Then $A$ is bounded. \textit{Hint: Use induction.}
